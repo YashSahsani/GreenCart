@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<nav class="px-6 py-6 flex justify-between items-center border-b border-gray-200">
+   <a href="/" class="text-xl font-semibold text-blue-500">GreenCartEcom</a>
+    <ul class="flex space-x-4">
+       <li><a href="{% url 'GreenCartEcom:index' %}" class="text-gray-500">Home</a></li>
+       <li><a href="{% url 'GreenCartEcom:contact' %}" class="text-gray-500">Contact</a></li>
+        <li><a href="{% url 'Auth:login' %}" class="text-gray-500">SignIn</a></li>
+    </ul>
+</nav>
+<div class="px-6 py-6">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>
