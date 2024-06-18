@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <style>
+        .alert {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+
+{% include 'alert.html' %}
+
+<div class="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-4xl">
+    <div class="md:flex">
+        <div class="hidden md:block md:w-1/2">
+            <img class="h-full w-full object-cover" src="" alt="Random Image">
+        </div>
+        <div class="w-full md:w-1/2 p-8">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+<script>
+    // Hide the alert after 500 milliseconds
+    setTimeout(() => {
+        const alert = document.getElementById('alert');
+        if (alert) {
+            alert.style.display = 'none';
+        }
+    }, 5000);
+</script>
+</body>
+</html>
