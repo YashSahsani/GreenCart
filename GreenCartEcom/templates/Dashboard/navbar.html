@@ -7,18 +7,36 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-<nav class="px-6 py-6 flex justify-between items-center border-b border-gray-200">
-   <a href="/" class="self-center text-xl font-semibold whitespace-nowrap text-green-600">GreenCart</a>
-    <ul class="flex space-x-4">
-       <li><a href="{% url 'GreenCartEcom:index' %}" class="text-gray-500">Home</a></li>
-       <li><a href="{% url 'GreenCartEcom:contact' %}" class="text-gray-500">Contact</a></li>
-        <li><a href="{% url 'Auth:login' %}" class="text-gray-500">SignIn</a></li>
-    </ul>
-</nav>
-<div class="px-6 py-6">
-    {% block content %}
-    {% endblock %}
-</div>
-{% include 'Dashboard/footer.html' %}
+    <div>
+        <nav class="px-6 py-6 flex justify-between items-center border-b border-gray-200">
+            <!-- Left side: GreenCart logo/image and search field -->
+            <div class="flex items-center">
+                <!-- GreenCart logo/image (replace with your image or text) -->
+                <a href="/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvjOrvPK_t9Ci8yVypurJ8NdxjyGKtIoTqtw&s" class="h-8" alt="GreenCart Logo" />
+                    <span class="self-center text-xl font-semibold whitespace-nowrap text-green-600">GreenCart</span>
+                </a>
+                <form method="GET" class="ml-4 flex">
+                    <div class="flex">
+                        <input type="text" name="query" placeholder="Search for a product" class="py-1 px-2 sm:px-4 rounded-l-lg border border-gray-300 focus:outline-none focus:border-green-600 w-full sm:w-auto ">
+                        <button type="submit" class="py-1 px-3 bg-green-600 text-white rounded-r-lg hover:bg-green-700 focus:outline-none focus:bg-green-700">Search</button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Right side: Navigation links -->
+            <ul class="flex space-x-4">
+                <li><a href="{% url 'GreenCartEcom:index' %}" class="text-gray-500">Home</a></li>
+                <li><a href="{% url 'GreenCartEcom:contact' %}" class="text-gray-500">Contact</a></li>
+                <li><a href="{% url 'Auth:login' %}" class="text-gray-500">SignIn</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div>
+        {% block content %}
+        {% endblock %}
+    </div>
+    {% include 'footer.html' %}
 </body>
 </html>
