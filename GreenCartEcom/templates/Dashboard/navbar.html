@@ -8,7 +8,7 @@
 </head>
 <body>
 <nav class="px-6 py-6 flex justify-between items-center border-b border-gray-200">
-   <a href="/" class="text-xl font-semibold text-blue-500">GreenCartEcom</a>
+   <a href="/" class="self-center text-xl font-semibold whitespace-nowrap text-green-600">GreenCart</a>
     <ul class="flex space-x-4">
        <li><a href="{% url 'GreenCartEcom:index' %}" class="text-gray-500">Home</a></li>
        <li><a href="{% url 'GreenCartEcom:contact' %}" class="text-gray-500">Contact</a></li>
@@ -19,5 +19,6 @@
     {% block content %}
     {% endblock %}
 </div>
+{% include 'Dashboard/footer.html' %}
 </body>
 </html>
