@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav class="bg-gray-800 py-4">
+    <div class="container mx-auto px-6 md:px-0">
+        <div class="flex items-center justify-between">
+            <!-- Branding -->
+            <a href="{% url 'Shop:home' %}" class="text-xl text-white font-semibold">Home</a>
+
+            <!-- Navigation Links (Visible on larger screens) -->
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="{% url 'Shop:cart' %}" class="text-white hover:text-gray-300">Cart</a>
+                <a href="{% url 'Shop:order' %}" class="text-white hover:text-gray-300">Orders</a>
+                <a href="{% url 'Shop:profile' %}" class="text-white hover:text-gray-300">Profile</a>
+                <a href="{% url 'Auth:logout' %}" class="text-white hover:text-gray-300">Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+</body>
+</html>
