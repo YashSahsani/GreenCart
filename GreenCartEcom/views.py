@@ -1,8 +1,11 @@
 from django.shortcuts import render
+from .models import navCategories
 
 
 def index(request):
-    return render(request, 'Dashboard/index.html')
+    categoryList = navCategories.objects.all()
+    return render(request, 'Dashboard/index.html', {'navCategories': categoryList})
 
 def contact(request):
     return render(request, 'Dashboard/contact.html')
+

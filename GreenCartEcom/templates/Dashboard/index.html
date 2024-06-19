@@ -1,7 +1,15 @@
 {% extends 'Dashboard/navbar.html' %}
-      {% block title %}GreenCart | Dashboard{% endblock %}
-      {% block content %}
-            <h1> The First Page</h1>
-            <p> This is the first page of the dashboard</p>
-          <a href="{% url 'GreenCartEcom:contact' %}">Contact Us</a>
-        {% endblock %}
+{% block title %}GreenCart | Dashboard{% endblock %}
+{% block content %}
+<nav class="bg-white shadow-lg px-4">
+  <div class="flex justify-between h-14">
+    <div class="flex">
+      <div class="hidden sm:flex sm:space-x-8">
+        {% for category in navCategories %}
+        <a href="#" class="border-b-2 border-transparent text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium hover:border-gray-300">{{ category.title }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</nav>
+{% endblock %}
