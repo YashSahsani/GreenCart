@@ -1,13 +1,11 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.http import HttpResponse
 from .models import AppUser
 from django.contrib import messages
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, check_password
 from .forms import LoginForm
-from django.contrib.auth import authenticate,login,logout
-from django.contrib.auth.decorators import login_required
-from .helper import getSecondsOfOneYear
+from .helper import getSecondsOfOneYear, login_required
+
 
 
 class Login(View):
@@ -25,13 +23,11 @@ class Login(View):
         remember_me = form.cleaned_data.get('remember_me')
         user = AppUser.objects.get(email=email)
         if user is not None:
-            if(user.password == make_password(password)):
-                login(request, user)
+            if check_password(password, user.password):
                 if remember_me:
                     request.session.set_expiry(getSecondsOfOneYear())  # Set session expiry to 1 year
                 else:
                     request.session.set_expiry(0)  # Session expires when the browser is closed
-                # Set cookies for access and refresh tokens
                 response = redirect('Shop:home')
                 messages.success(request, 'Login successful')
                 return response
@@ -64,7 +60,7 @@ class Signup(View):
             return redirect('Auth:signup')
 
 @login_required
-def logout(request):
-    logout(request)
+def logout_view(request):
+    request.session.flush()
     messages.warning(request, 'You have been logged out')
     return redirect('/')
