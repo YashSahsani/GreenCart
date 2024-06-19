@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,14 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
     <script src="https://cdn.tailwindcss.com/"></script>
-    <style>
-        .alert {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            z-index: 1000;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
 </head>
 <body class="bg-gray-100 flex items-center justify-center h-screen">
 
@@ -30,14 +24,6 @@
     </div>
 </div>
 
-<script>
-    // Hide the alert after 500 milliseconds
-    setTimeout(() => {
-        const alert = document.getElementById('alert');
-        if (alert) {
-            alert.style.display = 'none';
-        }
-    }, 5000);
-</script>
+<script src="{% static 'js/setTimeoutForAlert.js' %}"> </script>
 </body>
 </html>
