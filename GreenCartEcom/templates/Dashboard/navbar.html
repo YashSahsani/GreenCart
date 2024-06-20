@@ -1,13 +1,17 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com/"></script>
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
     <div>
+        {% include 'alert.html' %}
         <nav class="px-6 py-6 flex justify-between items-center border-b border-gray-200">
             <!-- Left side: GreenCart logo/image and search field -->
             <div class="flex items-center">
@@ -38,5 +42,6 @@
         {% endblock %}
     </div>
     {% include 'footer.html' %}
+    <script src="{% static 'js/setTimeoutForAlert.js' %}"> </script>
 </body>
 </html>
