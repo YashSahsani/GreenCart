@@ -54,7 +54,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'GreenCart.urls'
-
+AUTH_USER_MODEL = 'Auth.User'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -105,6 +105,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Custom redirect URL 
+LOGIN_URL = '/auth/login/' 
+# Custom User authentication backend
+AUTHENTICATION_BACKENDS = [
+    'Auth.backend.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
