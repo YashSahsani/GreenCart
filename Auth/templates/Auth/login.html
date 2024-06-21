@@ -20,7 +20,7 @@
                     {{ form.remember_me.label_tag }}
                 </div>
                     <div class="text-sm">
-                        <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot your password?</a>
+                        <a href="{% url 'Auth:forgot_password' %}" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot your password?</a>
                     </div>
                 </div>
                 <div class="mt-6">
