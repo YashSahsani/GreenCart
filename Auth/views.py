@@ -17,7 +17,6 @@ class Login(View):
 
     def post(self, request):
         form = LoginForm(request.POST)
-        print("form:"+str(form.is_valid()))
         if not form.is_valid():
             messages.error(request, 'Please check your inputs')
             return redirect('Auth:login')
@@ -31,7 +30,7 @@ class Login(View):
                 request.session.set_expiry(getSecondsOfOneYear())
             else:
                 request.session.set_expiry(0)
-            messages.success(request, 'You have been logged in')
+            messages.success(request, 'Welcome '+str(user.first_name)+'!')
             return redirect('Shop:home')
         else:
             messages.error(request, 'Login failed. Please check your username and password.')
@@ -47,7 +46,7 @@ class Signup(View):
         print("form:"+str(form.is_valid()))
         if form.is_valid():
             form.save()
-            messages.success(request, 'Account created successfully')
+            messages.success(request, str(form.cleaned_data.get('first_name'))+' account has been created successfully. Please login to continue.')
             return redirect('Auth:login')
         else:
             print(form.errors)
