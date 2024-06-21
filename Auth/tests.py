@@ -66,3 +66,15 @@ class SignupViewTests(TestCase):
             messages_list = list(messages.get_messages(response.wsgi_request))
             self.assertEqual(len(messages_list), 1)
             self.assertEqual(str(messages_list[0]), 'test account has been created successfully. Please login to continue.')
+        def test_post_signup_failure(self):
+            response = self.client.post(reverse('Auth:signup'), {
+                'first_name': 'test',
+                'last_name': 'user',
+                'email': 'test2@t.com',
+                'password1': 'testpassword',
+                'password2': 'testpassword'
+            })
+            self.assertRedirects(response, reverse('Auth:signup'))
+            messages_list = list(messages.get_messages(response.wsgi_request))
+            self.assertEqual(len(messages_list), 1)
+            self.assertEqual(str(messages_list[0]), 'Please check your inputs')
