@@ -7,6 +7,8 @@ from .forms import LoginForm, SignupForm, ForgotPasswordForm, ResetPasswordForm
 from .backend import getSecondsOfOneYear
 from .models import User
 from django.urls import reverse
+from django.http import HttpResponse
+
 
 
 
@@ -50,10 +52,10 @@ class Signup(View):
             messages.success(request, 'Account created successfully')
             return redirect('Auth:login')
         else:
-            print(form.errors)
-            messages.error(request, 'Please check your inputs')
-            return redirect('Auth:signup', {'form': form})
-        
+            response = HttpResponse()
+            response['Location'] = '/auth/signup/'
+            response = render(request, 'Auth/signup.html', {'form': form},status=400)
+            return response
 
 def forgot_password(request):
     form = ForgotPasswordForm()
@@ -69,15 +71,12 @@ def forgot_password(request):
 
 def reset_password(request):
     email = request.GET.get('email')
-    print("email:"+str(email))
+    form = ResetPasswordForm(email=email)
     if not email:
         messages.error(request, 'Invalid password reset link.')
         return redirect('forgot_password')
-    print(request.method)
     if request.method == 'POST':
         form = ResetPasswordForm(request.POST, email=email)
-        print("form:"+str(form.is_valid()))
-        print("form:"+str(form.errors))
         if form.is_valid():
             user = User.objects.filter(email=email).first()
             print("user:"+str(user))
@@ -88,9 +87,6 @@ def reset_password(request):
                 print("saved:")
                 messages.success(request, 'Your password has been successfully reset.')
                 return redirect(reverse('Auth:login'))
-    else:
-        form = ResetPasswordForm(email=email)
-
     return render(request, 'Auth/reset_password.html', {'form': form})
 
 
