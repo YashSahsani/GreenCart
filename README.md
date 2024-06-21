@@ -2,9 +2,56 @@
 
 [![forthebadge made-with-python](https://forthebadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
-Ecommerce Webiste to Sell Green items.
 
 ## Prerequisites
 - Python
 - Git
 
+
+## Installation 
+
+```bash
+$ git clone https://github.com/YashSahsani/GreenCart.git && cd GreenCart
+```
+
+### Install Virtual Env
+
+```bash
+$ pip install virtualenv
+$ virtualenv venv
+```
+
+### OR
+
+```bash
+$ python3 -m venv venv # create virtual enviroment
+```
+
+### For Mac/ Linux
+
+```bash
+$ source venv/bin/activate # activate virtual env for Mac and Linux
+$ pip install -r requirements.txt
+```
+
+### For Windows
+
+```bash
+$ .\venv\bin\activate # activate virtual env for Windows
+$  pip install -r requirements.txt
+```
+
+### Migrations
+
+```bash
+$ python manage.py makemigrations
+$ python manage.py migrate
+$ python manage.py runserver
+```
+
+### For Admin
+```bash
+$ python manage.py createsuperuser
+Email:- admin@greencart.com
+Password:- Admin@123
+```
