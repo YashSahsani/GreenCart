@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-green-100">
+    <div class="container mx-auto p-4">
+        <h1 class="text-4xl font-bold text-green-800 mb-4">User Profile</h1>
+        <div class="profile bg-white shadow-md rounded-lg p-4">
+            <div class="profile-image mb-4">
+                <img class="rounded-full w-32 h-32 mx-auto" src="{{ user.image }}" alt="Profile Image">
+            </div>
+            <div class="profile-details text-center">
+                <span class="block text-lg font-semibold text-green-700">Name:</span>
+                <h2 class="text-2xl font-bold text-green-900">{{ user.first_name }} {{ user.last_name }}</h2>
+                <p class="text-green-600">{{ user.date_of_birth }}</p>
+                <p class="text-green-600">{{ user.email }}</p>
+                <p class="text-green-600">{{ user.phone }}</p>
+                <p class="text-green-600">{{ user.address_line_1 }}</p>
+                <p class="text-green-600">{{ user.address_line_2 }}</p>
+                <p class="text-green-600">{{ user.city }}</p>
+                <p class="text-green-600">{{ user.state }}</p>
+                <p class="text-green-600">{{ user.country }}</p>
+                <p class="text-green-600">{{ user.zip_code }}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
