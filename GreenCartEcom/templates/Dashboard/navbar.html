@@ -8,8 +8,18 @@
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
 
     <title>{% block title %}{% endblock %}</title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+        .scroll-container {
+            height: calc(100% - 6rem); /* Adjust based on your header height */
+            overflow-y: auto;
+        }
+    </style>
 </head>
-<body>
+<body class="flex flex-col">
+    <!-- Top section: Header -->
     <div>
         {% include 'alert.html' %}
         <nav class="px-6 py-6 flex justify-between items-center border-b border-gray-200">
@@ -36,12 +46,28 @@
             </ul>
         </nav>
     </div>
+    <!-- Navigation bar for categories -->
+    <nav class="bg-white shadow-lg px-4">
+        <div class="flex justify-between h-14">
+          <div class="flex">
+            <div class="hidden sm:flex sm:space-x-8">
+              {% for category in navCategories %}
+              <a href="#" class="border-b-2 border-transparent text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium hover:border-gray-300">{{ category.title }}</a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </nav>
 
-    <div>
+    <!-- Main content section with scrollbar -->
+    <div class="scroll-container flex-1 overflow-y-auto">
         {% block content %}
         {% endblock %}
+        
+        <!-- Footer section -->
+        {% include 'footer.html' %}
     </div>
-    {% include 'footer.html' %}
+
     <script src="{% static 'js/setTimeoutForAlert.js' %}"> </script>
 </body>
 </html>

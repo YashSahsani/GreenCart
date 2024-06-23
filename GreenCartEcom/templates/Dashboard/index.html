@@ -1,15 +1,84 @@
 {% extends 'Dashboard/navbar.html' %}
 {% block title %}GreenCart | Dashboard{% endblock %}
 {% block content %}
-<nav class="bg-white shadow-lg px-4">
-  <div class="flex justify-between h-14">
-    <div class="flex">
-      <div class="hidden sm:flex sm:space-x-8">
-        {% for category in navCategories %}
-        <a href="#" class="border-b-2 border-transparent text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium hover:border-gray-300">{{ category.title }}</a>
-        {% endfor %}
+
+
+<div id="custom-carousel" class="relative w-full" data-carousel="slide">
+  <!-- Carousel wrapper -->
+  <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+      <!-- Item 1 -->
+      <div class="carousel-item duration-700 ease-in-out">
+          <img src="https://bloomscape.com/wp-content/uploads/2020/05/bloomscape_indoor-outdoor_4-1536x1024.jpg?ver=217611" class="absolute block w-full" alt="Image 1">
       </div>
-    </div>
+      <!-- Item 2 -->
+      <div class="carousel-item duration-700 ease-in-out hidden">
+          <img src="https://images.pexels.com/photos/793012/pexels-photo-793012.jpeg?auto=compress&cs=tinysrgb&w=800" class="absolute block w-full" alt="Image 2">
+      </div>
+      <!-- Item 3 -->
+      <div class="carousel-item duration-700 ease-in-out hidden">
+          <img src="https://rootbridges.com/cdn/shop/articles/What_Are_The_Basic_Needs_Of_The_Indoor_Plants_To_Survive_1100x.jpg?v=1641212409" class="absolute block w-full" alt="Image 3">
+      </div>
   </div>
-</nav>
+  <!-- Slider indicators -->
+  <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+      <button type="button" class="w-3 h-3 rounded-full" aria-label="Slide 1" onclick="moveToSlide(0)"></button>
+      <button type="button" class="w-3 h-3 rounded-full" aria-label="Slide 2" onclick="moveToSlide(1)"></button>
+      <button type="button" class="w-3 h-3 rounded-full" aria-label="Slide 3" onclick="moveToSlide(2)"></button>
+  </div>
+  <!-- Slider controls -->
+  <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" onclick="moveToPrevSlide()">
+      <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+          <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+          </svg>
+          <span class="sr-only">Previous</span>
+      </span>
+  </button>
+  <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" onclick="moveToNextSlide()">
+      <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+          <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+          </svg>
+          <span class="sr-only">Next</span>
+      </span>
+  </button>
+</div>
+<div>
+  <img src="#" alt="1st image" class="w-20 h-20">
+  <img src="#" alt="1st image" class="w-20 h-20">
+  <img src="#" alt="1st image" class="w-20 h-20">
+  <img src="#" alt="1st image" class="w-20 h-20">
+  <img src="#" alt="1st image" class="w-20 h-20">
+  <img src="#" alt="1st image" class="w-20 h-20">
+</div>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.carousel-item');
+
+  function showSlide(index) {
+      slides.forEach((slide, i) => {
+          slide.classList.toggle('hidden', i !== index);
+      });
+  }
+
+  function moveToSlide(index) {
+      currentSlide = index;
+      showSlide(currentSlide);
+  }
+
+  function moveToPrevSlide() {
+      currentSlide = (currentSlide > 0) ? currentSlide - 1 : slides.length - 1;
+      showSlide(currentSlide);
+  }
+
+  function moveToNextSlide() {
+      currentSlide = (currentSlide < slides.length - 1) ? currentSlide + 1 : 0;
+      showSlide(currentSlide);
+  }
+
+  // Initialize the slider
+  showSlide(currentSlide);
+</script>
+
 {% endblock %}
