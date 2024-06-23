@@ -70,10 +70,11 @@ class SignupViewTests(TestCase):
             response = self.client.post(reverse('Auth:signup'), {
                 'first_name': 'test',
                 'last_name': 'user',
-                'email': 'test2@t.com',
+                'email': 'test@test.com',
                 'password1': 'testpassword',
-                'password2': 'testpassword'
+                'password2': 'testpassword2'
             })
+            self.assertEqual(response.status_code, 302)
             self.assertRedirects(response, reverse('Auth:signup'))
             messages_list = list(messages.get_messages(response.wsgi_request))
             self.assertEqual(len(messages_list), 1)

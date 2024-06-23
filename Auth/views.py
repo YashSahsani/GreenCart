@@ -43,15 +43,13 @@ class Signup(View):
 
     def post(self, request):
         form = SignupForm(request.POST)
-        print("form:"+str(form.is_valid()))
         if form.is_valid():
             form.save()
             messages.success(request, str(form.cleaned_data.get('first_name'))+' account has been created successfully. Please login to continue.')
             return redirect('Auth:login')
         else:
-            print(form.errors)
             messages.error(request, 'Please check your inputs')
-            return redirect('Auth:signup', {'form': form})
+            return redirect('Auth:signup')
         
 
 def forgot_password(request):
@@ -68,23 +66,16 @@ def forgot_password(request):
 
 def reset_password(request):
     email = request.GET.get('email')
-    print("email:"+str(email))
     if not email:
         messages.error(request, 'Invalid password reset link.')
         return redirect('forgot_password')
-    print(request.method)
     if request.method == 'POST':
         form = ResetPasswordForm(request.POST, email=email)
-        print("form:"+str(form.is_valid()))
-        print("form:"+str(form.errors))
         if form.is_valid():
             user = User.objects.filter(email=email).first()
-            print("user:"+str(user))
             if user:
-                print("password:"+str(form.cleaned_data['password1']))
                 user.set_password(form.cleaned_data['password1'])
                 user.save()
-                print("saved:")
                 messages.success(request, 'Your password has been successfully reset.')
                 return redirect(reverse('Auth:login'))
     else:
