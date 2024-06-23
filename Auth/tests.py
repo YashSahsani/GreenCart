@@ -74,8 +74,7 @@ class SignupViewTests(TestCase):
                 'password1': 'testpassword',
                 'password2': 'testpassword2'
             })
-            self.assertEqual(response.status_code, 302)
-            self.assertRedirects(response, reverse('Auth:signup'))
-            messages_list = list(messages.get_messages(response.wsgi_request))
-            self.assertEqual(len(messages_list), 1)
-            self.assertEqual(str(messages_list[0]), 'Please check your inputs')
+            self.assertEqual(response.status_code, 400)
+            self.assertTemplateUsed(response, 'Auth/signup.html')
+            self.assertIsInstance(response.context['form'], SignupForm)
+            
