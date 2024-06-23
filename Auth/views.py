@@ -7,6 +7,8 @@ from .forms import LoginForm, SignupForm, ForgotPasswordForm, ResetPasswordForm
 from .backend import getSecondsOfOneYear
 from .models import User
 from django.urls import reverse
+from django.http import HttpResponse
+
 
 
 
@@ -48,9 +50,10 @@ class Signup(View):
             messages.success(request, str(form.cleaned_data.get('first_name'))+' account has been created successfully. Please login to continue.')
             return redirect('Auth:login')
         else:
-            messages.error(request, 'Please check your inputs')
-            return redirect('Auth:signup')
-        
+            response = HttpResponse()
+            response['Location'] = '/auth/signup/'
+            response = render(request, 'Auth/signup.html', {'form': form},status=400)
+            return response
 
 def forgot_password(request):
     form = ForgotPasswordForm()
@@ -66,6 +69,7 @@ def forgot_password(request):
 
 def reset_password(request):
     email = request.GET.get('email')
+    form = ResetPasswordForm(email=email)
     if not email:
         messages.error(request, 'Invalid password reset link.')
         return redirect('forgot_password')
@@ -78,9 +82,6 @@ def reset_password(request):
                 user.save()
                 messages.success(request, 'Your password has been successfully reset.')
                 return redirect(reverse('Auth:login'))
-    else:
-        form = ResetPasswordForm(email=email)
-
     return render(request, 'Auth/reset_password.html', {'form': form})
 
 
