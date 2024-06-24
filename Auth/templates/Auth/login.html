@@ -10,20 +10,24 @@ https://lottie.host/54dad616-5c33-413f-8af8-e62aa9daf0cd/2RhLNcNx1Q.json
 <form method="post" action="{% url 'Auth:login' %}" class="space-y-6">
     {% csrf_token %}
     <div class="space-y-1">
-        <label for="email" class="block text-sm font-medium text-green-700">Email</label>
+        <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-green-700">
+            {{ form.email.label }}{% if form.email.field.required %}<span class="text-red-500">*</span>{% endif %}
+        </label>
         {{ form.email }}
     </div>
     <div class="space-y-1">
-        <label for="password" class="block text-sm font-medium text-green-700">Password</label>
+        <label for="{{ form.password.id_for_label }}" class="block text-sm font-medium text-green-700">
+            {{ form.password.label }}{% if form.password.field.required %}<span class="text-red-500">*</span>{% endif %}
+        </label>
         {{ form.password }}
     </div>
     <div class="flex items-center justify-between">
-        <div class="flex items-center">
+        <div class="flex items-center gap-1">
             {{ form.remember_me }}
             <label for="remember_me" class="ml-2 block text-sm text-grey-700">{{ form.remember_me.label }}</label>
         </div>
         <div class="text-sm">
-            <a href="#" class="font-medium text-green-600 hover:text-green-500">Forgot your password?</a>
+            <a href="{% url 'Auth:forgot_password' %}" class="font-medium text-green-600 hover:text-green-500">Forgot your password?</a>
         </div>
     </div>
     <div>

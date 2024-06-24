@@ -11,23 +11,83 @@ https://lottie.host/992f1fc1-2ae0-42d3-ade2-7262ac05cbf9/zfyvTe6tjB.json
     <form method="POST" action="{% url 'Auth:signup' %}" class="space-y-6">
         {% csrf_token %}
         <div class="space-y-1">
-            <label for="first_name" class="block text-sm font-medium text-green-700">First Name</label>
+            <label for="{{ form.first_name.id_for_label }}" class="block text-sm font-medium text-green-700">
+                {{ form.first_name.label }}{% if form.first_name.field.required %}<span class="text-red-500">*</span>{% endif %}
+            </label>
             {{ form.first_name }}
+            {% if form.first_name.errors %}
+            <div class="text-red-700 mt-2">
+                <ul class="list-disc pl-5 space-y-1">
+                    {% for error in form.first_name.errors %}
+                    <li>{{ error|escape }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
         </div>
         <div class="space-y-1">
-            <label for="last_name" class="block text-sm font-medium text-green-700">Last Name</label>
+            <label for="{{ form.last_name.id_for_label }}"class="block text-sm font-medium text-green-700">
+                {{ form.last_name.label }}{% if form.last_name.field.required %}<span class="text-red-500">*</span>{% endif %}
+            </label>
             {{ form.last_name }}
+            {% if form.last_name.errors %}
+            <div class="text-red-700 mt-2">
+                <ul class="list-disc pl-5 space-y-1">
+                    {% for error in form.last_name.errors %}
+                    <li>{{ error|escape }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
         </div>
         <div class="space-y-1">
-            <label for="email" class="block text-sm font-medium text-green-700">Email</label>
+            <!-- <label for="email" class="block text-sm font-medium text-green-700">Email</label> -->
+            <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-green-700">
+                {{ form.email.label }}{% if form.email.field.required %}<span class="text-red-500">*</span>{% endif %}
+            </label>
+            {{ form.email }}
+            {% if form.email.errors %}
+            <div class="text-red-700 mt-2">
+                <ul class="list-disc pl-5 space-y-1">
+                    {% for error in form.email.errors %}
+                    <li>{{ error|escape }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
             {{ form.email }}
         </div>
         <div class="space-y-1">
-            <label for="password1" class="block text-sm font-medium text-green-700">Password</label>
+            <!-- <label for="password1" class="block text-sm font-medium text-green-700">Password</label> -->
+            <label for="{{ form.password1.id_for_label }}" class="block text-sm font-medium text-green-700">
+                {{ form.password1.label }}{% if form.password1.field.required %}<span class="text-red-500">*</span>{% endif %}
+            </label>
+    
             {{ form.password1 }}
+            {% if form.password1.errors %}
+            <div class="text-red-700 mt-2">
+                <ul class="list-disc pl-5 space-y-1">
+                    {% for error in form.password1.errors %}
+                    <li>{{ error|escape }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
         </div>
         <div class="space-y-1">
-            <label for="password2" class="block text-sm font-medium text-green-700">Confirm Password</label>
+            <label for="{{ form.password2.id_for_label }}" class="block text-sm font-medium text-green-700">
+                {{ form.password2.label }}{% if form.password2.field.required %}<span class="text-red-500">*</span>{% endif %}
+            </label>
+            {{ form.password2 }}
+            {% if form.password2.errors %}
+            <div class="text-red-700 mt-2">
+                <ul class="list-disc pl-5 space-y-1">
+                    {% for error in form.password2.errors %}
+                    <li>{{ error|escape }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
             {{ form.password2 }}
         </div>
         <div>
