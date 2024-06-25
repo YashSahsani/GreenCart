@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 class LoginForm(forms.Form):
     email = forms.EmailField(
         widget=forms.EmailInput(attrs={
-            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm',
             'placeholder': 'Email',
             'id': 'email',
             'required': True
@@ -14,7 +14,7 @@ class LoginForm(forms.Form):
     )
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={
-            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm',
             'placeholder': 'Password',
             'id': 'password',
             'required': True
@@ -24,7 +24,7 @@ class LoginForm(forms.Form):
     remember_me = forms.BooleanField(
         required=False,
         widget=forms.CheckboxInput(attrs={
-            'class': 'h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded',
+            'class': 'h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded',
             'id': 'remember_me'
         }),
         label='Remember me'
@@ -35,7 +35,7 @@ class SignupForm(UserCreationForm):
         max_length=30,
         required=True,
         widget=forms.TextInput(attrs={
-            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-greem-500 focus:border-green-500 sm:text-sm',
             'placeholder': 'First Name'
         })
     )
@@ -43,7 +43,7 @@ class SignupForm(UserCreationForm):
         max_length=30,
         required=True,
         widget=forms.TextInput(attrs={
-            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm',
             'placeholder': 'Last Name'
         })
     )
@@ -51,7 +51,7 @@ class SignupForm(UserCreationForm):
         max_length=254,
         required=True,
         widget=forms.EmailInput(attrs={
-            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm',
             'placeholder': 'Email'
         })
     )
@@ -59,7 +59,7 @@ class SignupForm(UserCreationForm):
         label="Password",
         strip=False,
         widget=forms.PasswordInput(attrs={
-            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm',
             'placeholder': 'Password'
         })
     )
@@ -67,7 +67,7 @@ class SignupForm(UserCreationForm):
         label="Confirm Password",
         strip=False,
         widget=forms.PasswordInput(attrs={
-            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm',
             'placeholder': 'Confirm Password'
         })
     )
@@ -80,7 +80,7 @@ class SignupForm(UserCreationForm):
 class ForgotPasswordForm(forms.Form):
     email = forms.EmailField(
         widget=forms.EmailInput(attrs={
-            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm',
             'placeholder': 'Email',
             'id': 'email',
             'required': True
@@ -106,7 +106,7 @@ class ResetPasswordForm(forms.Form):
         label="New Password",
         strip=False,
         widget=forms.PasswordInput(attrs={
-            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm',
             'placeholder': 'New Password'
         })
     )
@@ -114,7 +114,7 @@ class ResetPasswordForm(forms.Form):
         label="Confirm Password",
         strip=False,
         widget=forms.PasswordInput(attrs={
-            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm',
             'placeholder': 'Confirm New Password'
         })
     )
