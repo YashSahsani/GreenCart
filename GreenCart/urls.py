@@ -22,6 +22,7 @@ admin.site.site_title ="GreenCart Admin Portal"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('GreenCartEcom.urls','GreenCartEcom'), name='GreenCartEcom'),
+    path('cart/', include('add_to_cart.urls', 'AddToCart'), name='AddToCart'),
     path('auth/', include('Auth.urls','Auth'), name='Auth'),
     path('shop/', include('Shop.urls','Shop'), name='Shop'),
 ]

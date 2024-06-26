@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'GreenCartEcom',
     "Auth.apps.AuthConfig",
-    "Shop.apps.ShopConfig"
+    "Shop.apps.ShopConfig",
+    "add_to_cart.apps.AddToCartConfig"
 
 ]
 
