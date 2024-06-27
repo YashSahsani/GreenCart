@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from .models import UserProfile
+from Auth.models import User
+from django.contrib import messages
+from django.shortcuts import redirect
 # Create your views here.
 @login_required
 def get_user_details(request):
@@ -10,18 +14,24 @@ def get_user_details(request):
 def edit_user_details(request):
     if request.method == 'POST':
         user = request.user
-        print(request.POST)
-        user_profile = user.userprofile
-        user_profile.date_of_birth = request.POST.get('dob')
-        user_profile.bio = request.POST.get('bio')
-        user_profile.address_line_1 = request.POST.get('address_line_1')
-        user_profile.address_line_2 = request.POST.get('address_line_2')
-        user_profile.city = request.POST.get('city')
-        user_profile.state = request.POST.get('state')
-        user_profile.country = request.POST.get('country')
-        user_profile.zip_code = request.POST.get('zip_code')
-        user_profile.phone_number = request.POST.get('phone_number')
-        user_profile.profile_pic = request.FILES.get('profile_pic')
+        user = User.objects.get(pk=user.id)
+        
+        # Try to get the existing user profile, create one if it doesn't exist
+        try:
+            user_profile = UserProfile.objects.get(user=user)
+        except UserProfile.DoesNotExist:
+            user_profile = UserProfile(user=user)
+        
+        user.first_name = request.POST['first_name']
+        
+        dob = request.POST.get('dob', '1990-01-01')  # Default date if empty
+        if not dob:  # Additional check if dob is still empty
+            dob = '1990-01-01'
+        user_profile.date_of_birth = dob
+        
+        user.save()
         user_profile.save()
-        return render(request, 'userprofile/user_profile.html',{'title':request.user.first_name,'user':request.user})
-    return render(request, 'userprofile/add_user_details.html',{'title':request.user.first_name,'user':request.user})
+        
+        message = 'Profile Updated Successfully'
+        messages.success(request, message)
+        return redirect('userprofile:get_user_details')
