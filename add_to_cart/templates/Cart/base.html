@@ -8,6 +8,12 @@
     <title>{% block title %}{% endblock %}</title>
     <script src="https://cdn.tailwindcss.com/"></script>
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <style>
+        body {
+            background-color: #e0f2e9;
+        }
+    </style>
+
 </head>
 
 <body class="bg-gray-100 flex items-center justify-center h-screen">
@@ -24,6 +30,7 @@
                 <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Quantity</h3>
                 <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Price</h3>
                 <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Total</h3>
+                <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Actions</h3>
             </div>
             <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
                 <div class="flex w-2/5"> <!-- product -->
@@ -32,7 +39,6 @@
                     </div>
                     <div class="flex flex-col justify-between ml-4 flex-grow">
                         <span class="font-bold text-sm text-green-600">Plant 1</span>
-                        <span class="text-green-500 text-xs">Accessories</span>
                         <a href="#" class="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</a>
                     </div>
                 </div>
@@ -43,6 +49,9 @@
                 </div>
                 <span class="text-center w-1/5 font-semibold text-sm text-green-600">$10.00</span>
                 <span class="text-center w-1/5 font-semibold text-sm text-green-600">$10.00</span>
+                <div class="text-center w-1/5">
+                    <a href="#" class="font-semibold hover:text-blue-500 text-gray-500 text-xs">Add to Wish List</a>
+                </div>
             </div>
             <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
                 <div class="flex w-2/5"> <!-- product -->
@@ -51,7 +60,6 @@
                     </div>
                     <div class="flex flex-col justify-between ml-4 flex-grow">
                         <span class="font-bold text-sm text-green-600">Plant 2</span>
-                        <span class="text-green-500 text-xs">Accessories</span>
                         <a href="#" class="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</a>
                     </div>
                 </div>
@@ -62,6 +70,9 @@
                 </div>
                 <span class="text-center w-1/5 font-semibold text-sm text-green-600">$20.00</span>
                 <span class="text-center w-1/5 font-semibold text-sm text-green-600">$20.00</span>
+                <div class="text-center w-1/5">
+                    <a href="#" class="font-semibold hover:text-blue-500 text-gray-500 text-xs">Add to Wish List</a>
+                </div>
             </div>
             <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
                 <div class="flex w-2/5"> <!-- product -->
@@ -70,7 +81,6 @@
                     </div>
                     <div class="flex flex-col justify-between ml-4 flex-grow">
                         <span class="font-bold text-sm text-green-600">Plant 3</span>
-                        <span class="text-green-500 text-xs">Accessories</span>
                         <a href="#" class="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</a>
                     </div>
                 </div>
@@ -81,6 +91,9 @@
                 </div>
                 <span class="text-center w-1/5 font-semibold text-sm text-green-600">$30.00</span>
                 <span class="text-center w-1/5 font-semibold text-sm text-green-600">$30.00</span>
+                <div class="text-center w-1/5">
+                    <a href="#" class="font-semibold hover:text-blue-500 text-gray-500 text-xs">Add to Wish List</a>
+                </div>
             </div>
 
             <div class="flex justify-between mt-10">
@@ -90,20 +103,18 @@
                         Continue Shopping
                     </a>
                 </div>
-                <div class="w-1/2">
-                    <div class="flex justify-end">
-                        <div class="text-right">
-                            <div class="text-sm font-semibold text-gray-600">Subtotal</div>
-                            <div class="text-2xl font-semibold text-green-600">$60.00</div>
-                            <div class="text-sm text-gray-600 mt-2">Shipping and taxes calculated at checkout</div>
-                        </div>
-                    </div>
-                    <div class="flex justify-end mt-10">
-                        <button class="bg-green-600 text-white font-semibold py-3 px-5 rounded hover:bg-green-700">Proceed to Checkout</button>
+                <div class="flex justify-end w-1/2">
+                    <div class="flex items-center">
+                        <span class="font-semibold text-xs">Total:</span>&nbsp;&nbsp;<span class="font-semibold text-green-600 text-lg">$60.00</span>
                     </div>
                 </div>
             </div>
 
+            <div class="flex justify-end mt-10">
+                <button class="bg-green-600 flex font-semibold hover:bg-green-700 items-center px-10 py-2 rounded-full text-white text-sm">
+                    Proceed to Checkout
+                </button>
+            </div>
         </div>
     </div>
 </div>
