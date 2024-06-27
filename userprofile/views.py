@@ -4,12 +4,13 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def get_user_details(request):
     
-    return render(request, 'userprofile/profile.html',{'user':request.user})
+    return render(request, 'userprofile/test.html',{'user':request.user,'title':'GreenCart | '+ request.user.first_name})
 
 @login_required
-def add_user_details(request):
+def edit_user_details(request):
     if request.method == 'POST':
         user = request.user
+        print(request.POST)
         user_profile = user.userprofile
         user_profile.date_of_birth = request.POST.get('dob')
         user_profile.bio = request.POST.get('bio')
