@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const saveButton = document.getElementById("saveButton");
     const profileForm = document.getElementById("profileForm");
     const profileImageWrapper = document.querySelector(".profile-image-wrapper");
+    const imageInput = document.getElementById("imageInput");
+    const profileImage = document.getElementById("profileImage");
 
     editButton.addEventListener("click", function () {
         // Show the save button and make fields editable
@@ -36,19 +38,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // Handle image upload
     profileImageWrapper.addEventListener("click", function () {
         if (profileImageWrapper.classList.contains("edit-mode")) {
-            const imageInput = document.getElementById("imageInput");
             imageInput.click();
         }
     });
 
-    // Display selected image
-    const imageInput = document.getElementById("imageInput");
     imageInput.addEventListener("change", function (event) {
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = function (e) {
-                document.getElementById("profileImage").src = e.target.result;
+                profileImage.src = e.target.result;
             };
             reader.readAsDataURL(file);
         }
