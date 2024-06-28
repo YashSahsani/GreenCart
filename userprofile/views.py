@@ -24,7 +24,7 @@ def get_user_details(request):
     else:
         user_form = UserForm(instance=user)
         user_profile_form = UserProfileForm(instance=user_profile)
-    return render(request, 'userprofile/test.html', {
+    return render(request, 'userprofile/profile.html', {
         'user_form': user_form,
         'user_profile_form': user_profile_form,
         'title': 'GreenCart | ' + request.user.first_name,
@@ -52,7 +52,7 @@ def edit_user_details(request):
         user_profile = UserProfile.objects.get_or_create(user=request.user)
         user_profile_form = UserProfileForm(instance=user_profile)
 
-    return render(request, 'userprofile/test.html', {
+    return render(request, 'userprofile/profile.html', {
         'title': 'GreenCart | ' + request.user.first_name,
         'user_form': user_form,
         'user_profile_form': user_profile_form,
