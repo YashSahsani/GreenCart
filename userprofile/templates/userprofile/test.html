@@ -54,7 +54,7 @@
                         <div class="flex flex-wrap justify-center">
                             <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                                 <div class="relative profile-image-wrapper">
-                                    <img id="profileImage" alt="..." src="{% static 'images/Yash.png' %}" class="shadow-xl rounded-full h-auto align-middle border-none -m-16 -ml-20 lg:-ml-16 max-w-150-px">
+                                    <img id="profileImage" alt="..." src="{{ user_profile_pic }}" class="shadow-xl rounded-full h-auto align-middle border-none -m-16 -ml-20 lg:-ml-16 max-w-150-px">
                                     <input id="imageInput" type="file" accept="image/*" class="hidden">
                                     <div class="upload-text">Upload Image</div>
                                 </div>

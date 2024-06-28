@@ -24,11 +24,11 @@ def get_user_details(request):
     else:
         user_form = UserForm(instance=user)
         user_profile_form = UserProfileForm(instance=user_profile)
-    
     return render(request, 'userprofile/test.html', {
         'user_form': user_form,
         'user_profile_form': user_profile_form,
-        'title': 'GreenCart | ' + request.user.first_name
+        'title': 'GreenCart | ' + request.user.first_name,
+        'user_profile_pic': user_profile.profile_pic.url,
     })
 
 @login_required
@@ -37,7 +37,6 @@ def edit_user_details(request):
         user_form = UserForm(request.POST, instance=request.user)
         user_profile, created = UserProfile.objects.get_or_create(user=request.user)
         user_profile_form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
-        
         if  user_form.has_changed() or user_profile_form.has_changed() and user_form.is_valid() and user_profile_form.is_valid():
             user_form.save()
             user_profile_form.save()
@@ -54,6 +53,8 @@ def edit_user_details(request):
         user_profile_form = UserProfileForm(instance=user_profile)
 
     return render(request, 'userprofile/test.html', {
+        'title': 'GreenCart | ' + request.user.first_name,
         'user_form': user_form,
-        'user_profile_form': user_profile_form
+        'user_profile_form': user_profile_form,
+        'user_profile_pic': user_profile.profile_pic.url,
     })
