@@ -37,7 +37,7 @@ def edit_user_details(request):
         user_form = UserForm(request.POST, instance=request.user)
         user_profile, created = UserProfile.objects.get_or_create(user=request.user)
         user_profile_form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
-        if  user_form.is_valid() and user_profile_form.is_valid():
+        if  user_form.has_changed() or user_profile_form.has_changed() and user_form.is_valid() and user_profile_form.is_valid():
             user_form.save()
             user_profile_form.save()
             messages.success(request, 'Profile Updated Successfully')

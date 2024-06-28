@@ -29,6 +29,10 @@
     display: block;
 }
 
+.upload-text-hidden {
+    display: none;
+}
+
 .profile-image-wrapper input[type="file"] {
     display: none;
 }

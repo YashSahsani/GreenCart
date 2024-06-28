@@ -5,11 +5,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const profileImageWrapper = document.querySelector(".profile-image-wrapper");
     const imageInput = document.getElementById("id_profile_pic");
     const profileImage = document.getElementById("profileImage");
+    const uploadText = document.getElementById("uploadText");
 
     editButton.addEventListener("click", function () {
         // Show the save button and make fields editable
         saveButton.classList.remove("hidden");
         editButton.classList.add("hidden");
+   
+        uploadText.classList.remove("hidden");
+        uploadText.classList.add("upload-text");
 
         // Enable editing for input fields
         const editableFields = document.querySelectorAll(".editable-field");
@@ -23,6 +27,10 @@ document.addEventListener("DOMContentLoaded", function () {
         // Hide the save button and disable fields
         saveButton.classList.add("hidden");
         editButton.classList.remove("hidden");
+        uploadText.classList.remove("upload-text");
+        uploadText.classList.add("hidden");
+      
+
 
         // Disable editing for input fields
         const editableFields = document.querySelectorAll(".editable-field");
