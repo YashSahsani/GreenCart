@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const saveButton = document.getElementById("saveButton");
     const profileForm = document.getElementById("profileForm");
     const profileImageWrapper = document.querySelector(".profile-image-wrapper");
-    const imageInput = document.getElementById("imageInput");
+    const imageInput = document.getElementById("id_profile_pic");
     const profileImage = document.getElementById("profileImage");
 
     editButton.addEventListener("click", function () {
@@ -30,6 +30,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Remove edit mode from profile image wrapper
         profileImageWrapper.classList.remove("edit-mode");
+
+        // Append image input to the form if it contains a file
+        if (imageInput.files.length > 0) {
+            profileForm.appendChild(imageInput);
+        }
 
         // Submit the form
         profileForm.submit();
