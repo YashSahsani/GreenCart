@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'GreenCartEcom',
     "Auth.apps.AuthConfig",
     "Shop.apps.ShopConfig",
-    "userprofile.apps.UserprofileConfig",
+    "add_to_cart.apps.AddToCartConfig",
+    "userprofile.apps.UserprofileConfig"
 ]
 
 MIDDLEWARE = [
