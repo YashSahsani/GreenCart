@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 admin.site.site_header="GreenCart Admin"
 admin.site.site_title ="GreenCart Admin Portal"
 
@@ -25,5 +27,8 @@ urlpatterns = [
     path('cart/', include('add_to_cart.urls', 'AddToCart'), name='AddToCart'),
     path('auth/', include('Auth.urls','Auth'), name='Auth'),
     path('shop/', include('Shop.urls','Shop'), name='Shop'),
+    path('profile/', include('userprofile.urls','Profile'), name='Profile'),
 ]
 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
