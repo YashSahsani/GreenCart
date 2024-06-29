@@ -18,7 +18,7 @@
             <div class="hidden md:flex items-center space-x-4 relative">
                 <a href="{% url 'Shop:cart' %}" class="text-green hover:text-gray-300">Cart</a>
                 <a href="{% url 'Shop:order' %}" class="text-green hover:text-gray-300">Orders</a>
-                <img id="avatar" class="w-10 h-10 rounded-full cursor-pointer hover:boder"  src="{% static 'images/Yash.png' %}" alt="Rounded avatar">
+                <img id="avatar" class="w-10 h-10 rounded-full cursor-pointer hover:boder"  src="{{ user_profile_pic }}" alt="Rounded avatar">
                 <div id="dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20">
                     <a href="{% url 'Profile:get_user_details' %}" class="block px-4 py-2 text-green hover:bg-gray-100">Profile</a>
                     <a href="{% url 'Auth:logout' %}" class="block px-4 py-2 text-green hover:bg-gray-100">Logout</a>
