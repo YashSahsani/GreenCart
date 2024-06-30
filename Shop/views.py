@@ -10,4 +10,4 @@ def home(request):
 
 def product_detail(request,id):
     product = Product.objects.get(id=id)
-    return render(request,'Shop/product-detail.html',{'name':product.name,'description':product.description,'price':product.price,'expiry':product.expiry})
+    return render(request,'Shop/product-detail.html',{'name':product.name,'description':product.description,'price':product.price,'expiry':product.expiry,'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
