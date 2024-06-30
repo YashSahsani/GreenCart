@@ -25,5 +25,6 @@ urlpatterns = [
     path('auth/', include('Auth.urls','Auth'), name='Auth'),
     path('shop/', include('Shop.urls','Shop'), name='Shop'),
     path('profile/', include('userprofile.urls','Profile'), name='Profile'),
+    path('support/', include('Support.urls'), name='Support')
 ]
 

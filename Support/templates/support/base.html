@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+{% include 'support/navbar.html' %}
+{% block content %}{% endblock %}
+<script src="{% static 'support/js/setTimeoutForAlert.js' %}"></script>
+{% block scripts %}{% endblock %}
+{% include 'footer.html' %}
+</body>
+</html>
