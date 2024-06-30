@@ -1,0 +1,44 @@
+[
+    {
+        "model": "Auth.User",
+        "pk": 1,
+        "fields": {
+            "first_name": "admin",
+            "email": "admin@greencart.com",
+            "last_name": "admin",
+            "password": "pbkdf2_sha256$600000$0FjuZXUItXGWbeWFurh8u3$dQsM8ptw+Pad5B0I6cstdfDKM9g6Q2ig4CJaMRkZaVY=",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true
+        }
+    },
+    {
+        "model": "Auth.User",
+        "pk": 2,
+        "fields": {
+            "first_name": "test",
+            "email": "test@greencart.com",
+            "last_name": "user",
+            "password": "pbkdf2_sha256$600000$sH4aon10SebzQ0LdhwAj8T$b8UEWHglxnZYEziQMRukhf56QExfKpgH4/ecOlWE0a0=",
+            "is_superuser": false,
+            "is_staff": true,
+            "is_active": true
+        }
+    },
+    {
+        "model":"GreenCartEcom.navCategories",
+        "pk":1,
+        "fields":{
+            "title":"Sales"
+        }
+
+
+    },
+    {
+        "model":"GreenCartEcom.navCategories",
+        "pk":2,
+        "fields":{
+            "title":"Vegetables"
+        }
+    }
+]
