@@ -20,6 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 admin.site.site_header="GreenCart Admin"
 admin.site.site_title ="GreenCart Admin Portal"
+from payments.views import payment_view, payment_success
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +29,8 @@ urlpatterns = [
     path('auth/', include('Auth.urls','Auth'), name='Auth'),
     path('shop/', include('Shop.urls','Shop'), name='Shop'),
     path('profile/', include('userprofile.urls','Profile'), name='Profile'),
+    path('', include(('payments.urls', 'payments'), namespace='payments')),
+
 ]
 
 if settings.DEBUG:
