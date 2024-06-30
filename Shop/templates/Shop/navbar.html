@@ -9,11 +9,17 @@
 <nav class=" py-4 flex-wrap">
     <div class="container mx-auto px-6 md:px-0">
         <div class="flex items-center justify-between">
-            <!-- Branding -->
-            <a href="/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvjOrvPK_t9Ci8yVypurJ8NdxjyGKtIoTqtw&s" class="h-8" alt="GreenCart Logo" />
-                <span class="self-center text-xl font-semibold whitespace-nowrap text-green-600">GreenCart</span>
-            </a>
+
+
+            <div class="flex items-center">
+                <!-- GreenCart logo/image (replace with your image or text) -->
+                <a href="/shop" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                    <img src="{% static 'images/logo.png' %}" class="h-8" alt="GreenCart Logo" />
+                </a>
+
+            </div>
+
+
             <!-- Navigation Links (Visible on larger screens) -->
             <div class="hidden md:flex items-center space-x-4 relative">
                 <a href="{% url 'Shop:cart' %}" class="text-green hover:text-gray-300">Cart</a>
