@@ -15,6 +15,7 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    expiry = models.IntegerField(default=3)
     discount_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     image = models.ImageField(default='default.jpg', upload_to='products/')
     in_stock = models.BooleanField(default=True)
