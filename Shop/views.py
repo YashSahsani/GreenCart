@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from userprofile.models import UserProfile
@@ -23,7 +24,17 @@ def home(request):
     if max_price:
         products = products.filter(price__lte=max_price)
 
-    return render(request, 'Shop/home.html', {'products': products,'title': 'GreenCart | Home','user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+    current_hour = datetime.now().hour
+    if current_hour < 12:
+        greeting = "Good morning"
+    elif 12 <= current_hour < 18:
+        greeting = "Good afternoon"
+    else:
+        greeting = "Good evening"
+
+    user_name = request.user.first_name if request.user.is_authenticated else "Guest"
+
+    return render(request, 'Shop/home.html', {'products': products,'greeting': greeting,'user_name': user_name,'title': 'GreenCart | Home','user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
