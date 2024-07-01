@@ -1,5 +1,5 @@
 from django.db import models
-
+import django.utils.timezone
 # Create your models here.
 
 # class Product(models.Model):
