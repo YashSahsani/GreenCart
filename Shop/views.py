@@ -3,7 +3,6 @@ from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product
-from .forms import ProductForm
 
 from userprofile.models import UserProfile
 
@@ -46,4 +45,4 @@ def product_detail(request,id):
 def product_list(request):
     user = request.user
     products = Product.objects.all()
-    return render(request, 'Shop/product_list.html', {'products': products})
+    return render(request, 'Shop/product_list.html', {'products': products,'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
