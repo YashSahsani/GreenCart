@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Load Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <!-- Load custom CSS file -->
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <style>
+        body {
+            /* Set light green background color */
+            background-color: #e0f2e9;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+
+    <div class="container mx-auto mt-10">
+        <div class="flex shadow-md my-10">
+            <div class="w-full bg-white px-10 py-10">
+                <!-- Shopping Cart Header -->
+                <div class="flex justify-between border-b pb-8">
+                    <h1 class="font-semibold text-2xl text-green-600">Shopping Cart</h1>
+                    <h2 class="font-semibold text-2xl text-green-600">3 Items</h2>
+                </div>
+                <!-- Cart Columns Header -->
+                <div class="flex mt-10 mb-5">
+                    <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5">Product Details</h3>
+                    <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Quantity</h3>
+                    <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Price</h3>
+                    <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Total</h3>
+                    <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Actions</h3>
+                </div>
+                <!-- Cart Item 1 -->
+                <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
+                    <div class="flex w-2/5">
+                        <!-- Product Image -->
+                        <div class="w-20">
+                            <img class="h-24" src="https://via.placeholder.com/150" alt="product">
+                        </div>
+                        <!-- Product Details -->
+                        <div class="flex flex-col justify-between ml-4 flex-grow">
+                            <span class="font-bold text-sm text-green-600">Plant 1</span>
+                            <a href="#" class="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</a>
+                        </div>
+                    </div>
+                    <!-- Quantity Control -->
+                    <div class="flex justify-center w-1/5">
+                        <svg class="fill-current text-gray-600 w-3 cursor-pointer" viewBox="0 0 448 512"><path d="M416 208H32c-17.67 0-32 14.33-32 32s14.33 32 32 32h384c17.67 0 32-14.33 32-32s-14.33-32-32-32z"/></svg>
+                        <input class="mx-2 border text-center w-8" type="text" value="1">
+                        <svg class="fill-current text-gray-600 w-3 cursor-pointer" viewBox="0 0 448 512"><path d="M416 208H240V32c0-17.67-14.33-32-32-32s-32 14.33-32 32v176H32c-17.67 0-32 14.33-32 32s14.33 32 32 32h144v176c0 17.67 14.33 32 32 32s32-14.33 32-32V272h176c17.67 0 32-14.33 32-32s-14.33-32-32-32z"/></svg>
+                    </div>
+                    <!-- Item Price -->
+                    <span class="text-center w-1/5 font-semibold text-sm text-green-600">$10.00</span>
+                    <!-- Total Price -->
+                    <span class="text-center w-1/5 font-semibold text-sm text-green-600">$10.00</span>
+                    <!-- Add to Wish List Link -->
+                    <div class="text-center w-1/5">
+                        <a href="#" class="font-semibold hover:text-blue-500 text-gray-500 text-xs">Add to Wish List</a>
+                    </div>
+                </div>
+                <!-- Cart Item 2 -->
+                <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
+                    <div class="flex w-2/5">
+                        <!-- Product Image -->
+                        <div class="w-20">
+                            <img class="h-24" src="https://via.placeholder.com/150" alt="product">
+                        </div>
+                        <!-- Product Details -->
+                        <div class="flex flex-col justify-between ml-4 flex-grow">
+                            <span class="font-bold text-sm text-green-600">Plant 2</span>
+                            <a href="#" class="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</a>
+                        </div>
+                    </div>
+                    <!-- Quantity Control -->
+                    <div class="flex justify-center w-1/5">
+                        <svg class="fill-current text-gray-600 w-3 cursor-pointer" viewBox="0 0 448 512"><path d="M416 208H32c-17.67 0-32 14.33-32 32s14.33 32 32 32h384c17.67 0 32-14.33 32-32s-14.33-32-32-32z"/></svg>
+                        <input class="mx-2 border text-center w-8" type="text" value="1">
+                        <svg class="fill-current text-gray-600 w-3 cursor-pointer" viewBox="0 0 448 512"><path d="M416 208H240V32c0-17.67-14.33-32-32-32s-32 14.33-32 32v176H32c-17.67 0-32 14.33-32 32s14.33 32 32 32h144v176c0 17.67 14.33 32 32 32s32-14.33 32-32V272h176c17.67 0 32-14.33 32-32s-14.33-32-32-32z"/></svg>
+                    </div>
+                    <!-- Item Price -->
+                    <span class="text-center w-1/5 font-semibold text-sm text-green-600">$20.00</span>
+                    <!-- Total Price -->
+                    <span class="text-center w-1/5 font-semibold text-sm text-green-600">$20.00</span>
+                    <!-- Add to Wish List Link -->
+                    <div class="text-center w-1/5">
+                        <a href="#" class="font-semibold hover:text-blue-500 text-gray-500 text-xs">Add to Wish List</a>
+                    </div>
+                </div>
+                <!-- Cart Item 3 -->
+                <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
+                    <div class="flex w-2/5">
+                        <!-- Product Image -->
+                        <div class="w-20">
+                            <img class="h-24" src="https://via.placeholder.com/150" alt="product">
+                        </div>
+                        <!-- Product Details -->
+                        <div class="flex flex-col justify-between ml-4 flex-grow">
+                            <span class="font-bold text-sm text-green-600">Plant 3</span>
+                            <a href="#" class="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</a>
+                        </div>
+                    </div>
+                    <!-- Quantity Control -->
+                    <div class="flex justify-center w-1/5">
+                        <svg class="fill-current text-gray-600 w-3 cursor-pointer" viewBox="0 0 448 512"><path d="M416 208H32c-17.67 0-32 14.33-32 32s14.33 32 32 32h384c17.67 0 32-14.33 32-32s-14.33-32-32-32z"/></svg>
+                        <input class="mx-2 border text-center w-8" type="text" value="1">
+                        <svg class="fill-current text-gray-600 w-3 cursor-pointer" viewBox="0 0 448 512"><path d="M416 208H240V32c0-17.67-14.33-32-32-32s-32 14.33-32 32v176H32c-17.67 0-32 14.33-32 32s14.33 32 32 32h144v176c0 17.67 14.33 32 32 32s32-14.33 32-32V272h176c17.67 0 32-14.33 32-32s-14.33-32-32-32z"/></svg>
+                    </div>
+                    <!-- Item Price -->
+                    <span class="text-center w-1/5 font-semibold text-sm text-green-600">$30.00</span>
+                    <!-- Total Price -->
+                    <span class="text-center w-1/5 font-semibold text-sm text-green-600">$30.00</span>
+                    <!-- Add to Wish List Link -->
+                    <div class="text-center w-1/5">
+                        <a href="#" class="font-semibold hover:text-blue-500 text-gray-500 text-xs">Add to Wish List</a>
+                    </div>
+                </div>
+                <!-- Continue Shopping and Total Amount -->
+                <div class="flex justify-between mt-10">
+                    <div class="w-1/2">
+                        <a href="#" class="flex font-semibold text-green-600 text-sm mt-10">
+                            <svg class="fill-current mr-2 text-green-600 w-4" viewBox="0 0 448 512"><path d="M134.059 296H416c17.673 0 32-14.327 32-32s-14.327-32-32-32H134.059l76.218-76.218c12.499-12.499 12.499-32.757 0-45.255s-32.757-12.499-45.255 0L32.273 240.573c-6.248 6.248-9.373 14.439-9.373 22.628s3.125 16.379 9.373 22.628l132.748 132.748c12.499 12.499 32.757 12.499 45.255 0s12.499-32.757 0-45.255L134.059 296z"/></svg>
+                            Continue Shopping
+                        </a>
+                    </div>
+                    <div class="flex justify-end w-1/2">
+                        <div class="flex items-center">
+                            <span class="font-semibold text-xs">Total:</span>&nbsp;&nbsp;<span class="font-semibold text-green-600 text-lg">$60.00</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Proceed to Checkout Button -->
+                <div class="flex justify-end mt-10">
+                    <button class="bg-green-600 flex font-semibold hover:bg-green-700 items-center px-10 py-2 rounded-full text-white text-sm">
+                        Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load custom JavaScript file -->
+    <script src="{% static 'js/setTimeoutForAlert.js' %}"> </script>
+</body>
+
+</html>

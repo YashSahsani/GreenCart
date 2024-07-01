@@ -2,7 +2,7 @@
 {% block title %}GreenCart | Dashboard{% endblock %}
 {% block content %}
 
-
+<!-- Carousel Section -->
 <div id="custom-carousel" class="relative w-full" data-carousel="slide">
   <!-- Carousel wrapper -->
   <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
@@ -43,14 +43,6 @@
       </span>
   </button>
 </div>
-<div>
-  <img src="#" alt="1st image" class="w-20 h-20">
-  <img src="#" alt="1st image" class="w-20 h-20">
-  <img src="#" alt="1st image" class="w-20 h-20">
-  <img src="#" alt="1st image" class="w-20 h-20">
-  <img src="#" alt="1st image" class="w-20 h-20">
-  <img src="#" alt="1st image" class="w-20 h-20">
-</div>
 
 <script>
   let currentSlide = 0;
@@ -80,5 +72,19 @@
   // Initialize the slider
   showSlide(currentSlide);
 </script>
+
+<!-- Product List Section -->
+<div class="product-list grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-10">
+    {% for product in products %}
+    <div class="product-card border p-4 shadow-md">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-30 object-cover rounded-t-lg">
+        <div class="product-info mt-4">
+            <h2 class="text-lg font-semibold">{{ product.name }}</h2>
+            <p class="text-gray-600">{{ product.price }}</p>
+            <button class="mt-2 bg-green-500 text-white px-4 py-2 rounded">Add to Cart</button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 
 {% endblock %}

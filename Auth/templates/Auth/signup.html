@@ -1,93 +1,100 @@
 {% extends 'Auth/base.html' %}
 {% block title %}GreenCart | Signup{% endblock %}
 
+{% block lottie_src %}
+    https://lottie.host/ed6f41bd-cc86-48c7-9aee-0003e76b8025/fvx4aki2rA.json
+{% endblock %}
+
 {% block content %}
-<h2 class="text-2xl font-bold text-gray-800 mb-6">Create Your Account</h2>
-<form method="POST">
-    {% csrf_token %}
-    <div class="mb-4">
-        <label for="{{ form.first_name.id_for_label }}" class="block text-sm font-medium text-gray-700">
-            {{ form.first_name.label }}{% if form.first_name.field.required %}<span class="text-red-500">*</span>{% endif %}
-        </label>
-        {{ form.first_name }}
-        {% if form.first_name.errors %}
-        <div class="text-red-700 mt-2">
-            <ul class="list-disc pl-5 space-y-1">
-                {% for error in form.first_name.errors %}
-                <li>{{ error|escape }}</li>
-                {% endfor %}
-            </ul>
+<div class="max-w-md w-full space-y-8">
+    <h2 class="text-4xl font-bold text-green-800 mb-6 text-center">Create Your Account 🪴 </h2>
+    <form method="POST" action="{% url 'Auth:signup' %}" class="space-y-6">
+        {% csrf_token %}
+        <div class="space-y-1">
+            <label for="{{ form.first_name.id_for_label }}" class="block text-sm font-medium text-green-700">
+                {{ form.first_name.label }}{% if form.first_name.field.required %}<span class="text-red-500">*</span>{% endif %}
+            </label>
+            {{ form.first_name }}
+            {% if form.first_name.errors %}
+            <div class="text-red-700 mt-2">
+                <ul class="list-disc pl-5 space-y-1">
+                    {% for error in form.first_name.errors %}
+                    <li>{{ error|escape }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
         </div>
-        {% endif %}
-    </div>
-    <div class="mb-4">
-        <label for="{{ form.last_name.id_for_label }}" class="block text-sm font-medium text-gray-700">
-            {{ form.last_name.label }}{% if form.last_name.field.required %}<span class="text-red-500">*</span>{% endif %}
-        </label>
-        {{ form.last_name }}
-        {% if form.last_name.errors %}
-        <div class="text-red-700 mt-2">
-            <ul class="list-disc pl-5 space-y-1">
-                {% for error in form.last_name.errors %}
-                <li>{{ error|escape }}</li>
-                {% endfor %}
-            </ul>
+        <div class="space-y-1">
+            <label for="{{ form.last_name.id_for_label }}"class="block text-sm font-medium text-green-700">
+                {{ form.last_name.label }}{% if form.last_name.field.required %}<span class="text-red-500">*</span>{% endif %}
+            </label>
+            {{ form.last_name }}
+            {% if form.last_name.errors %}
+            <div class="text-red-700 mt-2">
+                <ul class="list-disc pl-5 space-y-1">
+                    {% for error in form.last_name.errors %}
+                    <li>{{ error|escape }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
         </div>
-        {% endif %}
-    </div>
-    <div class="mb-4">
-        <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-gray-700">
-            {{ form.email.label }}{% if form.email.field.required %}<span class="text-red-500">*</span>{% endif %}
-        </label>
-        {{ form.email }}
-        {% if form.email.errors %}
-        <div class="text-red-700 mt-2">
-            <ul class="list-disc pl-5 space-y-1">
-                {% for error in form.email.errors %}
-                <li>{{ error|escape }}</li>
-                {% endfor %}
-            </ul>
+        <div class="space-y-1">
+            <!-- <label for="email" class="block text-sm font-medium text-green-700">Email</label> -->
+            <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-green-700">
+                {{ form.email.label }}{% if form.email.field.required %}<span class="text-red-500">*</span>{% endif %}
+            </label>
+            {{ form.email }}
+            {% if form.email.errors %}
+            <div class="text-red-700 mt-2">
+                <ul class="list-disc pl-5 space-y-1">
+                    {% for error in form.email.errors %}
+                    <li>{{ error|escape }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
         </div>
-        {% endif %}
-    </div>
-    <div class="mb-6">
-        <label for="{{ form.password1.id_for_label }}" class="block text-sm font-medium text-gray-700">
-            {{ form.password1.label }}{% if form.password1.field.required %}<span class="text-red-500">*</span>{% endif %}
-        </label>
-
-        {{ form.password1 }}
-        {% if form.password1.errors %}
-        <div class="text-red-700 mt-2">
-            <ul class="list-disc pl-5 space-y-1">
-                {% for error in form.password1.errors %}
-                <li>{{ error|escape }}</li>
-                {% endfor %}
-            </ul>
+        <div class="space-y-1">
+            <!-- <label for="password1" class="block text-sm font-medium text-green-700">Password</label> -->
+            <label for="{{ form.password1.id_for_label }}" class="block text-sm font-medium text-green-700">
+                {{ form.password1.label }}{% if form.password1.field.required %}<span class="text-red-500">*</span>{% endif %}
+            </label>
+    
+            {{ form.password1 }}
+            {% if form.password1.errors %}
+            <div class="text-red-700 mt-2">
+                <ul class="list-disc pl-5 space-y-1">
+                    {% for error in form.password1.errors %}
+                    <li>{{ error|escape }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
         </div>
-        {% endif %}
-    </div>
-    <div class="mb-6">
-        <label for="{{ form.password2.id_for_label }}" class="block text-sm font-medium text-gray-700">
-            {{ form.password2.label }}{% if form.password2.field.required %}<span class="text-red-500">*</span>{% endif %}
-        </label>
-        {{ form.password2 }}
-        {% if form.password2.errors %}
-        <div class="text-red-700 mt-2">
-            <ul class="list-disc pl-5 space-y-1">
-                {% for error in form.password2.errors %}
-                <li>{{ error|escape }}</li>
-                {% endfor %}
-            </ul>
+        <div class="space-y-1">
+            <label for="{{ form.password2.id_for_label }}" class="block text-sm font-medium text-green-700">
+                {{ form.password2.label }}{% if form.password2.field.required %}<span class="text-red-500">*</span>{% endif %}
+            </label>
+            {{ form.password2 }}
+            {% if form.password2.errors %}
+            <div class="text-red-700 mt-2">
+                <ul class="list-disc pl-5 space-y-1">
+                    {% for error in form.password2.errors %}
+                    <li>{{ error|escape }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
         </div>
-        {% endif %}
-    </div>
-
-    <div class="mt-6">
-        <button type="submit"
-            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign
-            up</button>
-    </div>
-</form>
-<p class="mt-4 text-sm text-center text-gray-600">Already have an account? <a href="{% url 'Auth:login' %}"
-        class="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a></p>
+        <div>
+            <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Sign up</button>
+        </div>
+    </form>
+    <p class="mt-6 text-center text-sm text-gray-600">
+        Already have an account?
+        <a href="{% url 'Auth:login' %}" class="font-medium text-green-600 hover:text-green-500">Sign in</a>
+    </p>
+</div>
 {% endblock %}
