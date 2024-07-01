@@ -1,0 +1,19 @@
+{% extends 'Shop/base.html' %}
+
+{% block content %}
+    <div class="container mx-auto mt-10">
+        <h1 class="text-3xl font-bold mb-5">Product List</h1>
+        <a href="{% url 'product_create' %}" class="bg-blue-500 text-white px-4 py-2 rounded">Add New Product</a>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-5">
+            {% for product in products %}
+            <div class="bg-white p-5 rounded-lg shadow-lg">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-48 object-cover mb-4">
+                <h2 class="text-2xl font-bold mb-2">{{ product.name }}</h2>
+                <p class="text-gray-700">{{ product.description }}</p>
+                <p class="text-gray-900 font-bold mt-2">${{ product.price }}</p>
+                <a href="{% url 'product_edit' product.pk %}" class="bg-green-500 text-white px-4 py-2 rounded mt-4 block text-center">Edit</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
