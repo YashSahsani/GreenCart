@@ -22,6 +22,7 @@ class Product(models.Model):
     rating = models.DecimalField(max_digits=3, decimal_places=2, default=0.0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    user_id = models.CharField(max_length=10)
 
     def __str__(self):
         return self.name
