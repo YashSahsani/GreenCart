@@ -44,5 +44,5 @@ def product_detail(request,id):
 @login_required
 def product_list(request):
     user = request.user
-    products = Product.objects.all()
+    products = Product.objects.filter(user_id=user.id)
     return render(request, 'Shop/product_list.html', {'products': products,'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
