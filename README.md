@@ -49,9 +49,13 @@ $ python manage.py migrate
 $ python manage.py runserver
 ```
 
-### For Admin
+### For Adding initial data
 ```bash
-$ python manage.py createsuperuser
-Email:- admin@greencart.com
-Password:- Admin@123
+$ python manage.py loaddata data.json
+
+Admin-Email:- admin@greencart.com
+Admin-Password:- Admin@123
+
+TestUser-Email:- test@greencart.com
+TestUser-Password:- Test@123
 ```
