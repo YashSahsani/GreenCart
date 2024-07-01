@@ -6,8 +6,6 @@ from .models import Product
 
 # Create your views here.
 @login_required
-
-
 def home(request):
     query = request.GET.get('query', '')
     min_price = request.GET.get('min_price', 0)
