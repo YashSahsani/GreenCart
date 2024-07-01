@@ -18,7 +18,7 @@
         }
     </style>
 </head>
-<body class="flex flex-col">
+<body class="flex flex-col min-h-screen">
     <!-- Top section: Header -->
     <div>
         {% include 'alert.html' %}
@@ -61,12 +61,16 @@
       </nav>
 
     <!-- Main content section with scrollbar -->
-    <div class="scroll-container flex-1 overflow-y-auto">
-        {% block content %}
-        {% endblock %}
+    <div class="flex flex-col flex-grow">
+        <div class="scroll-container flex-grow overflow-y-auto">
+            {% block content %}
+            {% endblock %}
+        </div>
         
         <!-- Footer section -->
-        {% include 'footer.html' %}
+        <footer class="bg-gray-800 text-white py-4 flex-shrink-0">
+            {% include 'footer.html' %}
+        </footer>
     </div>
 
     <script src="{% static 'js/setTimeoutForAlert.js' %}"> </script>
