@@ -5,7 +5,7 @@
 <!-- Carousel Section -->
 <div id="custom-carousel" class="relative w-full" data-carousel="slide">
   <!-- Carousel wrapper -->
-  <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+  <div class="relative h-56 overflow-hidden md:h-96">
       <!-- Item 1 -->
       <div class="carousel-item duration-700 ease-in-out">
           <img src="https://bloomscape.com/wp-content/uploads/2020/05/bloomscape_indoor-outdoor_4-1536x1024.jpg?ver=217611" class="absolute block w-full" alt="Image 1">
@@ -72,19 +72,29 @@
   // Initialize the slider
   showSlide(currentSlide);
 </script>
-
 <!-- Product List Section -->
-<div class="product-list grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-10">
-    {% for product in products %}
-    <div class="product-card border p-4 shadow-md">
-        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-30 object-cover rounded-t-lg">
-        <div class="product-info mt-4">
-            <h2 class="text-lg font-semibold">{{ product.name }}</h2>
-            <p class="text-gray-600">{{ product.price }}</p>
-            <button class="mt-2 bg-green-500 text-white px-4 py-2 rounded">Add to Cart</button>
+<div class="mt-4 ml-4">
+    <h2 class="font-bold text-xl"> Featured Products</h2>
+    <!-- Product List Section -->
+    <div class="flex mt-2 overflow-x-auto space-x-6 p-4">
+        {% for product in products %}
+        <div class="flex-shrink-0 relative overflow-hidden rounded-lg w-60 shadow-lg">
+            <div class="relative pt-10 px-10 flex items-center justify-center">
+                <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3"></div>
+                <img class="relative w-40" src="{{ product.image.url }}" alt="{{ product.name }}">
+            </div>
+            <div class="relative text-black px-6 pb-6 mt-6">
+                <div class="flex justify-between">
+                    <span class="block font-semibold text-sm">{{ product.name }}</span>
+                    <span class="block bg-white rounded-full text-black text-xs font-bold px-3 py-2 leading-none flex items-center">${{ product.price }}</span>
+                </div>
+                <div class="flex justify-center mt-4">
+                    <button class="w-full bg-green-500 text-white px-4 py-2 rounded font-bold text-sm">Add to Cart</button>
+                </div>
+            </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 
 {% endblock %}
