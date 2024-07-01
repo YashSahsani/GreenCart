@@ -10,3 +10,4 @@ urlpatterns = [
     path('profile/',home, name='profile'),
     path('product-detail/<int:id>', product_detail, name='product_detail'),
 ]
+
