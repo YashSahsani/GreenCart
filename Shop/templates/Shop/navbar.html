@@ -19,10 +19,10 @@
 
             <!-- Navigation Links (Visible on larger screens) -->
             <div class="hidden md:flex items-center space-x-4 relative">
-                <a href="{% url 'Shop:cart' %}" class="pr-4 text-green-500/50 hover:text-green-600 text-lg font-semibold">Cart</a>
+                <a href="{% url 'AddToCart:cart' %}" class="pr-4 text-green-500/50 hover:text-green-600 text-lg font-semibold">Cart</a>
                 <a href="{% url 'Shop:order' %}" class="pr-4 text-green-500/50 hover:text-green-600 text-lg font-semibold">Orders</a>
-                <img id="avatar" class="w-10 h-10 rounded-full cursor-pointer hover:border" src="{{ user_profile_pic }}" alt="Rounded avatar">
-                <div id="dropdown" class="hidden absolute right-0 top-full mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20">
+                <img id="avatar" class="w-10 h-10 rounded-full cursor-pointer hover:border"  src="{{ user_profile_pic }}" alt="Rounded avatar">
+                <div id="dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20">
                     <a href="{% url 'Profile:get_user_details' %}" class="block px-4 py-2 text-green hover:bg-gray-100">Profile</a>
                     <a href="{% url 'Auth:logout' %}" class="block px-4 py-2 text-green hover:bg-gray-100">Logout</a>
                 </div>
