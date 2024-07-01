@@ -1,10 +1,10 @@
 from datetime import datetime
-from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.decorators import login_required
 
-from Shop.models import Product
-from userprofile.models import UserProfile
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product
+
+from userprofile.models import UserProfile
 
 # Create your views here.
 @login_required
@@ -41,3 +41,8 @@ def product_detail(request,id):
     product = get_object_or_404(Product, pk=id)
     return render(request,'Shop/product-detail.html',{'name':product.name,'description':product.description,'price':product.price,'expiry':product.expiry,'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
+@login_required
+def product_list(request):
+    user = request.user
+    products = Product.objects.filter(user_id=user.id)
+    return render(request, 'Shop/product_list.html', {'products': products,'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
