@@ -140,3 +140,19 @@ STATICFILES_DIRS = [STATIC_DIR, BASE_DIR / "static",]
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.example.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'support@greencart.com'
+EMAIL_HOST_PASSWORD = 'admin'
+DEFAULT_FROM_EMAIL = 'support@greencart.com'
+
+import os
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Add these lines at the end of your settings.py file
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
