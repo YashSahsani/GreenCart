@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com/"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
 
     <title>{% block title %}{% endblock %}</title>
@@ -22,28 +23,25 @@
     <!-- Top section: Header -->
     <div>
         {% include 'alert.html' %}
-        <nav class="px-6 py-6 flex justify-between items-center border-b border-gray-200">
+        <nav class="px-6 py-6 flex bg-green-100/75 justify-between items-center border-b border-gray-200">
             <!-- Left side: GreenCart logo/image and search field -->
             <div class="flex items-center">
                 <!-- GreenCart logo/image (replace with your image or text) -->
                 <a href="/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                    <img src="{% static 'images/logo.png' %}" class="h-8" alt="GreenCart Logo" />
-{#                    <span class="self-center text-xl font-semibold whitespace-nowrap text-green-600">GreenCart</span>#}
+                    <img src="{% static 'images/logo.png' %}" class="h-8" alt="GreenCart Logo" /> 
                 </a>
-                <form method="GET" class="ml-4 flex">
+                <form method="GET" class="ml-4 flex items-center">
                     <div class="flex">
-                        <input type="text" name="query" placeholder="Search for a product" class="py-1 px-2 sm:px-4 rounded-l-lg border border-gray-300 focus:outline-none focus:border-green-600 w-full sm:w-auto ">
-                        <button type="submit" class="py-1 px-3 bg-green-600 text-white rounded-r-lg hover:bg-green-700 focus:outline-none focus:bg-green-700">Search</button>
+                        <input type="text" name="query" placeholder="Search for a product" class="h-10 py-1 px-2 sm:px-4 rounded-l-lg border border-gray-300 focus:outline-none focus:border-green-600 w-64 sm:w-96"> <!-- Adjusted the height to 12 and width to 64/96 -->
+                        <button type="submit" class="h-10 py-2 px-4 bg-green-600 text-white rounded-r-lg hover:bg-green-700 focus:outline-none focus:bg-green-700">Search</button> <!-- Adjusted the height to 12 -->
                     </div>
                 </form>
             </div>
             
             <!-- Right side: Navigation links -->
             <ul class="flex space-x-4">
-                <li><a href="{% url 'GreenCartEcom:index' %}" class="text-gray-500">Home</a></li>
-                <li><a href="{% url 'GreenCartEcom:contact' %}" class="text-gray-500">Contact</a></li>
-                <li><a href="{% url 'Auth:login' %}" class="text-gray-500">SignIn</a></li>
-{#                <li><a href="{% url 'AddToCart:cart' %}" class="text-gray-500">Cart</a></li>#}
+                <!-- <li><a href="{% url 'GreenCartEcom:contact' %}" class="pr-4 text-green-500/50 hover:text-green-600 text-lg font-semibold">Contact</a></li> -->
+                <li><a href="{% url 'Auth:login' %}" class="pr-4 text-green-500/50 hover:text-green-600 text-lg font-semibold">SignIn</a></li>
             </ul>
         </nav>
     </div>
@@ -53,7 +51,7 @@
           <div class="flex">
             <div class="hidden sm:flex sm:space-x-8">
               {% for category in navCategories %}
-              <a href="#" class="border-b-2 border-transparent text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium hover:border-gray-300">{{ category.title }}</a>
+              <a href="#" class="border-b-2 border-transparent text-gray-900 inline-flex items-center px-1 pt-1 text-md font-medium hover:border-gray-300">{{ category.title }}</a>
               {% endfor %}
             </div>
           </div>
@@ -68,7 +66,7 @@
         </div>
         
         <!-- Footer section -->
-        <footer class="bg-gray-800 text-white py-4 flex-shrink-0">
+        <footer class="text-black py-4 flex-shrink-0">
             {% include 'footer.html' %}
         </footer>
     </div>
