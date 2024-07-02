@@ -51,6 +51,8 @@
   function showSlide(index) {
       slides.forEach((slide, i) => {
           slide.classList.toggle('hidden', i !== index);
+          slide.classList.toggle('opacity-100', i === index);
+          slide.classList.toggle('opacity-0', i !== index);
       });
   }
 
@@ -71,6 +73,9 @@
 
   // Initialize the slider
   showSlide(currentSlide);
+
+  // Automatically move to the next slide every 5 seconds
+  setInterval(moveToNextSlide, 5000);
 </script>
 <!-- Product List Section -->
 <div class="mt-4 ml-4">
