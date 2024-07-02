@@ -1,3 +1,12 @@
+
+
+.alert {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+}
+/* Support/static/support/css/styles.css */
 .container {
     max-width: 800px;
     margin: 0 auto;
@@ -81,5 +90,96 @@
 
     .faq-answer p {
         font-size: 1rem;
+    }
+}
+
+/* styles.css (or any custom CSS file) */
+
+/* Body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0; /* Light gray background */
+    padding: 20px;
+}
+
+/* Form container */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+}
+
+/* Form title */
+.form-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2e7d32; /* Dark green */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form input fields */
+.form-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Dropdown select */
+.form-dropdown {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #f9fbe7; /* Light yellow */
+}
+
+/* Description textarea */
+.form-textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Submit button */
+.form-submit {
+    width: 100%;
+    padding: 10px;
+    background-color: #2e7d32; /* Dark green */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Submit button hover effect */
+.form-submit:hover {
+    background-color: #4caf50; /* Light green */
+}
+
+/* Attach file input */
+.form-file {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 600px) {
+    .form-container {
+        padding: 20px;
     }
 }

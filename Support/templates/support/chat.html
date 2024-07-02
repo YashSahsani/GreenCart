@@ -30,7 +30,6 @@
             let messageHtml = `<div class="message"><p><strong>You</strong>: ${messageText}</p><small>Just now</small></div>`;
             document.getElementById('chat-messages').insertAdjacentHTML('beforeend', messageHtml);
             chatForm.reset();
-            // Scroll to bottom of messages
             document.getElementById('chat-messages').scrollTop = document.getElementById('chat-messages').scrollHeight;
         }
     });

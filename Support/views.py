@@ -16,16 +16,15 @@ def query_form(request):
     if request.method == 'POST':
         form = QueryForm(request.POST, request.FILES)
         if form.is_valid():
-            query_instance = form.save()
+            query = form.save()
 
-            # Send email to support team
-            subject = f"New Query: {query_instance.type} - {query_instance.first_name} {query_instance.last_name}"
+            subject = f"New Query: {query.type} - {query.first_name} {query.last_name}"
             message = (
                 f"A new query has been submitted:\n\n"
-                f"Type: {query_instance.get_type_display()}\n"
-                f"Name: {query_instance.first_name} {query_instance.last_name}\n"
-                f"Email: {query_instance.email}\n"
-                f"Description: {query_instance.description}"
+                f"Type: {query.get_type_display()}\n"
+                f"Name: {query.first_name} {query.last_name}\n"
+                f"Email: {query.email}\n"
+                f"Description: {query.description}"
             )
             from_email = settings.DEFAULT_FROM_EMAIL
             recipient_list = ['support@greencart.com']  # Replace with actual support email
@@ -38,14 +37,6 @@ def query_form(request):
 
     return render(request, 'support/query_form.html', {'form': form})
 
-# @login_required
-# def send_message(request):
-#     if request.method == 'POST':
-#         message = request.POST.get('message', '')
-#         if message:
-#             ChatMessage.objects.create(user=request.user, message=message)
-#             return redirect('support:chat')
-#     return redirect('support:chat')  # Redirect to chat page after sending message
 
 @login_required
 def faq(request):
