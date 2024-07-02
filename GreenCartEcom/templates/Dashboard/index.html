@@ -76,25 +76,28 @@
 <div class="mt-4 ml-4">
     <h2 class="font-bold text-xl"> Featured Products</h2>
     <!-- Product List Section -->
-    <div class="flex mt-2 overflow-x-auto space-x-6 p-4">
-        {% for product in products %}
-        <div class="flex-shrink-0 relative overflow-hidden rounded-lg w-60 shadow-lg">
-            <div class="relative pt-10 px-10 flex items-center justify-center">
-                <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3"></div>
-                <img class="relative w-40" src="{{ product.image.url }}" alt="{{ product.name }}">
-            </div>
-            <div class="relative text-black px-6 pb-6 mt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+    {% for product in products %}
+    <div class="relative overflow-hidden rounded-lg shadow-lg flex flex-col justify-between h-full">
+        <div class="relative pt-10 px-10 flex items-center justify-center">
+            <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3"></div>
+            <img class="relative w-40" src="{{ product.image.url }}" alt="{{ product.name }}">
+        </div>
+        <div class="relative text-black px-6 pb-6 mt-6 flex flex-col justify-between flex-grow">
+            <div>
                 <div class="flex justify-between">
                     <span class="block font-semibold text-sm">{{ product.name }}</span>
                     <span class="block bg-white rounded-full text-black text-xs font-bold px-3 py-2 leading-none flex items-center">${{ product.price }}</span>
                 </div>
-                <div class="flex justify-center mt-4">
-                    <button class="w-full bg-green-600 text-white px-4 py-2 rounded font-bold text-sm">Add to Cart</button>
-                </div>
+            </div>
+            <div class="flex justify-center mt-4">
+                <button class="w-full bg-green-600 text-white px-4 py-2 rounded font-bold text-sm">Add to Cart</button>
             </div>
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
+</div>
+
 </div>
 
 {% endblock %}
