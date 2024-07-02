@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     "Auth.apps.AuthConfig",
     "Shop.apps.ShopConfig",
     "add_to_cart.apps.AddToCartConfig",
-    "userprofile.apps.UserprofileConfig"
+    "userprofile.apps.UserprofileConfig",
+    "Support"
 ]
 
 MIDDLEWARE = [
