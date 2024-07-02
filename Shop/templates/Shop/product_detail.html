@@ -1,0 +1,31 @@
+{% extends 'Shop/base.html' %}
+
+{% block content %}
+<div class="container mx-auto my-10 p-5">
+    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+        <div class="md:flex">
+            <div class="md:flex-shrink-0">
+                <img class="h-48 w-full object-cover md:h-full md:w-48" src="{{ product.image.url }}" alt="{{ product.name }}">
+            </div>
+            <div class="p-8">
+                <h3 class="text-lg font-bold text-gray-900">{{ product.name }}</h3>
+                <p class="mt-2 text-gray-600">{{ product.description }}</p>
+                <div class="mt-2 text-gray-600">
+                    <span class="text-3xl font-bold">${{ product.price }}</span>
+                    {% if product.discount_price %}
+                    <span class="text-sm line-through">${{ product.discount_price }}</span>
+                    {% endif %}
+                </div>
+                <div class="mt-4">
+                    <span class="text-yellow-500">Rating: {{ product.rating }}</span>
+                </div>
+                <div class="mt-6">
+                    <a href="#" class="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                        Add to cart
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
