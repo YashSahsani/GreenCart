@@ -4,27 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-<nav class=" py-4 flex-wrap">
+<nav class="py-5 flex-wrap bg-green-100/75">
     <div class="container mx-auto px-6 md:px-0">
         <div class="flex items-center justify-between">
-            <!-- Branding -->
-            <a href="/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvjOrvPK_t9Ci8yVypurJ8NdxjyGKtIoTqtw&s" class="h-8" alt="GreenCart Logo" />
-                <span class="self-center text-xl font-semibold whitespace-nowrap text-green-600">GreenCart</span>
-            </a>
+
+            <div class="flex items-center">
+                <a href="/shop" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                    <img src="{% static 'images/logo.png' %}" class="h-8" alt="GreenCart Logo" />
+                </a>
+            </div>
+
             <!-- Navigation Links (Visible on larger screens) -->
             <div class="hidden md:flex items-center space-x-4 relative">
-                <a href="{% url 'Shop:cart' %}" class="text-green hover:text-gray-300">Cart</a>
-                <a href="{% url 'Shop:order' %}" class="text-green hover:text-gray-300">Orders</a>
-                <img id="avatar" class="w-10 h-10 rounded-full cursor-pointer hover:boder"  src="{{ user_profile_pic }}" alt="Rounded avatar">
-                <div id="dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20">
+                <a href="{% url 'AddToCart:cart' %}" class="pr-4 text-green-500/50 hover:text-green-600 text-lg font-semibold">Cart</a>
+                <a href="{% url 'Shop:order' %}" class="pr-4 text-green-500/50 hover:text-green-600 text-lg font-semibold">Orders</a>
+                <a href="{% url 'Shop:product_list' %}" class="pr-4 text-green-500/50 hover:text-green-600 text-lg font-semibold">My Listings</a>
+                <img id="avatar" class="w-10 h-10 rounded-full cursor-pointer hover:border"  src="{{ user_profile_pic }}" alt="Rounded avatar">
+                <div id="dropdown"  class="hidden absolute right-0 top-full mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20">
                     <a href="{% url 'Profile:get_user_details' %}" class="block px-4 py-2 text-green hover:bg-gray-100">Profile</a>
                     <a href="{% url 'Auth:logout' %}" class="block px-4 py-2 text-green hover:bg-gray-100">Logout</a>
                 </div>
             </div>
-            
+
             <script>
                 document.getElementById('avatar').addEventListener('click', function() {
                     const dropdown = document.getElementById('dropdown');
@@ -34,7 +38,7 @@
                         dropdown.classList.add('hidden');
                     }
                 });
-            
+
                 // Close the dropdown if the user clicks outside of it
                 document.addEventListener('click', function(event) {
                     const dropdown = document.getElementById('dropdown');
@@ -47,7 +51,5 @@
         </div>
     </div>
 </nav>
-
-
 </body>
 </html>

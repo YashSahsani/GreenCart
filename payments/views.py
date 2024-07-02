@@ -7,7 +7,7 @@ def payment_view(request):
         form = PaymentForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('payment_success')  # Ensure 'payment_success' matches the name in urls.py
+            return redirect('payments:payment_success')  # Ensure 'payment_success' matches the name in urls.py
     else:
         form = PaymentForm()
 

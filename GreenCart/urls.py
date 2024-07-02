@@ -29,7 +29,7 @@ urlpatterns = [
     path('auth/', include('Auth.urls','Auth'), name='Auth'),
     path('shop/', include('Shop.urls','Shop'), name='Shop'),
     path('profile/', include('userprofile.urls','Profile'), name='Profile'),
-    path('', include(('payments.urls', 'payments'), namespace='payments')),
+    path('pay/', include(('payments.urls', 'payments'), namespace='payments')),
 
 ]
 
