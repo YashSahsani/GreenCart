@@ -22,6 +22,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 admin.site.site_header="GreenCart Admin"
 admin.site.site_title ="GreenCart Admin Portal"
+from payments.views import payment_view, payment_success
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,8 +31,9 @@ urlpatterns = [
     path('auth/', include('Auth.urls','Auth'), name='Auth'),
     path('shop/', include('Shop.urls','Shop'), name='Shop'),
     path('profile/', include('userprofile.urls','Profile'), name='Profile'),
+    path('pay/', include(('payments.urls', 'payments'), namespace='payments')),
     path('support/', include('Support.urls'), name='Support')
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,22 @@
+<!-- payments/templates/payments/payment_form.html -->
+{% extends 'payments/base.html' %}
+{% load static %}
+
+{% block title %}Payment Page{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'payments/styles.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="payment-page">
+    <div class="payment-container">
+        <h1>Payment</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Pay Now</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
 </head>
 <body>
+{% include 'alert.html' %}
 {% include 'Shop/navbar.html' %}
 {% block content %}
 {% endblock %}
-<script src="{% static 'js/setTimeoutForAlert.js' %}"> </script>
 {% include 'footer.html' %}
 </body>
 </html>
