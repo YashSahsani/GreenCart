@@ -38,7 +38,6 @@ $ pip install -r requirements.txt
 
 ```bash
 $ .\venv\bin\activate # activate virtual env for Windows
-$ .\venv\Scripts\activate
 $  pip install -r requirements.txt
 ```
 
