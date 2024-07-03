@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-v*k99q9zag)&-xp+c=(g0#@b94*$-vk@v04zxap(7-^xy^&4g+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['0.0.0.0','localhost','127.0.0.1','greencart-96ry.onrender.com']
+ALLOWED_HOSTS = ['0.0.0.0','localhost','127.0.0.1','greencart-6692.onrender.com']
 
 
 # Application definition
