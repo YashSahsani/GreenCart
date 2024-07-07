@@ -12,6 +12,8 @@ def home(request):
     query = request.GET.get('query', '')
     min_price = request.GET.get('min_price', 0)
     max_price = request.GET.get('max_price', 1000000)
+    min_rating = request.GET.get('min_rating', 0)
+    sort_by = request.GET.get('sort_by', '')
 
     products = Product.objects.all()
 
@@ -23,6 +25,14 @@ def home(request):
 
     if max_price:
         products = products.filter(price__lte=max_price)
+    
+    if min_rating:
+        products = products.filter(rating__gte=min_rating)  
+        
+    if sort_by == 'expiry_asc':
+        products = products.order_by('expiry')
+    elif sort_by == 'expiry_desc':
+        products = products.order_by('-expiry')        
 
     current_hour = datetime.now().hour
     if current_hour < 12:
