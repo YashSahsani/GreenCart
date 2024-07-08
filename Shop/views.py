@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Product
+from .models import Product, Reviews
 
 from userprofile.models import UserProfile
 
@@ -12,6 +12,8 @@ def home(request):
     query = request.GET.get('query', '')
     min_price = request.GET.get('min_price', 0)
     max_price = request.GET.get('max_price', 1000000)
+    min_rating = request.GET.get('min_rating', 0)
+    sort_by = request.GET.get('sort_by', '')
 
     products = Product.objects.all()
 
@@ -23,6 +25,14 @@ def home(request):
 
     if max_price:
         products = products.filter(price__lte=max_price)
+    
+    if min_rating:
+        products = products.filter(rating__gte=min_rating)  
+        
+    if sort_by == 'expiry_asc':
+        products = products.order_by('expiry')
+    elif sort_by == 'expiry_desc':
+        products = products.order_by('-expiry')        
 
     current_hour = datetime.now().hour
     if current_hour < 12:
@@ -38,8 +48,33 @@ def home(request):
 
 @login_required
 def product_detail(request,id):
-    product = get_object_or_404(Product, pk=id)
-    return render(request,'Shop/product-detail.html',{'name':product.name,'description':product.description,'price':product.price,'expiry':product.expiry,'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+    if request.method == 'POST':
+        product = get_object_or_404(Product, pk=id)
+        name = request.POST.get('name')
+        review = request.POST.get('review')
+        rating = request.POST.get('rating')
+        if name and review and rating:
+            Reviews.objects.create(product=product, name=name, review=review, rating=rating)
+            return redirect('Shop:product_detail', id=id)
+        else:
+            reviews = Reviews.objects.filter(product=product)
+            rating = 0
+            if reviews:
+                for review in reviews:
+                    rating += review.rating
+                rating = round(rating / len(reviews), 1)
+            return render(request, 'Shop/product-detail.html', {'product': product, 'reviews': reviews, 'rating': rating,
+                                                            'user_profile_pic': UserProfile.objects.get(
+                                                                user=request.user).profile_pic.url})
+    else:
+        product = get_object_or_404(Product, pk=id)
+        reviews = Reviews.objects.filter(product=product)
+        rating = 0
+        if reviews:
+            for review in reviews:
+                rating += review.rating
+            rating = round(rating / len(reviews), 1)
+        return render(request,'Shop/product-detail.html',{'product':product,'reviews':reviews,'rating':rating,'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 @login_required
 def product_list(request):
