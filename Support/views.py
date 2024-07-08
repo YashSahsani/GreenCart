@@ -1,5 +1,5 @@
 # Support/views.py
-
+import random
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Query, FAQ, Complaint
@@ -27,11 +27,11 @@ def query_form(request):
                 f"Description: {query.description}"
             )
             from_email = settings.DEFAULT_FROM_EMAIL
-            recipient_list = ['support@greencart.com']  # Replace with actual support email
-
+            recipient_list = ['support@greencart.com']
+            ticket_number = random.randint(10000, 99999)
             send_mail(subject, message, from_email, recipient_list, fail_silently=True)
 
-            return redirect('query_success.html')  # Redirect to a success page
+            return render(request, 'support/query_success.html', {'ticket_number': ticket_number})
     else:
         form = QueryForm()
 
