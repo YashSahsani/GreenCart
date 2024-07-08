@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,63 +11,75 @@
 
     <title>{% block title %}{% endblock %}</title>
     <style>
-        html, body {
+        html,
+        body {
             height: 100%;
         }
+
         .scroll-container {
-            height: calc(100% - 6rem); /* Adjust based on your header height */
+            height: calc(100% - 6rem);
+            /* Adjust based on your header height */
             overflow-y: auto;
         }
     </style>
 </head>
+
 <body class="flex flex-col min-h-screen">
     <!-- Top section: Header -->
     <div class="sticky top-0 z-50">
-        <div class="sticky top-0 z-50 bg-white shadow-lg">
+        <div class="bg-white shadow-lg">
             {% include 'alert.html' %}
             <nav class="px-6 py-6 flex bg-green-100/75 justify-between items-center border-b border-gray-200">
                 <!-- Left side: GreenCart logo/image and search field -->
                 <div class="flex items-center">
                     <!-- GreenCart logo/image (replace with your image or text) -->
                     <a href="/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                        <img src="{% static 'images/logo.png' %}" class="h-8" alt="GreenCart Logo" /> 
+                        <img src="{% static 'images/logo.png' %}" class="h-8" alt="GreenCart Logo" />
                     </a>
                     <form method="GET" class="ml-4 flex items-center">
                         <div class="flex">
-                            <input type="text" name="query" placeholder="Search for a product" class="h-10 py-1 px-2 sm:px-4 rounded-l-lg border border-gray-300 focus:outline-none focus:border-green-600 w-64 sm:w-96"> <!-- Adjusted the height to 12 and width to 64/96 -->
-                            <button type="submit" class="h-10 py-2 px-4 bg-green-600 text-white rounded-r-lg hover:bg-green-700 focus:outline-none focus:bg-green-700">Search</button> <!-- Adjusted the height to 12 -->
+                            <input type="text" name="query" placeholder="Search for a product"
+                                class="h-10 py-1 px-2 sm:px-4 rounded-l-lg border border-gray-300 focus:outline-none focus:border-green-600 w-64 sm:w-96">
+                            <!-- Adjusted the height to 12 and width to 64/96 -->
+                            <button type="submit"
+                                class="h-10 py-2 px-4 bg-green-600 text-white rounded-r-lg hover:bg-green-700 focus:outline-none focus:bg-green-700">Search</button>
+                            <!-- Adjusted the height to 12 -->
                         </div>
                     </form>
                 </div>
-                
+
                 <!-- Right side: Navigation links -->
                 <ul class="flex space-x-4">
                     <!-- <li><a href="{% url 'GreenCartEcom:contact' %}" class="pr-4 text-green-500/50 hover:text-green-600 text-lg font-semibold">Contact</a></li> -->
-                    <li><a href="{% url 'Auth:login' %}" class="pr-4 text-green-500/50 hover:text-green-600 text-lg font-semibold">SignIn</a></li>
+                    <li><a href="{% url 'Auth:login' %}"
+                            class="pr-4 text-green-500/50 hover:text-green-600 text-lg font-semibold">SignIn</a></li>
                 </ul>
             </nav>
         </div>
-        <!-- Navigation bar for categories -->
-        <nav class="bg-white shadow-lg px-4 sticky top-0 z-40">
-            <div class="flex justify-between h-14">
-                <div class="flex">
-                    <div class="hidden sm:flex sm:space-x-8">
-                        {% for category in navCategories %}
-                        <a href="#" class="border-b-2 border-transparent text-gray-900 inline-flex items-center px-1 pt-1 text-md font-medium hover:border-gray-300">{{ category.title }}</a>
-                        {% endfor %}
-                    </div>
+    </div>
+    <!-- Navigation bar for categories -->
+    <nav class="bg-white shadow-lg px-4">
+        <div class="flex justify-between h-14">
+            <div class="flex">
+                <div class="hidden sm:flex sm:space-x-8">
+                    {% for category in navCategories %}
+                    <a href="#"
+                        class="border-b-2 border-transparent text-gray-900 inline-flex items-center px-1 pt-1 text-md font-medium hover:border-gray-300">{{
+                        category.title }}</a>
+                    {% endfor %}
                 </div>
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
 
     <!-- Main content section with scrollbar -->
     <div class="flex flex-col flex-grow">
-        <div class="scroll-container flex-grow overflow-y-auto mt-14"> <!-- Add margin-top to prevent content from overlapping with the header -->
+        <div class="scroll-container flex-grow overflow-y-auto mt-14">
+            <!-- Add margin-top to prevent content from overlapping with the header -->
             {% block content %}
             {% endblock %}
         </div>
-        
+
         <!-- Footer section -->
         <footer class="text-black py-4 flex-shrink-0">
             {% include 'footer.html' %}
@@ -75,4 +88,5 @@
 
     <script src="{% static 'js/setTimeoutForAlert.js' %}"> </script>
 </body>
+
 </html>
