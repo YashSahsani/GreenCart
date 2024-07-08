@@ -20,10 +20,24 @@
 
 
         <div class="flex flex-col md:flex-row">
-            <!-- Left Sidebar for Filters -->
             <div class="w-full md:w-1/5 md:pr-4 mb-6 md:mb-0">
-                <div class="bg-white p-4 rounded-lg shadow-md">
-                    <h3 class="text-lg font-semibold mb-4">Price</h3>
+
+            <!-- Expiry Filter -->
+            <div class="bg-white p-4 rounded-lg shadow-lg mt-6">
+            <h3 class="text-lg font-semibold mb-4">Expiry Filter</h3>
+            <form method="GET" class="space-y-4">
+                <label for="sort_by" class="block text-sm font-medium text-gray-700">Sort products by days left:</label>
+                <select name="sort_by" id="sort_by" class="py-2 px-4 border border-gray-300 rounded-lg w-full  focus:outline-none focus:border-green-600" onchange="this.form.submit()">
+                    <option value="">None</option>
+                    <option value="expiry_desc">More Days</option>
+                    <option value="expiry_asc">Less Days</option>
+                </select>
+            </form>
+            </div>
+            
+                <!--  Price Filter -->
+                <div class="bg-white p-4 rounded-lg shadow-lg mt-6">
+                    <h3 class="text-lg font-semibold mb-4">Price Filter</h3>
                     <form method="GET" class="space-y-4">
                         <div>
                             <label for="min_price" class="block text-sm font-medium text-gray-700">From</label>
@@ -33,9 +47,32 @@
                             <label for="max_price" class="block text-sm font-medium text-gray-700">To</label>
                             <input type="number" name="max_price" id="max_price" placeholder="Max Price" class="py-2 px-4 border border-gray-300 rounded-lg w-full focus:outline-none focus:border-green-600">
                         </div>
-                        <button type="submit" class="py-2 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 w-full focus:outline-none focus:bg-green-700">Filter</button>
+                        <button type="submit" class="py-2 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 w-full focus:outline-none focus:bg-green-700">Search by Price</button>
+                    </form>
+
+                </div>
+                <!-- Rating Filter -->
+                <div class="bg-white p-4 rounded-lg shadow-lg mt-6">
+                    <h3 class="text-lg font-semibold mb-4">Rating Filter</h3>
+                    <form method="GET" class="space-y-4">
+                        <div>
+                            <label for="min_rating" class="block text-sm font-medium text-gray-700">Minimum Rating</label>
+                            <select name="min_rating" id="min_rating" class="py-2 px-4 border border-gray-300 rounded-lg w-full focus:outline-none focus:border-green-600">
+                                <option value="0">Any</option>
+                                <option value="1">1 Star</option>
+                                <option value="2">2 Stars</option>
+                                <option value="3">3 Stars</option>
+                                <option value="4">4 Stars</option>
+                                <option value="5">5 Stars</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="py-2 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 w-full focus:outline-none focus:bg-green-700">Search by Rating</button>
                     </form>
                 </div>
+
+         
+
+                
             </div>
 
             <!-- Main Content Area -->
@@ -45,8 +82,10 @@
                     <div class="relative mx-auto my-6 w-full max-w-xs flex-col overflow-hidden rounded-lg bg-white shadow-md">
                         <a class="relative flex h-60 overflow-hidden rounded-t-lg group" href="{% url 'Shop:product_detail' product.pk %}">
                             <img class="object-cover w-full transform transition-transform duration-500 group-hover:scale-110" src="{{ product.image.url }}" alt="product image" />
-                            {% if product.discount_price %}
-                            <span class="absolute top-0 left-0 m-2 rounded-full bg-red-600 px-2 text-center text-sm font-medium text-white">Discount</span>
+                            {% if product.expiry %}
+                            <span class="absolute top-0 left-0 m-2 rounded-full bg-red-600 px-2 text-center text-sm font-medium text-white">
+                                {{product.expiry}} days left
+                            </span>
                             {% endif %}
                         </a>
                         <div class="mt-4 px-5 pb-5">
