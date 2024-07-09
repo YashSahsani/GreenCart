@@ -88,8 +88,10 @@ def create_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('product_list')  # Redirect to the product list or another appropriate page
+            product = form.save(commit=False)  # Save form data without committing to the database yet
+            product.user_id = request.user.id  # Assign the user ID from the request
+            product.save()  # Now save the product with updated user_id
+            return redirect('Shop:product_list')  # Redirect to the product list or another appropriate page
     else:
         form = ProductForm()
-    return render(request, 'Shop/create_product.html', {'form': form})
+    return render(request, 'Shop/create_product.html', {'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
