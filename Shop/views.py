@@ -3,6 +3,7 @@ from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product, Reviews
+from .forms import ProductForm
 
 from userprofile.models import UserProfile
 
@@ -81,3 +82,14 @@ def product_list(request):
     user = request.user
     products = Product.objects.filter(user_id=user.id)
     return render(request, 'Shop/product_list.html', {'products': products,'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+
+@login_required
+def create_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('product_list')  # Redirect to the product list or another appropriate page
+    else:
+        form = ProductForm()
+    return render(request, 'Shop/create_product.html', {'form': form})
