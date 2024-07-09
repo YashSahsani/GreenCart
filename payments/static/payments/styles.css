@@ -35,12 +35,14 @@
 
 .payment-container input[type="text"],
 .payment-container input[type="email"],
-.payment-container input[type="number"] {
+.payment-container input[type="number"],
+.payment-container select {
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
+    width: 100%; /* Ensure inputs take full width */
 }
 
 .payment-container button {
