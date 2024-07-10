@@ -176,10 +176,50 @@ body {
     margin-bottom: 15px;
     font-size: 16px;
 }
+.banner {
+    background-color: #4CAF50;
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+}
 
-/* Responsive design for smaller screens */
-@media screen and (max-width: 600px) {
-    .form-container {
-        padding: 20px;
-    }
+.banner-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.banner h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.banner p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.ticket {
+    font-size: 24px;
+    margin-top: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    color: #4CAF50;
+}
+
+.ticket-label {
+    color: #4CAF50;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.ticket-number {
+    font-size: 1.5em;
+}
+
+.plant-image {
+    max-width: 100px;
+    margin-top: 30px;
 }
