@@ -1,0 +1,22 @@
+{% extends 'support/base.html' %}
+{% load static %}
+{% block title %}
+    Query Submitted Successfully
+{% endblock %}
+
+
+{% block content %}
+    <div class="banner">
+        <div class="banner-content">
+            <h1>Query Submitted Successfully</h1>
+            <p>Your query has been successfully submitted. A support ticket has been raised.</p>
+            <div class="ticket">
+                <p>Your support ticket number:</p>
+                <p><strong>{{ ticket_number }}</strong></p> <!-- This will display the generated ticket number -->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'Support/static/support/css/styles.css' %}">
+{% endblock %}

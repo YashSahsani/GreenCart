@@ -5,7 +5,7 @@
 <!-- Carousel Section -->
 <div id="custom-carousel" class="relative w-full" data-carousel="slide">
   <!-- Carousel wrapper -->
-  <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+  <div class="relative h-72 md:h-96 overflow-hidden">
       <!-- Item 1 -->
       <div class="carousel-item duration-700 ease-in-out">
           <img src="https://bloomscape.com/wp-content/uploads/2020/05/bloomscape_indoor-outdoor_4-1536x1024.jpg?ver=217611" class="absolute block w-full" alt="Image 1">
@@ -51,6 +51,8 @@
   function showSlide(index) {
       slides.forEach((slide, i) => {
           slide.classList.toggle('hidden', i !== index);
+          slide.classList.toggle('opacity-100', i === index);
+          slide.classList.toggle('opacity-0', i !== index);
       });
   }
 
@@ -71,20 +73,34 @@
 
   // Initialize the slider
   showSlide(currentSlide);
+
+  // Automatically move to the next slide every 5 seconds
+  setInterval(moveToNextSlide, 5000);
 </script>
 
 <!-- Product List Section -->
-<div class="product-list grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-10">
-    {% for product in products %}
-    <div class="product-card border p-4 shadow-md">
-        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-30 object-cover rounded-t-lg">
-        <div class="product-info mt-4">
-            <h2 class="text-lg font-semibold">{{ product.name }}</h2>
-            <p class="text-gray-600">{{ product.price }}</p>
-            <button class="mt-2 bg-green-500 text-white px-4 py-2 rounded">Add to Cart</button>
+<div class="mt-4 ml-4">
+    <h2 class="font-bold text-xl">Featured Products</h2>
+    <div class="flex overflow-x-auto space-x-6 p-4">
+        {% for product in products %}
+        <div class="relative overflow-hidden rounded-lg shadow-lg flex flex-col justify-between h-100 min-w-[250px]">
+            {% if product.image.url %}
+            <div class="relative pt-10 px-10 flex items-center justify-center h-48">
+                <img class="relative w-40 h-40 object-cover" src="{{ product.image.url }}" alt="{{ product.name }}">
+            </div>
+            {% endif %}
+            <div class="relative text-black px-6 pb-6 mt-6 flex flex-col justify-between flex-grow">
+                <div class="flex justify-between">
+                    <span class="block font-semibold text-sm">{{ product.name }}</span>
+                    <span class="block bg-white rounded-full text-black text-xs font-bold px-3 py-2 leading-none flex items-center">${{ product.price }}</span>
+                </div>
+                <div class="flex justify-center mt-4">
+                    <button class="w-full bg-green-600 text-white px-4 py-2 rounded font-bold text-sm">Add to Cart</button>
+                </div>
+            </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 
 {% endblock %}

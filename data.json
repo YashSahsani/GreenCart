@@ -26,45 +26,172 @@
         }
     },
     {
-        "model":"GreenCartEcom.navCategories",
-        "pk":1,
-        "fields":{
-            "title":"Gardening"
+        "model": "GreenCartEcom.navCategories",
+        "pk": 1,
+        "fields": {
+            "title": "Gardening"
         }
     },
     {
-        "model":"GreenCartEcom.navCategories",
-        "pk":2,
-        "fields":{
-            "title":"Plants"
+        "model": "GreenCartEcom.navCategories",
+        "pk": 2,
+        "fields": {
+            "title": "Plants"
         }
     },
     {
-        "model":"GreenCartEcom.navCategories",
-        "pk":2,
-        "fields":{
-            "title":"Seeds"
+        "model": "GreenCartEcom.navCategories",
+        "pk": 2,
+        "fields": {
+            "title": "Seeds"
         }
     },
     {
-        "model":"GreenCartEcom.navCategories",
-        "pk":2,
-        "fields":{
-            "title":"Fertilizers"
+        "model": "GreenCartEcom.navCategories",
+        "pk": 2,
+        "fields": {
+            "title": "Fertilizers"
         }
     },
     {
-        "model":"GreenCartEcom.navCategories",
-        "pk":2,
-        "fields":{
-            "title":"Pots"
+        "model": "GreenCartEcom.navCategories",
+        "pk": 2,
+        "fields": {
+            "title": "Pots"
         }
     },
     {
-        "model":"GreenCartEcom.navCategories",
-        "pk":2,
-        "fields":{
-            "title":"Accessories"
+        "model": "GreenCartEcom.navCategories",
+        "pk": 2,
+        "fields": {
+            "title": "Accessories"
+        }
+    },
+    {
+        "model": "Shop.Product",
+        "pk": 1,
+        "fields": {
+            "name": "Anthurium (Pink) - Plant",
+            "description": "Anthurium is a genus of about 1,000 species of flowering plants, native to the Americas. These plants are known for their bright flowers and can be used as a decorative indoor plant.",
+            "price": 29.00,
+            "discount_price": 19.00,
+            "image": "products/anthurium_pink.jpg",
+            "in_stock": true,
+            "rating": 4.0,
+            "created_at": "2024-07-01T00:00:00Z",
+            "updated_at": "2024-07-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "Shop.Product",
+        "pk": 2,
+        "fields": {
+            "name": "Areca Palm (Small) - Plant",
+            "description": "Areca Palm is a popular houseplant and also known as Butterfly Palm. It is one of the most widely used palms for bright interiors. What makes it special: NASA recommended an air purifier plant. Popular indoor house plant. Best plant for AC rooms, office desk.",
+            "price": 50.00,
+            "discount_price": 30.00,
+            "image": "products/areca_palm_small.webp",
+            "in_stock": true,
+            "rating": 5.0,
+            "created_at": "2024-07-01T00:00:00Z",
+            "updated_at": "2024-07-01T00:00:00Z",
+            "user_id": "2"
+        }
+    },
+    {
+        "model": "Shop.Product",
+        "pk": 3,
+        "fields": {
+            "name": "Top 5 air purifier and oxygen enriching plant pack",
+            "description": "This plant pack includes the top 5 plants recommended by NASA for air purification and oxygen enrichment. Perfect for any home or office.",
+            "price": 80.00,
+            "discount_price": 70.00,
+            "image": "products/air_purifier_pack.jpg",
+            "in_stock": true,
+            "rating": 3.0,
+            "created_at": "2024-07-01T00:00:00Z",
+            "updated_at": "2024-07-01T00:00:00Z",
+            "user_id": "2"
+        }
+    },
+    {
+        "model": "Shop.Product",
+        "pk": 4,
+        "fields": {
+            "name": "Sansevieria trifasciata Hahnii, Snake Plant - Plant",
+            "description": "Sansevieria trifasciata Hahnii is a popular houseplant with dark green leaves marked with a pattern of wavy cross stripes in a lighter color. What makes it special: NASA recommended an air purifier plant. Best plant for AC rooms, office desk. Zero maintenance plant. Best indoor plant for low light condition.",
+            "price": 26.00,
+            "discount_price": 16.00,
+            "image": "products/snake_plant.jpg",
+            "in_stock": true,
+            "rating": 5.0,
+            "created_at": "2024-07-01T00:00:00Z",
+            "updated_at": "2024-07-01T00:00:00Z",
+            "user_id": "2"
+        }
+    },
+    {
+        "model": "Shop.Product",
+        "pk": 5,
+        "fields": {
+            "name": "Aptenia, Heartleaf Ice - Succulent Plant",
+            "description": "Aptenia is a genus of succulent plants with heart-shaped leaves and bright flowers. These plants are perfect for indoor decoration and require minimal care.",
+            "price": 30.00,
+            "discount_price": 20.00,
+            "image": "products/aptenia_heartleaf.jpg",
+            "in_stock": true,
+            "rating": 5.0,
+            "created_at": "2024-07-01T00:00:00Z",
+            "updated_at": "2024-07-01T00:00:00Z",
+            "user_id": "2"
+        }
+    },
+    {
+        "model": "Shop.Product",
+        "pk": 6,
+        "fields": {
+            "name": "Rose (Red) - Plant",
+            "description": "Red Roses are a symbol of love and beauty. This plant can be grown indoors and is known for its vibrant red flowers.",
+            "price": 21.00,
+            "discount_price": 11.00,
+            "image": "products/rose_red.webp",
+            "in_stock": true,
+            "rating": 2.0,
+            "created_at": "2024-07-01T00:00:00Z",
+            "updated_at": "2024-07-01T00:00:00Z",
+            "user_id": "2"
+        }
+    },
+    {
+        "model": "Shop.Product",
+        "pk": 7,
+        "fields": {
+            "name": "Hydrangea macrophylla (Any Color) - Plant",
+            "description": "Hydrangea macrophylla is known for its large and colorful flower heads. These plants are perfect for indoor decoration and can come in various colors.",
+            "price": 17.00,
+            "discount_price": 14.00,
+            "image": "products/hydrangea_macrophylla.jpg",
+            "in_stock": true,
+            "rating": 3.0,
+            "created_at": "2024-07-01T00:00:00Z",
+            "updated_at": "2024-07-01T00:00:00Z",
+            "user_id": "2"
+        }
+    },
+    {
+        "model": "Shop.Product",
+        "pk": 8,
+        "fields": {
+            "name": "Set of 2 Bonsai Looking Grafted Adeniums",
+            "description": "This set includes two Bonsai looking Adenium plants. These plants are known for their unique appearance and are perfect for indoor decoration.",
+            "price": 26.00,
+            "discount_price": 22.00,
+            "image": "products/bonsai_adenium.jpg",
+            "in_stock": true,
+            "rating": 4.0,
+            "created_at": "2024-07-01T00:00:00Z",
+            "updated_at": "2024-07-01T00:00:00Z",
+            "user_id": "2"
         }
     }
 ]

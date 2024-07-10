@@ -1,24 +1,52 @@
-<footer class="bg-gray-800 text-gray-300 py-6 mt-auto">
-    <div class="container mx-auto px-6">
-        <div class="flex flex-wrap justify-between items-center">
-            <!-- Left Side -->
-            <div class="w-full md:w-1/2 mb-4 md:mb-0">
-                <p class="mb-2">Contact us:</p>
-                <p class="text-sm">123 Example Street, City, Country</p>
-                <p class="text-sm">Phone: +123 456 789</p>
-                <p class="text-sm">Email: info@example.com</p>
-            </div>
-
-            <!-- Right Side -->
-            <div class="w-full md:w-1/2">
-                <ul class="flex justify-end space-x-4">
-                    <li><a href="#" class="text-white hover:text-gray-300">About Us</a></li>
-                    <li><a href="#" class="text-white hover:text-gray-300">Terms of Service</a></li>
-                    <li><a href="#" class="text-white hover:text-gray-300">Privacy Policy</a></li>
-                    <li><a href="#" class="text-white hover:text-gray-300">Contact Us</a></li>
+<footer class="w-full bg-teal-100 py-8 px-4">
+    <div class="container mx-auto">
+        <div class="flex justify-between flex-wrap">
+            <div class="flex flex-col">
+                <h2 class="text-lg font-semibold">Useful Links</h2>
+                <ul class="mt-4 space-y-2">
+                    <li><a href="#">Track Order</a></li>
+                    <li><a href="#">Orders</a></li>
+                    <li><a href="{% url 'support:faq' %}">FAQ's</a></li>
+                    <li><a href="#">Offers</a></li>
+                    <li><a href="#">Rewards</a></li>
+                    <li><a href="#">Affiliate</a></li>
+                    <li><a href="#">Corporate</a></li>
                 </ul>
-                <p class="mt-4 text-sm">&copy; 2024 Your Ecommerce Site. All rights reserved.</p>
             </div>
+            <div class="flex flex-col">
+                <h2 class="text-lg font-semibold">About</h2>
+                <ul class="mt-4 space-y-2">
+                    <li><a href="#">About GreenCart</a></li>
+                    <li><a href="{% url 'support:submit_query' %}">Contact us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Refund Policy</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Jobs</a></li>
+                </ul>
+            </div>
+            <div class="flex flex-col">
+                <h2 class="text-lg font-semibold">Follow Us</h2>
+                <div class="mt-4 flex space-x-4">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <h2 class="text-lg font-semibold">Subscribe</h2>
+                <p class="mt-4">Join us to receive gardening tips, offers, news & more</p>
+                <form class="mt-4 flex">
+                    <input type="email" class="p-2 border border-gray-300 rounded-l-md" placeholder="Email address">
+                    <button type="submit" class="p-2 bg-red-500 text-white rounded-r-md">Sign up</button>
+                </form>
+            </div>
+        </div>
+        <div class="mt-12 text-center text-sm text-gray-600">
+            <p class="text-center text-sm mt-4">&copy; 2024 GreenCart. All rights reserved.</p>
         </div>
     </div>
 </footer>

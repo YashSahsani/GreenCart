@@ -36,3 +36,22 @@
 .profile-image-wrapper input[type="file"] {
     display: none;
 }
+
+.carousel-item{
+    object-fit: contain;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.img-height{
+    max-height: 500px;
+}
