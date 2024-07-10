@@ -2,7 +2,8 @@ from datetime import datetime
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Product
+from .models import Product, Reviews
+from .forms import ProductForm
 
 from userprofile.models import UserProfile
 
@@ -48,8 +49,33 @@ def home(request):
 
 @login_required
 def product_detail(request,id):
-    product = get_object_or_404(Product, pk=id)
-    return render(request,'Shop/product-detail.html',{'name':product.name,'description':product.description,'price':product.price,'expiry':product.expiry,'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+    if request.method == 'POST':
+        product = get_object_or_404(Product, pk=id)
+        name = request.POST.get('name')
+        review = request.POST.get('review')
+        rating = request.POST.get('rating')
+        if name and review and rating:
+            Reviews.objects.create(product=product, name=name, review=review, rating=rating)
+            return redirect('Shop:product_detail', id=id)
+        else:
+            reviews = Reviews.objects.filter(product=product)
+            rating = 0
+            if reviews:
+                for review in reviews:
+                    rating += review.rating
+                rating = round(rating / len(reviews), 1)
+            return render(request, 'Shop/product-detail.html', {'product': product, 'reviews': reviews, 'rating': rating,
+                                                            'user_profile_pic': UserProfile.objects.get(
+                                                                user=request.user).profile_pic.url})
+    else:
+        product = get_object_or_404(Product, pk=id)
+        reviews = Reviews.objects.filter(product=product)
+        rating = 0
+        if reviews:
+            for review in reviews:
+                rating += review.rating
+            rating = round(rating / len(reviews), 1)
+        return render(request,'Shop/product-detail.html',{'product':product,'reviews':reviews,'rating':rating,'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 @login_required
 def product_list(request):
@@ -60,3 +86,18 @@ def product_list(request):
 @login_required
 def about(request):
     return render(request, 'about.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url} )
+
+@login_required
+def create_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save(commit=False)
+            product.user_id = request.user.id
+            product.created_at = datetime.now()
+            product.updated_at = datetime.now()
+            product.save()
+        return redirect('Shop:product_list')  # Redirect to the product list or another appropriate page
+    else:
+        form = ProductForm()
+    return render(request, 'Shop/create_product.html', {'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
