@@ -1,52 +1,50 @@
-<footer class="w-full bg-teal-100 py-8 px-4">
-    <div class="container mx-auto">
-        <div class="flex justify-between flex-wrap">
-            <div class="flex flex-col">
-                <h2 class="text-lg font-semibold">Useful Links</h2>
-                <ul class="mt-4 space-y-2">
-                    <li><a href="#">Track Order</a></li>
-                    <li><a href="#">Orders</a></li>
-                    <li><a href="#">FAQ's</a></li>
-                    <li><a href="#">Offers</a></li>
-                    <li><a href="#">Rewards</a></li>
-                    <li><a href="#">Affiliate</a></li>
-                    <li><a href="#">Corporate</a></li>
-                </ul>
-            </div>
-            <div class="flex flex-col">
-                <h2 class="text-lg font-semibold">About</h2>
-                <ul class="mt-4 space-y-2">
-                    <li><a href="#">About GreenCart</a></li>
-                    <li><a href="#">Contact us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Refund Policy</a></li>
-                    <li><a href="#">Shipping Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Jobs</a></li>
-                </ul>
-            </div>
-            <div class="flex flex-col">
-                <h2 class="text-lg font-semibold">Follow Us</h2>
-                <div class="mt-4 flex space-x-4">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-pinterest"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
-            <div class="flex flex-col">
-                <h2 class="text-lg font-semibold">Subscribe</h2>
-                <p class="mt-4">Join us to receive gardening tips, offers, news & more</p>
-                <form class="mt-4 flex">
-                    <input type="email" class="p-2 border border-gray-300 rounded-l-md" placeholder="Email address">
-                    <button type="submit" class="p-2 bg-red-500 text-white rounded-r-md">Sign up</button>
-                </form>
-            </div>
-        </div>
-        <div class="mt-12 text-center text-sm text-gray-600">
-            <p class="text-center text-sm mt-4">&copy; 2024 GreenCart. All rights reserved.</p>
-        </div>
+<footer class="w-full bg-gray dark:bg-gray-900">
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="md:flex md:justify-between">
+          <div class="mb-6 md:mb-0">
+              <a href="/" class="flex items-center">
+                  <img src="/static/images/logo.png" class="h-8 me-3" alt="GreenCart Logo" />
+                  <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
+              </a>
+          </div>
+          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+              <div>
+                  <h2 class="mb-6 text-sm font-semibold text-gray-200 uppercase dark:text-white">Resources</h2>
+                  <ul class="text-gray-400 dark:text-gray-400 font-medium">
+                      <li class="mb-4">
+                          <a href="#" class="hover:underline">Plant Care Tips</a>
+                      </li>
+                      <li>
+                          <a href="#" class="hover:underline">Gardening Guides</a>
+                      </li>
+                  </ul>
+              </div>
+              <div>
+                  <h2 class="mb-6 text-sm font-semibold text-gray-200 uppercase dark:text-white">Get in touch</h2>
+                  <ul class="text-gray-400 dark:text-gray-400 font-medium">
+                      <li class="mb-4">
+                          <a href="{% url 'support:submit_query' %}" class="hover:underline ">Contact Us</a>
+                      </li>
+                      <li>
+                          <a href="{% url 'Shop:about' %}" class="hover:underline">About Us</a>
+                      </li>
+                  </ul>
+              </div>
+              <div>
+                  <h2 class="mb-6 text-sm font-semibold text-gray-200 uppercase dark:text-white">Legal</h2>
+                  <ul class="text-gray-400 dark:text-gray-400 font-medium">
+                      <li class="mb-4">
+                          <a href="#" class="hover:underline">Privacy Policy</a>
+                      </li>
+                      <li>
+                          <a href="#" class="hover:underline">Terms & Conditions</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+   
+
+
     </div>
 </footer>
