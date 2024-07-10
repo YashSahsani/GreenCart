@@ -117,6 +117,7 @@ class Payment(models.Model):
     city = models.CharField(max_length=264, choices=CITY_CHOICES, blank=True, default='TOR')
     Amount = models.DecimalField(max_digits=10, decimal_places=2)
     Email = models.EmailField()
+    stripe_payment_intent_id = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return f"{self.Email} - {self.Amount}"
