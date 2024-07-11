@@ -7,15 +7,12 @@
     <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com/"></script>
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
-    {% block extra_css %}{% endblock %}
 </head>
-<body class="bg-gray-100">
-    {% include 'Shop/navbar.html' %}
-    <div class="main-content">
-        {% block content %}
-        {% endblock %}
-    </div>
-    <script src="{% static 'js/setTimeoutForAlert.js' %}"></script>
-    {% include 'footer.html' %}
+<body>
+{% include 'alert.html' %}
+{% include 'Dashboard/navbar.html' %}
+{% block content %}
+{% endblock %}
+{% include 'footer.html' %}
 </body>
 </html>
