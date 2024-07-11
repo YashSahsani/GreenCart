@@ -105,7 +105,7 @@ def subscribe(request):
     if request.method == "POST":
     
         # Redirect to the success page
-        return render(request, 'FooterPages/subscription_success.html')
+        return render(request, 'FooterPages/subscription_success.html', {'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
     return redirect(reverse('home'))
 
 
