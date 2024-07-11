@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from Shop.models import Product
-from .models import CartItem
+from .models import CartItem, WishlistItem
 
 
 def cart_view(request):
@@ -41,3 +41,21 @@ def decrement_quantity(request, cart_item_id):
     else:
         cart_item.delete()
     return redirect('add_to_cart:cart')
+
+
+def add_to_wishlist(request, cart_item_id):
+    cart_item = get_object_or_404(CartItem, id=cart_item_id)
+    WishlistItem.objects.create(product=cart_item.product)
+    cart_item.delete()
+    return redirect('add_to_cart:cart')
+
+
+def wishlist_view(request):
+    wishlist_items = WishlistItem.objects.all()
+    return render(request, 'Cart/wishlist.html', {'wishlist_items': wishlist_items})
+
+
+def remove_from_wishlist(request, wishlist_item_id):
+    wishlist_item = get_object_or_404(WishlistItem, id=wishlist_item_id)
+    wishlist_item.delete()
+    return redirect('add_to_cart:wishlist')

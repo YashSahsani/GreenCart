@@ -14,3 +14,10 @@ class CartItem(models.Model):
 
     def total_price(self):
         return self.quantity * self.product.price
+
+
+class WishlistItem(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.product.name
