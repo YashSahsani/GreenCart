@@ -4,6 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product, Reviews
 from .forms import ProductForm
+from django.core.mail import send_mail
+from django.shortcuts import render, redirect
+from django.urls import reverse
 
 from userprofile.models import UserProfile
 
@@ -97,6 +100,14 @@ def gardening_guides(request):
 
 def plant_care_tips(request):
     return render(request, 'FooterPages/plant_care_tips.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+
+def subscribe(request):
+    if request.method == "POST":
+    
+        # Redirect to the success page
+        return render(request, 'FooterPages/subscription_success.html')
+    return redirect(reverse('home'))
+
 
 @login_required
 def create_product(request):

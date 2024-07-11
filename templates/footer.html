@@ -82,10 +82,11 @@
       </div>
       <div class="mt-8 sm:flex sm:items-center sm:justify-between">
           <h2 class="text-sm font-semibold text-gray-900 uppercase dark:text-white">Subscribe to our newsletter</h2>
-          <form class="flex flex-col sm:flex-row gap-4 mt-4 sm:mt-0">
-              <input type="email" placeholder="Enter your email" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-green-600">
-              <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:bg-green-700">Subscribe</button>
-          </form>
+          <form method="POST" action="{% url 'Shop:subscribe' %}" class="flex mt-4 sm:justify-center sm:mt-0">
+            {% csrf_token %}
+            <input type="email" name="email" placeholder="Your email" class="py-2 px-4 border border-gray-300 rounded-l-lg focus:outline-none" required>
+            <button type="submit" class="py-2 px-4 bg-green-600 text-white rounded-r-lg hover:bg-green-700">Subscribe</button>
+        </form>
       </div>
     </div>
 </footer>
