@@ -1,0 +1,45 @@
+<!-- Support/templates/support/faq.html -->
+
+{% extends 'support/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h1 class="faq-heading">Frequently Asked Questions</h1>
+    <div class="accordion">
+        {% for faq in faqs %}
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>{{ faq.question }}</h3>
+                <button class="accordion-btn">+</button>
+            </div>
+            <div class="faq-answer">
+                <p>{{ faq.answer }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <p>No FAQs available.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const accordionBtns = document.querySelectorAll('.accordion-btn');
+
+        accordionBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const faqItem = this.parentElement.parentElement;
+                faqItem.classList.toggle('active');
+                const icon = this.innerText;
+                this.innerText = icon === '+' ? '-' : '+';
+            });
+        });
+    });
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'Support/static/support/css/styles.css' %}">
+{% endblock %}

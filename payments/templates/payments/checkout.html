@@ -1,0 +1,83 @@
+<!-- payments/templates/payments/checkout.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'payments/styles.css' %}">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <h1>Checkout</h1>
+    <form id="payment-form">
+        <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="amount">Amount</label>
+            <input type="number" id="amount" name="amount" required>
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <input type="text" id="description" name="description">
+        </div>
+        <div id="card-element">
+            <!-- A Stripe Element will be inserted here. -->
+        </div>
+        <div id="card-error" role="alert"></div>
+        <button id="submit">Pay</button>
+    </form>
+
+    <script>
+        // Initialize Stripe
+        var stripe = Stripe('{{ STRIPE_PUBLISHABLE_KEY }}'); // Replace with your Stripe publishable key
+        var elements = stripe.elements();
+
+        // Create an instance of the card Element
+        var cardElement = elements.create('card');
+
+        // Add an instance of the card Element into the `card-element` <div>
+        cardElement.mount('#card-element');
+
+        // Handle real-time validation errors from the card Element
+        cardElement.on('change', function(event) {
+            var displayError = document.getElementById('card-error');
+            if (event.error) {
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.textContent = '';
+            }
+        });
+
+        // Handle form submission
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            stripe.confirmCardPayment('{{ payment_intent_client_secret }}', {
+                payment_method: {
+                    card: cardElement,
+                    billing_details: {
+                        name: form.querySelector('input[name="name"]').value,
+                        email: form.querySelector('input[name="email"]').value,
+                    }
+                }
+            }).then(function(result) {
+                if (result.error) {
+                    // Show error to your customer (e.g., insufficient funds)
+                    var errorElement = document.getElementById('card-error');
+                    errorElement.textContent = result.error.message;
+                } else {
+                    // The payment succeeded!
+                    window.location.href = "{% url 'payments:payment_success' %}";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
