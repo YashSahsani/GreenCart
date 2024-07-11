@@ -1,0 +1,94 @@
+{% extends "Cart/base.html" %}
+
+{% block title %}Shopping Cart{% endblock %}
+
+{% block content %}
+<div class="container mx-auto mt-10">
+    <div class="flex shadow-md my-10">
+        <div class="w-full bg-white px-10 py-10">
+            <!-- Shopping Cart Header -->
+            <div class="flex justify-between border-b pb-8">
+                <h1 class="font-semibold text-2xl text-green-600">Shopping Cart</h1>
+                <h2 class="font-semibold text-2xl text-green-600"> {{ total_items }} Items</h2>
+            </div>
+        {% if cart_items %}
+            <!-- Cart Columns Header -->
+            <div class="flex mt-10 mb-5">
+                <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5">Product Details</h3>
+                <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Quantity</h3>
+                <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Price</h3>
+                <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Total</h3>
+                <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Actions</h3>
+            </div>
+            <!-- Cart Items -->
+            {% for item in cart_items %}
+            <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
+                <div class="flex w-2/5">
+                    <div class="w-20">
+                        <img class="h-24" src="{{ item.product.image.url }}" alt="product">
+                    </div>
+                    <div class="flex flex-col justify-between ml-4 flex-grow">
+                        <span class="font-bold text-sm text-green-600">{{ item.product.name }}</span>
+                        <form action="{% url 'add_to_cart:remove_from_cart' item.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="flex justify-center w-1/5">
+                    <form action="{% url 'add_to_cart:decrement_quantity' item.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit">
+                            <svg class="fill-current text-gray-600 w-3 cursor-pointer" viewBox="0 0 448 512">
+                                <path d="M416 208H32c-17.67 0-32 14.33-32 32s14.33 32 32 32h384c17.67 0 32-14.33 32-32s-14.33-32-32-32z"/>
+                            </svg>
+                        </button>
+                    </form>
+                    <input class="mx-2 border text-center w-8" type="number" name="quantity" value="{{ item.quantity }}" min="1">
+                    <form action="{% url 'add_to_cart:increment_quantity' item.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit">
+                            <svg class="fill-current text-gray-600 w-3 cursor-pointer" viewBox="0 0 448 512">
+                                <path d="M416 208H240V32c0-17.67-14.33-32-32-32s-32 14.33-32 32v176H32c-17.67 0-32 14.33-32 32s14.33 32 32 32h144v176c0 17.67 14.33 32 32 32s32-14.33 32-32V272h176c17.67 0 32-14.33 32-32s-14.33-32-32-32z"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+                <span class="text-center w-1/5 font-semibold text-sm text-green-600">${{ item.product.price }}</span>
+                <span class="text-center w-1/5 font-semibold text-sm text-green-600">${{ item.total_price }}</span>
+                <div class="text-center w-1/5">
+                    <a href="#" class="font-semibold hover:text-blue-500 text-gray-500 text-xs">Add to Wish List</a>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- Continue Shopping and Total Amount -->
+            <div class="flex justify-between mt-10">
+                <div class="w-1/2">
+                    <a href="{% url 'Shop:home' %}" class="flex font-semibold text-green-600 text-sm mt-10">
+                        <svg class="fill-current mr-2 text-green-600 w-4" viewBox="0 0 448 512"><path d="M134.059 296H416c17.673 0 32-14.327 32-32s-14.327-32-32-32H134.059l76.218-76.218c12.499-12.499 12.499-32.757 0-45.255s-32.757-12.499-45.255 0L32.273 240.573c-6.248 6.248-9.373 14.439-9.373 22.628s3.125 16.379 9.373 22.628l132.748 132.748c12.499 12.499 32.757 12.499 45.255 0s12.499-32.757 0-45.255L134.059 296z"/></svg>
+                        Continue Shopping
+                    </a>
+                </div>
+                <div class="flex justify-end w-1/2">
+                    <div class="flex items-center">
+                        <span class="font-semibold text-xs">Total:</span>&nbsp;&nbsp;<span class="font-semibold text-green-600 text-lg">$60.00</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Proceed to Checkout Button -->
+            <div class="flex justify-end mt-10">
+                <button class="bg-green-600 flex font-semibold hover:bg-green-700 items-center px-10 py-2 rounded-full text-white text-sm">
+                    Proceed to Checkout
+                </button>
+            </div>
+        {% else %}
+        <!-- Empty Cart Message -->
+            <div class="bg-white p-4 rounded-lg shadow-lg mt-6">
+                <p class="text-xl font-semibold text-gray-700">Your cart is empty.</p>
+                <a href="{% url 'Shop:home' %}" class="mt-4 inline-block py-2 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700">Continue Shopping</a>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
