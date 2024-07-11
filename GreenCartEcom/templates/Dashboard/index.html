@@ -5,7 +5,7 @@
 <!-- Carousel Section -->
 <div id="custom-carousel" class="relative w-full" data-carousel="slide">
   <!-- Carousel wrapper -->
-  <div class="relative h-56 overflow-hidden md:h-96">
+  <div class="relative h-92 md:h-96 overflow-hidden">
       <!-- Item 1 -->
       <div class="carousel-item duration-700 ease-in-out">
           <img src="https://bloomscape.com/wp-content/uploads/2020/05/bloomscape_indoor-outdoor_4-1536x1024.jpg?ver=217611" class="absolute block w-full" alt="Image 1">
@@ -44,57 +44,52 @@
   </button>
 </div>
 
-<script>
-  let currentSlide = 0;
-  const slides = document.querySelectorAll('.carousel-item');
-
-  function showSlide(index) {
-      slides.forEach((slide, i) => {
-          slide.classList.toggle('hidden', i !== index);
-      });
-  }
-
-  function moveToSlide(index) {
-      currentSlide = index;
-      showSlide(currentSlide);
-  }
-
-  function moveToPrevSlide() {
-      currentSlide = (currentSlide > 0) ? currentSlide - 1 : slides.length - 1;
-      showSlide(currentSlide);
-  }
-
-  function moveToNextSlide() {
-      currentSlide = (currentSlide < slides.length - 1) ? currentSlide + 1 : 0;
-      showSlide(currentSlide);
-  }
-
-  // Initialize the slider
-  showSlide(currentSlide);
-</script>
 <!-- Product List Section -->
 <div class="mt-4 ml-4">
-    <h2 class="font-bold text-xl"> Featured Products</h2>
-    <!-- Product List Section -->
-    <div class="flex mt-2 overflow-x-auto space-x-6 p-4">
+    <h2 class="font-bold text-xl">Featured Products</h2>
+    <div class="flex overflow-x-auto space-x-6 p-4">
         {% for product in products %}
-        <div class="flex-shrink-0 relative overflow-hidden rounded-lg w-60 shadow-lg">
-            <div class="relative pt-10 px-10 flex items-center justify-center">
-                <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3"></div>
-                <img class="relative w-40" src="{{ product.image.url }}" alt="{{ product.name }}">
+        <div class="relative overflow-hidden rounded-lg shadow-lg flex flex-col justify-between h-100 min-w-[250px]">
+            {% if product.image.url %}
+            <div class="relative pt-10 px-10 flex items-center justify-center h-48">
+                <img class="relative w-40 h-40 object-cover" src="{{ product.image.url }}" alt="{{ product.name }}">
             </div>
-            <div class="relative text-black px-6 pb-6 mt-6">
+            {% endif %}
+            <div class="relative text-black px-6 pb-6 mt-6 flex flex-col justify-between flex-grow">
                 <div class="flex justify-between">
                     <span class="block font-semibold text-sm">{{ product.name }}</span>
                     <span class="block bg-white rounded-full text-black text-xs font-bold px-3 py-2 leading-none flex items-center">${{ product.price }}</span>
                 </div>
                 <div class="flex justify-center mt-4">
-                    <button class="w-full bg-green-500 text-white px-4 py-2 rounded font-bold text-sm">Add to Cart</button>
+                    <button class="w-full bg-green-600 text-white px-4 py-2 rounded font-bold text-sm">Add to Cart</button>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
+</div>
+
+<!-- Offer Grid Section -->
+<div class="grid grid-cols-2 gap-0 p-8 sm:grid-cols-3  xl:gap-5">
+    {% for offer in offers %}
+    {% if forloop.first %}
+    <!-- Offer Image with larger width - start -->
+    <a href="#" class="group relative flex col-span-2 h-48 items-end overflow-hidden bg-gray-100 shadow-lg md:h-80">
+        <img src="{{ offer.image.url }}" loading="lazy" alt="{{ offer.title }}" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"></div>
+        <span class="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">{{ offer.title }}</span>
+    </a>
+    <!-- Offer Image with larger width - end -->
+    {% else %}
+    <!-- Offer Image - start -->
+    <a href="#" class="group relative flex h-48 items-end overflow-hidden bg-gray-100 shadow-lg md:h-80">
+        <img src="{{ offer.image.url }}" loading="lazy" alt="{{ offer.title }}" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"></div>
+        <span class="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">{{ offer.title }}</span>
+    </a>
+    <!-- Offer Image - end -->
+    {% endif %}
+    {% endfor %}
 </div>
 
 {% endblock %}
