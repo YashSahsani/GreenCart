@@ -99,6 +99,10 @@ def plant_care_tips(request):
     return render(request, 'FooterPages/plant_care_tips.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 @login_required
+def about(request):
+    return render(request, 'about.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url} )
+
+@login_required
 def create_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
