@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from Shop.models import Product
+from userprofile.models import UserProfile
 from .models import CartItem, WishlistItem
 
 
@@ -8,7 +9,7 @@ def cart_view(request):
     total_amount = sum(item.total_price() for item in cart_items)
     total_items = sum(item.quantity for item in cart_items)
     return render(request, 'Cart/cart.html',
-                  {'cart_items': cart_items, 'total_amount': total_amount, 'total_items': total_items})
+                  {'cart_items': cart_items, 'total_amount': total_amount, 'total_items': total_items,'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 
 def add_to_cart(request, product_id):
