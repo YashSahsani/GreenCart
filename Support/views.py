@@ -17,7 +17,6 @@ def query_form(request):
         form = QueryForm(request.POST, request.FILES)
         if form.is_valid():
             query = form.save()
-
             subject = f"New Query: {query.type} - {query.first_name} {query.last_name}"
             message = (
                 f"A new query has been submitted:\n\n"
@@ -28,10 +27,9 @@ def query_form(request):
             )
             from_email = settings.DEFAULT_FROM_EMAIL
             recipient_list = ['support@greencart.com']
-            ticket_number = random.randint(10000, 99999)
             send_mail(subject, message, from_email, recipient_list, fail_silently=True)
 
-            return render(request, 'support/query_success.html', {'ticket_number': ticket_number})
+            return render(request, 'support/query_success.html', {'ticket_number': query.ticket_number})
     else:
         form = QueryForm()
 
