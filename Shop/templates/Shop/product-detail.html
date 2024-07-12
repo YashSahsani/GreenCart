@@ -1,6 +1,14 @@
 {% extends 'Shop/base.html' %}
 {% load static %}
 {% block content %}
+<a href="{% url 'Shop:home' %}"
+   class="absolute ml-16 w-fit flex items-center text-green-500 hover:text-green-600 py-2 px-4 rounded cursor-pointer z-50">
+   <!-- Arrow icon -->
+   <svg class="h-4 w-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+       <path d="M10 19l-7-7 7-7m-7 7h18"></path>
+   </svg>
+   Back
+</a>
     <div class="h-screen">
         <div class="grid grid-cols-2 gap-2 h-full">
             <div class="flex flex-col p-20 items-center h-full">
@@ -47,9 +55,12 @@
   </div>
 
   <!-- Add to Cart Button -->
-  <button class="bg-green-600 text-white py-3 px-6 rounded-lg shadow-md hover:bg-green-700 transition duration-300 mb-4">
-    Add to Cart
-  </button>
+    <form action="{% url 'add_to_cart:add_to_cart' product.id %}" method="POST">
+        {% csrf_token %}
+          <button type="submit" class="bg-green-600 text-white py-3 px-6 rounded-lg shadow-md hover:bg-green-700 transition duration-300 mb-4">
+            Add to Cart
+          </button>
+    </form>
 
   <!-- Expiration Notice -->
   <p class="text-red-500 mb-6 font-semibold">

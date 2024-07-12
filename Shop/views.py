@@ -83,6 +83,25 @@ def product_list(request):
     products = Product.objects.filter(user_id=user.id)
     return render(request, 'Shop/product_list.html', {'products': products,'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
+def about(request):
+    return render(request, 'about.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url} )
+
+def privacy_policy(request):
+    return render(request, 'FooterPages/privacy_policy.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+
+def terms_and_conditions(request):
+    return render(request, 'FooterPages/terms_conditions.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+
+def gardening_guides(request):
+    return render(request, 'FooterPages/gardening_guides.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+
+def plant_care_tips(request):
+    return render(request, 'FooterPages/plant_care_tips.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+
+@login_required
+def about(request):
+    return render(request, 'about.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url} )
+
 @login_required
 def create_product(request):
     if request.method == 'POST':
