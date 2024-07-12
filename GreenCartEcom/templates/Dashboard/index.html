@@ -77,6 +77,39 @@
   setInterval(moveToNextSlide, 5000);
 </script>
 
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.carousel-item');
+
+  function showSlide(index) {
+      slides.forEach((slide, i) => {
+          slide.classList.toggle('hidden', i !== index);
+          slide.classList.toggle('opacity-100', i === index);
+          slide.classList.toggle('opacity-0', i !== index);
+      });
+  }
+
+  function moveToSlide(index) {
+      currentSlide = index;
+      showSlide(currentSlide);
+  }
+
+  function moveToPrevSlide() {
+      currentSlide = (currentSlide > 0) ? currentSlide - 1 : slides.length - 1;
+      showSlide(currentSlide);
+  }
+
+  function moveToNextSlide() {
+      currentSlide = (currentSlide < slides.length - 1) ? currentSlide + 1 : 0;
+      showSlide(currentSlide);
+  }
+
+  // Initialize the slider
+  showSlide(currentSlide);
+
+  // Automatically move to the next slide every 5 seconds
+  setInterval(moveToNextSlide, 5000);
+</script>
+
 <!-- Product List Section -->
 <div class="mt-4 ml-4">
     <h2 class="font-bold text-xl">Featured Products</h2>

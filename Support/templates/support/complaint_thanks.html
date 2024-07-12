@@ -1,0 +1,16 @@
+<!-- Support/templates/support/raise_complaint.html -->
+
+{% extends 'support/base.html' %}
+{% block content %}
+<div class="container">
+    <h1>Raise a Complaint</h1>
+    <form id="complaint-form" method="post" action="{% url 'support:raise_complaint' %}">
+        {% csrf_token %}
+        <label for="subject">Subject:</label><br>
+        <input type="text" id="subject" name="subject" class="complaint-input" required><br><br>
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" class="complaint-input" rows="4" required></textarea><br><br>
+        <button type="submit" class="complaint-submit">Submit</button>
+    </form>
+</div>
+{% endblock %}
