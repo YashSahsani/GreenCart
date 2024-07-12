@@ -11,6 +11,12 @@
 {#    <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">#}
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
     <style>
+        @media (prefers-color-scheme: dark) {
+            .dark\:bg-gray-900 {
+                --tw-bg-opacity: 1;
+                background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+            }
+        }
         .profile-card {
             background: white;
             border-radius: 1rem;
@@ -123,7 +129,7 @@
                     <div class="profile-image-wrapper">
                         <img id="profileImage" alt="Profile Picture" src="{{ user_profile_pic }}" class="profile-image rounded-full h-32 w-32 object-cover">
                         {{ user_profile_form.profile_pic }}
-                        <div class="upload-text">Upload Image</div>
+                         <div id="uploadText" class="hidden" hidden>Upload Image</div>
                     </div>
                     <div class="w-full mt-8">
                         <form id="profileForm" action="{% url 'userprofile:edit_user_details' %}" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -132,73 +138,73 @@
                                 <label class="input-label" for="first_name">
                                     <i class="fas fa-user-circle mr-2"></i>{{ user_form.first_name.label }}
                                 </label>
-                                <input type="text" name="first_name" class="input-field" value="{{ user_form.first_name.value }}">
+                                <input readonly type="text" name="first_name" class="input-field  editable-field" value="{{ user_form.first_name.value }}">
                             </div>
                             <div class="flex flex-col">
                                 <label class="input-label" for="last_name">
                                     <i class="fas fa-user-circle mr-2"></i>{{ user_form.last_name.label }}
                                 </label>
-                                <input type="text" name="last_name" class="input-field" value="{{ user_form.last_name.value }}">
+                                <input readonly type="text" name="last_name" class="input-field  editable-field" value="{{ user_form.last_name.value }}">
                             </div>
                             <div class="flex flex-col">
                                 <label class="input-label" for="location">
                                     <i class="fas fa-map-marker-alt mr-2"></i>{{ user_profile_form.location.label }}
                                 </label>
-                                <input type="text" name="location" class="input-field" value="{{ user_profile_form.location.value }}">
+                                <input readonly type="text" name="location" class="input-field  editable-field" value="{{ user_profile_form.location.value }}">
                             </div>
                             <div class="flex flex-col">
                                 <label class="input-label" for="date_of_birth">
                                     <i class="fas fa-calendar mr-2"></i>{{ user_profile_form.date_of_birth.label }}
                                 </label>
-                                <input type="date" name="date_of_birth" class="input-field" value="{{ user_profile_form.date_of_birth.value }}">
+                                <input readonly type="date" name="date_of_birth" class="input-field  editable-field" value="{{ user_profile_form.date_of_birth.value }}">
                             </div>
                             <div class="flex flex-col">
                                 <label class="input-label" for="email">
                                     <i class="fas fa-envelope mr-2"></i>{{ user_form.email.label }}
                                 </label>
-                                <input type="email" name="email" class="input-field" value="{{ user_form.email.value }}">
+                                <input readonly type="email" name="email" class="input-field  editable-field" value="{{ user_form.email.value }}">
                             </div>
                             <div class="flex flex-col">
                                 <label class="input-label" for="phone_number">
                                     <i class="fas fa-phone mr-2"></i>{{ user_profile_form.phone_number.label }}
                                 </label>
-                                <input type="text" name="phone_number" class="input-field" value="{{ user_profile_form.phone_number.value }}">
+                                <input readonly type="text" name="phone_number" class="input-field  editable-field" value="{{ user_profile_form.phone_number.value }}">
                             </div>
                             <div class="flex flex-col">
                                 <label class="input-label" for="address_line_1">
                                     <i class="fas fa-home mr-2"></i>{{ user_profile_form.address_line_1.label }}
                                 </label>
-                                <input type="text" name="address_line_1" class="input-field" value="{{ user_profile_form.address_line_1.value }}">
+                                <input readonly type="text" name="address_line_1" class="input-field  editable-field" value="{{ user_profile_form.address_line_1.value }}">
                             </div>
                             <div class="flex flex-col">
                                 <label class="input-label" for="address_line_2">
                                     <i class="fas fa-home mr-2"></i>{{ user_profile_form.address_line_2.label }}
                                 </label>
-                                <input type="text" name="address_line_2" class="input-field" value="{{ user_profile_form.address_line_2.value }}">
+                                <input readonly type="text" name="address_line_2" class="input-field  editable-field" value="{{ user_profile_form.address_line_2.value }}">
                             </div>
                             <div class="flex flex-col">
                                 <label class="input-label" for="city">
                                     <i class="fas fa-city mr-2"></i>{{ user_profile_form.city.label }}
                                 </label>
-                                <input type="text" name="city" class="input-field" value="{{ user_profile_form.city.value }}">
+                                <input readonly type="text" name="city" class="input-field  editable-field" value="{{ user_profile_form.city.value }}">
                             </div>
                             <div class="flex flex-col">
                                 <label class="input-label" for="state">
                                     <i class="fas fa-map-marker-alt mr-2"></i>{{ user_profile_form.state.label }}
                                 </label>
-                                <input type="text" name="state" class="input-field" value="{{ user_profile_form.state.value }}">
+                                <input readonly type="text" name="state" class="input-field  editable-field" value="{{ user_profile_form.state.value }}">
                             </div>
                             <div class="flex flex-col">
                                 <label class="input-label" for="country">
                                     <i class="fas fa-flag mr-2"></i>{{ user_profile_form.country.label }}
                                 </label>
-                                <input type="text" name="country" class="input-field" value="{{ user_profile_form.country.value }}">
+                                <input readonly type="text" name="country" class="input-field  editable-field" value="{{ user_profile_form.country.value }}">
                             </div>
                             <div class="flex flex-col">
                                 <label class="input-label" for="zip_code">
                                     <i class="fas fa-envelope mr-2"></i>{{ user_profile_form.zip_code.label }}
                                 </label>
-                                <input type="text" name="zip_code" class="input-field" value="{{ user_profile_form.zip_code.value }}">
+                                <input readonly type="text" name="zip_code" class="input-field  editable-field" value="{{ user_profile_form.zip_code.value }}">
                             </div>
                         </form>
 			<div class="col-span-full flex justify-center mt-6 space-x-4">
