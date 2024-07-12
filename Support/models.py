@@ -2,7 +2,7 @@
 
 from django.db import models
 from django.conf import settings
-
+import random
 class Query(models.Model):
     query_type_choices = [
         ('order_status', 'Order Status'),
@@ -28,6 +28,21 @@ class Query(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.type}"
+class TicketStatus(models.Model):
+    STATUS_CHOICES = [
+        ('open', 'Open'),
+        ('in_progress', 'In Progress'),
+        ('resolved', 'Resolved'),
+        ('closed', 'Closed'),
+    ]
+
+    query = models.ForeignKey(Query, on_delete=models.CASCADE, related_name='statuses')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES)
+    updated_at = models.DateTimeField(auto_now_add=True)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return f"{self.query.ticket_number} - {self.status} at {self.updated_at}"
 
 class FAQ(models.Model):
     question = models.CharField(max_length=255)
