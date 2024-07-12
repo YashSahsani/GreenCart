@@ -1,15 +1,12 @@
 # Support/views.py
-import random
-from django.shortcuts import render, redirect
+
 from django.contrib.auth.decorators import login_required
-from .models import Query, FAQ, Complaint
-from django.utils import timezone
-from django.shortcuts import render, redirect
+from .models import Query, FAQ
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import QueryForm
 from django.core.mail import send_mail
 from django.conf import settings
-from django.views.generic import TemplateView  # Ensure TemplateView import is correct
-from django.urls import reverse_lazy
+
 
 @login_required
 def query_form(request):
@@ -35,7 +32,17 @@ def query_form(request):
 
     return render(request, 'support/query_form.html', {'form': form})
 
+def track_ticket(request):
+    query = None
+    error = None
+    if request.method == 'POST':
+        ticket_number = request.POST.get('ticket_number')
+        try:
+            query = Query.objects.get(ticket_number=ticket_number)
+        except Query.DoesNotExist:
+            error = "Ticket number not found."
 
+    return render(request, 'support/track_ticket.html', {'query': query, 'error': error})
 @login_required
 def faq(request):
     faqs = FAQ.objects.all()
