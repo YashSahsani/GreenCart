@@ -18,6 +18,14 @@ class Query(models.Model):
     attachment = models.FileField(upload_to='query_attachments/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     ticket_number = models.IntegerField(unique=True, editable=False)
+
+    def save(self, *args, **kwargs):
+        if not self.ticket_number:
+            self.ticket_number = random.randint(10000, 99999)
+        super().save(*args, **kwargs)
+        if not self.statuses.exists():
+            TicketStatus.objects.create(query=self, status='open')
+
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.type}"
 
