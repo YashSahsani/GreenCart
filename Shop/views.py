@@ -54,7 +54,7 @@ def product_detail(request,id):
         name = request.POST.get('name')
         review = request.POST.get('review')
         rating = request.POST.get('rating')
-        if name and review and rating:
+        if str.strip(name) and str.strip(review) and rating:
             Reviews.objects.create(product=product, name=name, review=review, rating=rating)
             reviews = Reviews.objects.filter(product=product)
             cal_rating = 0
