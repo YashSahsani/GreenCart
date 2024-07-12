@@ -43,16 +43,3 @@ def faq(request):
     faqs = FAQ.objects.all()
     return render(request, 'support/faq.html', {'faqs': faqs})
 
-@login_required
-def raise_complaint(request):
-    if request.method == 'POST':
-        subject = request.POST.get('subject', '')
-        description = request.POST.get('description', '')
-        if subject and description:
-            Complaint.objects.create(user=request.user, subject=subject, description=description)
-            return redirect('support:complaint_thanks')
-    return render(request, 'support/raise_complaint.html')
-
-@login_required
-def complaint_thanks(request):
-    return render(request, 'support/complaint_thanks.html')

@@ -11,6 +11,4 @@ urlpatterns = [
     path('query-success/', TemplateView.as_view(template_name='support/query_success.html'), name='query_success'),
     # path('send-message/', views.send_message, name='send_message'),
     path('faq/', views.faq, name='faq'),
-    path('raise-complaint/', views.raise_complaint, name='raise_complaint'),
-    path('complaint-thanks/', views.complaint_thanks, name='complaint_thanks'),
 ]
