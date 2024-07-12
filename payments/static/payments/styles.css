@@ -1,87 +1,59 @@
-/* payments/static/payments/styles.css */
-
-/* General Styles */
-body {
+.payment-page {
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    margin: 0;
-    padding: 0;
+    background-color: #f4f4f9;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    padding: 20px;
 }
 
-h1 {
-    text-align: center;
+.payment-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+.payment-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
     color: #333;
 }
 
-form {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
-    margin: 20px auto;
+.payment-container form {
+    display: flex;
+    flex-direction: column;
 }
 
-form div {
-    margin-bottom: 15px;
-}
-
-label {
-    display: block;
-    font-weight: bold;
+.payment-container label {
     margin-bottom: 5px;
+    font-weight: bold;
 }
 
-input,
-button {
-    width: 100%;
+.payment-container input[type="text"],
+.payment-container input[type="email"],
+.payment-container input[type="number"] {
     padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
     border-radius: 4px;
-    border: 1px solid #ddd;
-    box-sizing: border-box;
+    font-size: 16px;
 }
 
-button {
+.payment-container button {
+    padding: 10px;
     background-color: #28a745;
     color: #fff;
     border: none;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 16px;
 }
 
-button:hover {
+.payment-container button:hover {
     background-color: #218838;
 }
 
-/* Stripe Card Element */
-#card-element {
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 10px;
-}
-
-/* Error Message */
-#card-error {
-    color: #e74c3c;
-    margin-top: 10px;
-    text-align: center;
-}
-
-/* Success Message */
-.success {
-    color: #28a745;
-    text-align: center;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-    form {
-        padding: 15px;
-    }
-}
