@@ -3,9 +3,9 @@
 {% block content %}
 
 <!-- Carousel Section -->
-<div id="custom-carousel" class="relative w-full p-4" data-carousel="slide">
+<div id="custom-carousel" class="relative w-full" data-carousel="slide">
   <!-- Carousel wrapper -->
-  <div class="relative h-96 md:h-[32rem] overflow-hidden">
+  <div class="relative h-92 md:h-96 overflow-hidden">
       <!-- Item 1 -->
       <div class="carousel-item duration-700 ease-in-out">
           <img src="https://bloomscape.com/wp-content/uploads/2020/05/bloomscape_indoor-outdoor_4-1536x1024.jpg?ver=217611" class="absolute block w-full" alt="Image 1">
@@ -103,7 +103,7 @@
 </div>
 
 <!-- Offer Grid Section -->
-<div class="grid grid-cols-2 gap-0 p-8 sm:grid-cols-3 xl:gap-5">
+<div class="grid grid-cols-2 gap-0 p-8 sm:grid-cols-3  xl:gap-5">
     {% for offer in offers %}
     {% if forloop.first %}
     <!-- Offer Image with larger width - start -->
@@ -124,36 +124,8 @@
     {% endif %}
     {% endfor %}
 </div>
-
-<!-- New Section for Benefits -->
-<div class="mt-8 p-4 bg-gray-100 rounded-lg flex flex-wrap justify-between">
-    <div class="flex items-center mb-4 w-full sm:w-1/2 lg:w-1/4">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mr-3 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89-3.56a2 2 0 011.62 0L21 8m-9-6v10m0 0L3 18m18-2L12 12m0 10v-10m0 10L3 18m9 2l9-2" />
-        </svg>
-        <div>
-            <h3 class="font-bold">Largest Nursery</h3>
-            <p>1.2 Million plant lovers connected with us</p>
-        </div>
-    </div>
-    <div class="flex items-center mb-4 w-full sm:w-1/2 lg:w-1/4">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mr-3 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89-3.56a2 2 0 011.62 0L21 8m-9-6v10m0 0L3 18m18-2L12 12m0 10v-10m0 10L3 18m9 2l9-2" />
-        </svg>
-        <div>
-            <h3 class="font-bold">Lifetime Support</h3>
-            <p>We help you grow your garden for lifetime</p>
-        </div>
-    </div>
-    <div class="flex items-center mb-4 w-full sm:w-1/2 lg:w-1/4">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mr-3 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89-3.56a2 2 0 011.62 0L21 8m-9-6v10m0 0L3 18m18-2L12 12m0 10v-10m0 10L3 18m9 2l9-2" />
-        </svg>
-        <div>
-            <h3 class="font-bold">Secure Shipping</h3>
-            <p>Diligent care taken to deliver healthy plants</p>
-        </div>
-    </div>
+<div> 
+    .
 </div>
 
 {% endblock %}
