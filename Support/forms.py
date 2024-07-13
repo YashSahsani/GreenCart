@@ -16,3 +16,9 @@ class QueryForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class': 'form-textarea', 'placeholder': 'Description', 'rows': 5}),
             'attachment': forms.ClearableFileInput(attrs={'class': 'form-file'}),
         }
+class TicketNumberForm(forms.Form):
+    ticket_number = forms.CharField(
+        max_length=10,
+        widget=forms.TextInput(attrs={'class': 'form-input', 'placeholder': 'Enter Ticket Number'}),
+        required=True
+    )

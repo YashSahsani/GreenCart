@@ -3,7 +3,7 @@
 from django.contrib.auth.decorators import login_required
 from .models import Query, FAQ
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import QueryForm
+from .forms import QueryForm, TicketNumberForm
 from django.core.mail import send_mail
 from django.conf import settings
 
@@ -35,14 +35,18 @@ def query_form(request):
 def track_ticket(request):
     query = None
     error = None
-    if request.method == 'POST':
-        ticket_number = request.POST.get('ticket_number')
-        try:
-            query = Query.objects.get(ticket_number=ticket_number)
-        except Query.DoesNotExist:
-            error = "Ticket number not found."
+    form = TicketNumberForm()
 
-    return render(request, 'support/track_ticket.html', {'query': query, 'error': error})
+    if request.method == 'POST':
+        form = TicketNumberForm(request.POST)
+        if form.is_valid():
+            ticket_number = form.cleaned_data['ticket_number']
+            try:
+                query = Query.objects.get(ticket_number=ticket_number)
+            except Query.DoesNotExist:
+                error = "Ticket number not found."
+
+    return render(request, 'support/track_ticket.html', {'form': form, 'query': query, 'error': error})
 @login_required
 def faq(request):
     faqs = FAQ.objects.all()
