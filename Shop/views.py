@@ -130,6 +130,4 @@ def edit_product(request, product_id):
     else:
         form = ProductForm(instance=product)
 
-    return render(request, 'Shop/edit_product.html',
-                  {'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url,
-                   'product': product})
+    return render(request, 'Shop/edit_product.html',{'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url,'product': product})
