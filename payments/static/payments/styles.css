@@ -12,6 +12,10 @@ h1 {
     color: #333;
 }
 
+select {
+    background-color: #f2f2f2;
+}
+
 form {
     max-width: 400px;
     margin: 20px auto;
