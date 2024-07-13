@@ -16,9 +16,11 @@
                              class="w-full h-48 object-cover rounded mb-4">
                         <h2 class="text-xl font-bold mb-2">{{ product.name }}</h2>
                         <p class="text-gray-700 mb-4">
-                            {{ product.description|slice:":60" }}{% if product.description|length > 60 %}
-                                ...{% endif %}</p>
-                        <div class="text-lg font-semibold mb-4">${{ product.price }}</div>
+                            {{ product.description|slice:":60" }}
+                            {% if product.description|length > 60 %}
+                                ...{% endif %}
+                        </p>
+                        <div class="text-lg font-semibold mb-2">${{ product.price }}</div>
                         <div class="flex space-x-2 mt-auto">
                             <a href="{% url 'Shop:edit_product' product.id %}" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded text-center">Edit</a>
                             <a class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-center">Delete</a>
