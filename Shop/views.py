@@ -57,28 +57,26 @@ def product_detail(request,id):
         name = request.POST.get('name')
         review = request.POST.get('review')
         rating = request.POST.get('rating')
-        if name and review and rating:
+        if str.strip(name) and str.strip(review) and rating:
             Reviews.objects.create(product=product, name=name, review=review, rating=rating)
+            reviews = Reviews.objects.filter(product=product)
+            cal_rating = 0
+            if reviews:
+                for review in reviews:
+                    cal_rating += review.rating
+                cal_rating = round(cal_rating / len(reviews), 1)
+                product.rating = float(cal_rating)
+                product.save()
             return redirect('Shop:product_detail', id=id)
         else:
             reviews = Reviews.objects.filter(product=product)
-            rating = 0
-            if reviews:
-                for review in reviews:
-                    rating += review.rating
-                rating = round(rating / len(reviews), 1)
-            return render(request, 'Shop/product-detail.html', {'product': product, 'reviews': reviews, 'rating': rating,
+            return render(request, 'Shop/product-detail.html', {'product': product, 'reviews': reviews, 'rating': product.rating,
                                                             'user_profile_pic': UserProfile.objects.get(
                                                                 user=request.user).profile_pic.url})
     else:
         product = get_object_or_404(Product, pk=id)
         reviews = Reviews.objects.filter(product=product)
-        rating = 0
-        if reviews:
-            for review in reviews:
-                rating += review.rating
-            rating = round(rating / len(reviews), 1)
-        return render(request,'Shop/product-detail.html',{'product':product,'reviews':reviews,'rating':rating,'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+        return render(request,'Shop/product-detail.html',{'product':product,'reviews':reviews,'rating':product.rating,'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 @login_required
 def product_list(request):
@@ -123,3 +121,29 @@ def create_product(request):
     else:
         form = ProductForm()
     return render(request, 'Shop/create_product.html', {'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+
+
+@login_required
+def edit_product(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            product = form.save(commit=False)
+            product.updated_at = datetime.now()
+            product.save()
+            return redirect('Shop:product_list')
+    else:
+        form = ProductForm(instance=product)
+
+    return render(request, 'Shop/edit_product.html',{'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url,'product': product})
+
+@login_required
+def delete_product(request):
+    if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        product = get_object_or_404(Product, id=product_id)
+        product.delete()
+        return redirect('Shop:product_list')
+

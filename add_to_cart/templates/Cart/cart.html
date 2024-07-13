@@ -57,7 +57,10 @@
                 <span class="text-center w-1/5 font-semibold text-sm text-green-600">${{ item.product.price }}</span>
                 <span class="text-center w-1/5 font-semibold text-sm text-green-600">${{ item.total_price }}</span>
                 <div class="text-center w-1/5">
-                    <a href="#" class="font-semibold hover:text-blue-500 text-gray-500 text-xs">Add to Wish List</a>
+                    <form action="{% url 'add_to_cart:add_to_wishlist' item.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="font-semibold hover:text-blue-500 text-gray-500 text-xs">Add to Wish List</button>
+                    </form>
                 </div>
             </div>
             {% endfor %}
@@ -71,7 +74,7 @@
                 </div>
                 <div class="flex justify-end w-1/2">
                     <div class="flex items-center">
-                        <span class="font-semibold text-xs">Total:</span>&nbsp;&nbsp;<span class="font-semibold text-green-600 text-lg">$60.00</span>
+                        <span class="font-semibold text-xs">Total:</span>&nbsp;&nbsp;<span class="font-semibold text-green-600 text-lg"> ${{ total_amount }} </span>
                     </div>
                 </div>
             </div>
