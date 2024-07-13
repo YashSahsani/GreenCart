@@ -1,11 +1,13 @@
 # Support/views.py
 
 from django.contrib.auth.decorators import login_required
-from .models import Query, FAQ
+from .models import Query, FAQ, TicketStatus
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import QueryForm, TicketNumberForm
+from .forms import QueryForm, TicketNumberForm, UpdateStatusForm
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib.admin.views.decorators import staff_member_required
+
 
 
 @login_required
@@ -47,6 +49,25 @@ def track_ticket(request):
                 error = "Ticket number not found."
 
     return render(request, 'support/track_ticket.html', {'form': form, 'query': query, 'error': error})
+
+@staff_member_required
+def update_status(request, ticket_number):
+    query = get_object_or_404(Query, ticket_number=ticket_number)
+    form = UpdateStatusForm(initial={'status': query.statuses.last().status if query.statuses.exists() else ''})
+
+    if request.method == 'POST':
+        form = UpdateStatusForm(request.POST)
+        if form.is_valid():
+            new_status = form.cleaned_data['status']
+            TicketStatus.objects.create(query=query, status=new_status, updated_by=request.user)
+            context = {
+                'ticket_number': ticket_number,
+                'new_status': new_status,
+            }
+            return render(request, 'support/update_success.html', context)
+
+    return render(request, 'support/update_status.html', {'form': form, 'query': query})
+
 @login_required
 def faq(request):
     faqs = FAQ.objects.all()

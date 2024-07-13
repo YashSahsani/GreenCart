@@ -17,7 +17,7 @@ class Query(models.Model):
     description = models.TextField()
     attachment = models.FileField(upload_to='query_attachments/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    ticket_number = models.IntegerField(unique=True, editable=False)
+    ticket_number = models.IntegerField(unique=True, editable=False, null = True)
 
     def save(self, *args, **kwargs):
         if not self.ticket_number:
