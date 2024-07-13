@@ -20,7 +20,7 @@
                                 ...{% endif %}</p>
                         <div class="text-lg font-semibold mb-4">${{ product.price }}</div>
                         <div class="flex space-x-2 mt-auto">
-                            <a class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded text-center">Edit</a>
+                            <a href="{% url 'Shop:edit_product' product.id %}" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded text-center">Edit</a>
                             <a class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-center">Delete</a>
                         </div>
                     </div>
