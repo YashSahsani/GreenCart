@@ -114,3 +114,22 @@ def create_product(request):
     else:
         form = ProductForm()
     return render(request, 'Shop/create_product.html', {'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+
+
+@login_required
+def edit_product(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            product = form.save(commit=False)
+            product.updated_at = datetime.now()
+            product.save()
+            return redirect('Shop:product_list')  # Redirect to the product list or another appropriate page
+    else:
+        form = ProductForm(instance=product)
+
+    return render(request, 'Shop/edit_product.html',
+                  {'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url,
+                   'product': product})
