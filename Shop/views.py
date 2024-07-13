@@ -133,7 +133,10 @@ def edit_product(request, product_id):
     return render(request, 'Shop/edit_product.html',{'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url,'product': product})
 
 @login_required
-def delete_product(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
-    product.delete()
-    return redirect('Shop:product_list')
+def delete_product(request):
+    if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        product = get_object_or_404(Product, id=product_id)
+        product.delete()
+        return redirect('Shop:product_list')
+
