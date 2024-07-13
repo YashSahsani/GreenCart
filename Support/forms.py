@@ -3,7 +3,7 @@
 from django import forms
 from .models import Query
 
-from .models import Query
+from .models import Query, TicketStatus
 class QueryForm(forms.ModelForm):
     class Meta:
         model = Query
@@ -20,5 +20,11 @@ class TicketNumberForm(forms.Form):
     ticket_number = forms.CharField(
         max_length=10,
         widget=forms.TextInput(attrs={'class': 'form-input', 'placeholder': 'Enter Ticket Number'}),
+        required=True
+    )
+class UpdateStatusForm(forms.Form):
+    status = forms.ChoiceField(
+        choices=TicketStatus.STATUS_CHOICES,
+        widget=forms.Select(attrs={'class': 'form-dropdown'}),
         required=True
     )
