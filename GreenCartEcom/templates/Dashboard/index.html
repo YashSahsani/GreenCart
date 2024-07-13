@@ -1,4 +1,4 @@
-{% extends 'Dashboard/navbar.html' %}
+{% extends 'Dashboard/base.html' %}
 {% block title %}GreenCart | Dashboard{% endblock %}
 {% block content %}
 
@@ -43,7 +43,7 @@
       </span>
   </button>
 </div>
-
+<script>
   let currentSlide = 0;
   const slides = document.querySelectorAll('.carousel-item');
 
@@ -123,6 +123,9 @@
     <!-- Offer Image - end -->
     {% endif %}
     {% endfor %}
+</div>
+<div> 
+    .
 </div>
 
 {% endblock %}
