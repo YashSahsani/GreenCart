@@ -126,7 +126,7 @@ def edit_product(request, product_id):
             product = form.save(commit=False)
             product.updated_at = datetime.now()
             product.save()
-            return redirect('Shop:product_list')  # Redirect to the product list or another appropriate page
+            return redirect('Shop:product_list')
     else:
         form = ProductForm(instance=product)
 
