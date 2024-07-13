@@ -26,6 +26,10 @@
             <label for="description">Description</label>
             <input type="text" id="description" name="description">
         </div>
+        <div>
+            <label for="zipcode">Zip Code</label>
+            <input type="text" id="zipcode" name="zipcode" required>
+        </div>
         <div id="card-element">
             <!-- A Stripe Element will be inserted here. -->
         </div>
@@ -65,6 +69,9 @@
                     billing_details: {
                         name: form.querySelector('input[name="name"]').value,
                         email: form.querySelector('input[name="email"]').value,
+                        address: {
+                            postal_code: form.querySelector('input[name="zipcode"]').value
+                        }
                     }
                 }
             }).then(function(result) {
