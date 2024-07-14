@@ -10,6 +10,7 @@
 <body>
     <h1>Checkout</h1>
     <form id="payment-form">
+        {% csrf_token %}
         <div>
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required>
@@ -25,6 +26,10 @@
         <div>
             <label for="description">Description</label>
             <input type="text" id="description" name="description">
+        </div>
+        <div>
+            <label for="zipcode">Zip Code</label>
+            <input type="text" id="zipcode" name="zipcode" required>
         </div>
         <div id="card-element">
             <!-- A Stripe Element will be inserted here. -->
@@ -65,6 +70,9 @@
                     billing_details: {
                         name: form.querySelector('input[name="name"]').value,
                         email: form.querySelector('input[name="email"]').value,
+                        address: {
+                            postal_code: form.querySelector('input[name="zipcode"]').value
+                        }
                     }
                 }
             }).then(function(result) {
@@ -74,7 +82,7 @@
                     errorElement.textContent = result.error.message;
                 } else {
                     // The payment succeeded!
-                    window.location.href = "{% url 'payments:payment_success' %}";
+                    window.location.href = "{% url 'payment_success' %}";
                 }
             });
         });
