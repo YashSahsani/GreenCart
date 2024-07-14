@@ -1,12 +1,14 @@
 from django.conf import settings
 from django.shortcuts import render, redirect
+from add_to_cart.models import CartItem
+from .models import Order, OrderItem, Payment
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from .forms import PaymentForm
-from .models import Payment
 import stripe
 
-
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
 
 def payment_view(request):
     form = PaymentForm()
@@ -26,11 +28,41 @@ def payment_view(request):
                 'STRIPE_PUBLISHABLE_KEY': settings.STRIPE_PUBLISHABLE_KEY,
                 'payment': payment
             })
-    return render(request, 'payments/payment_form.html', {'form': form})
+    # return render(request, 'payments/payment_form.html', {'form': form})#
+    return render(request, 'payments/order_summary.html')
 
 
 def payment_success(request):
     return render(request, 'payments/payment_success.html')
 
+
 def payment_failed(request):
     return render(request, 'payments/payment_failed.html')
+
+
+def order_summary(request):
+    cart_items = CartItem.objects.all()
+    total_amount = sum(item.total_price() for item in cart_items)
+    total_items = sum(item.quantity for item in cart_items)
+
+    if request.method == 'POST':
+        order = Order.objects.create(total_amount=total_amount, total_items=total_items)
+        for item in cart_items:
+            OrderItem.objects.create(
+                order=order,
+                product=item.product.name,
+                quantity=item.quantity,
+                price=item.product.price,
+            )
+        cart_items.delete()  # Clear the cart after creating the order
+        return redirect('order_success', order_id=order.id)
+
+    return render(request, 'payments/order_summary.html', {
+        'cart_items': cart_items,
+        'total_amount': total_amount,
+        'total_items': total_items,
+    })
+
+def order_success(request, order_id):
+    order = Order.objects.get(id=order_id)
+    return render(request, 'order_success.html', {'order': order})
