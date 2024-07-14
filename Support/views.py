@@ -3,7 +3,7 @@
 from django.contrib.auth.decorators import login_required
 from .models import Query, FAQ, TicketStatus
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import QueryForm, UpdateStatusForm, TicketNumberForm
+from .forms import QueryForm, UpdateStatusForm, TicketInputForm ,TicketNumberForm
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
@@ -59,6 +59,14 @@ def track_ticket(request):
 
     return render(request, 'support/track_ticket.html', {'form': form, 'query': query, 'error': error})
 
+def ticket_input(request):
+    if request.method == 'POST':
+        form = TicketInputForm(request.POST)
+        if form.is_valid():
+            ticket_number = form.cleaned_data['ticket_number']
+            return redirect(f'/support/update-status/{ticket_number}/')
+    else:
+        form = TicketInputForm()
 
 @staff_member_required
 def update_status(request, ticket_number):
