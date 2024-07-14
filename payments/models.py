@@ -110,12 +110,11 @@ CITY_CHOICES = [
 
 class Payment(models.Model):
     Name = models.CharField(max_length=255, default="John")
-    Description = models.CharField(max_length=255)
     address = models.CharField(max_length=264, blank=True)
     zipcode = models.CharField(max_length=10, blank=True)
     country = models.CharField(max_length=264, choices=COUNTRY_CHOICES, blank=True, default='CAN')
     city = models.CharField(max_length=264, choices=CITY_CHOICES, blank=True, default='TOR')
-    Amount = models.DecimalField(max_digits=10, decimal_places=2)
+    Amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     Email = models.EmailField()
     stripe_payment_intent_id = models.CharField(max_length=255, blank=True, null=True)
 
