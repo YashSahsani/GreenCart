@@ -22,7 +22,7 @@
                 <a href="{% url 'AddToCart:cart' %}" class="pr-4 text-green-500/50 hover:text-green-600 text-lg font-semibold">Cart</a>
                 <a href="{% url 'Shop:order' %}" class="pr-4 text-green-500/50 hover:text-green-600 text-lg font-semibold">Orders</a>
                 <a href="{% url 'Shop:product_list' %}" class="pr-4 text-green-500/50 hover:text-green-600 text-lg font-semibold">My Listings</a>
-                <a href="{% url 'Shop:about' %}" class="pr-4 text-green-500/50 hover:text-green-600 text-lg font-semibold">About Us</a>
+                <a href="{% url 'GreenCartEcom:about' %}" class="pr-4 text-green-500/50 hover:text-green-600 text-lg font-semibold">About Us</a>
                 <img id="avatar" class="w-10 h-10 rounded-full cursor-pointer hover:border"  src="{{ user_profile_pic }}" alt="Rounded avatar">
                 <div id="dropdown"  class="hidden absolute right-0 top-full mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20">
                     <a href="{% url 'Profile:get_user_details' %}" class="block px-4 py-2 text-green hover:bg-gray-100">Profile</a>
