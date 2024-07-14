@@ -11,6 +11,13 @@ from django.urls import reverse
 from userprofile.models import UserProfile
 
 # Create your views here.
+
+def navbar(request):
+    if request.user.is_authenticated:
+        return render(request, 'navbar.html', {'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+    else:
+        return render(request, 'Dashboard/navbar.html')
+
 @login_required
 def home(request):
     query = request.GET.get('query', '')
@@ -84,27 +91,7 @@ def product_list(request):
     products = Product.objects.filter(user_id=user.id)
     return render(request, 'Shop/product_list.html', {'products': products,'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
-def about(request):
-    return render(request, 'about.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url} )
 
-def privacy_policy(request):
-    return render(request, 'FooterPages/privacy_policy.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
-
-def terms_and_conditions(request):
-    return render(request, 'FooterPages/terms_conditions.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
-
-def gardening_guides(request):
-    return render(request, 'FooterPages/gardening_guides.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
-
-def plant_care_tips(request):
-    return render(request, 'FooterPages/plant_care_tips.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
-
-def subscribe(request):
-    if request.method == "POST":
-    
-        # Redirect to the success page
-        return render(request, 'FooterPages/subscription_success.html', {'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
-    return redirect(reverse('home'))
 
 
 @login_required
@@ -146,4 +133,3 @@ def delete_product(request):
         product = get_object_or_404(Product, id=product_id)
         product.delete()
         return redirect('Shop:product_list')
-
