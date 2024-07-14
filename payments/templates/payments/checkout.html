@@ -19,7 +19,7 @@
             <input type="email" id="email" name="email" required>
         </div>
         <div>
-            <label for="amount">Amount</label>
+            <label for="amount">Total Amount</label>
             <input type="number" id="amount" name="amount" required>
         </div>
         <div>
@@ -77,8 +77,9 @@
             }).then(function(result) {
                 if (result.error) {
                     // Show error to your customer (e.g., insufficient funds)
-                    var errorElement = document.getElementById('card-error');
-                    errorElement.textContent = result.error.message;
+                    {#var errorElement = document.getElementById('card-error');#}
+                    {#errorElement.textContent = result.error.message;#}
+                    window.location.href = "{% url 'payments:payment_failed' %}";
                 } else {
                     // The payment succeeded!
                     window.location.href = "{% url 'payments:payment_success' %}";
