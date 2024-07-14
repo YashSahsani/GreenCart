@@ -1,23 +1,135 @@
-{% extends 'support/base.html' %}
+{% extends 'Shop/base.html' %}
 
 {% block title %}GreenCart | Home {% endblock %}
 {% block content %}
-    {% include 'alert.html' %}
-    <div class="container mx-auto px-6 md:px-0">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {% for product in products %}
-                <div class="bg-white rounded-lg shadow-lg">
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="rounded-t-lg">
-                    <div class="p-6">
-                        <h2 class="text-2xl font-semibold text-gray-800">{{ product.name }}</h2>
-                        <p class="text-gray-700 mt-2">{{ product.description }}</p>
-                        <div class="flex items-center justify-between mt-4">
-                            <p class="text-xl text-gray-800">${{ product.price }}</p>
-                            <a href="{% url 'add_to_cart' product.id %}" class="px-3 py-1 bg-green-500 text-white font-semibold rounded">Add to Cart</a>
+    <div class="container mx-auto px-6">
+
+
+
+          <!-- Greeting Message -->
+        <h1 class="text-4xl font-bold text-green-800 mb-6 mt-6">{{ greeting }}, {{ user_name }}!</h1>
+
+        <!-- Search Bar -->
+        <form method="GET" class="flex flex-col md:flex-row items-center mb-6">
+            <div class="flex w-full md:max-w-3xl mb-4 md:mb-0">
+                <input type="text" name="query" placeholder="Search for any kind of plants, flowers & more" class="py-3 px-4 rounded-l-lg border border-green-400 focus:outline-none focus:border-green-600 w-full">
+                <button type="submit" class="py-2 px-4 bg-green-600 text-white rounded-r-lg hover:bg-green-700 focus:outline-none focus:bg-green-700">Search</button>
+            </div>
+        </form>
+
+
+
+        <div class="flex flex-col md:flex-row">
+            <div class="w-full md:w-1/5 md:pr-4 mb-6 md:mb-0">
+
+            <!-- Expiry Filter -->
+            <div class="bg-white p-4 rounded-lg shadow-lg mt-6">
+            <h3 class="text-lg font-semibold mb-4">Expiry Filter</h3>
+            <form method="GET" class="space-y-4">
+                <label for="sort_by" class="block text-sm font-medium text-gray-700">Sort products by days left:</label>
+                <select name="sort_by" id="sort_by" class="py-2 px-4 border border-gray-300 rounded-lg w-full  focus:outline-none focus:border-green-600" onchange="this.form.submit()">
+                    <option value="">None</option>
+                    <option value="expiry_desc">More Days</option>
+                    <option value="expiry_asc">Less Days</option>
+                </select>
+            </form>
+            </div>
+
+                <!--  Price Filter -->
+                <div class="bg-white p-4 rounded-lg shadow-lg mt-6">
+                    <h3 class="text-lg font-semibold mb-4">Price Filter</h3>
+                    <form method="GET" class="space-y-4">
+                        <div>
+                            <label for="min_price" class="block text-sm font-medium text-gray-700">From</label>
+                            <input type="number" name="min_price" id="min_price" placeholder="Min Price" class="py-2 px-4 border border-gray-300 rounded-lg w-full focus:outline-none focus:border-green-600">
+                        </div>
+                        <div>
+                            <label for="max_price" class="block text-sm font-medium text-gray-700">To</label>
+                            <input type="number" name="max_price" id="max_price" placeholder="Max Price" class="py-2 px-4 border border-gray-300 rounded-lg w-full focus:outline-none focus:border-green-600">
+                        </div>
+                        <button type="submit" class="py-2 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 w-full focus:outline-none focus:bg-green-700">Search by Price</button>
+                    </form>
+
+                </div>
+                <!-- Rating Filter -->
+                <div class="bg-white p-4 rounded-lg shadow-lg mt-6">
+                    <h3 class="text-lg font-semibold mb-4">Rating Filter</h3>
+                    <form method="GET" class="space-y-4">
+                        <div>
+                            <label for="min_rating" class="block text-sm font-medium text-gray-700">Minimum Rating</label>
+                            <select name="min_rating" id="min_rating" class="py-2 px-4 border border-gray-300 rounded-lg w-full focus:outline-none focus:border-green-600">
+                                <option value="0">Any</option>
+                                <option value="1">1 Star</option>
+                                <option value="2">2 Stars</option>
+                                <option value="3">3 Stars</option>
+                                <option value="4">4 Stars</option>
+                                <option value="5">5 Stars</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="py-2 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 w-full focus:outline-none focus:bg-green-700">Search by Rating</button>
+                    </form>
+                </div>
+
+
+
+
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="w-full md:w-4/5">
+                <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {% for product in products %}
+                    <div class="relative mx-auto my-6 w-full max-w-xs flex-col overflow-hidden rounded-lg bg-white shadow-md">
+                        <a class="relative flex h-60 overflow-hidden rounded-t-lg group" href="{% url 'Shop:product_detail' product.pk %}">
+                            <img class="object-cover w-full transform transition-transform duration-500 group-hover:scale-110" src="{{ product.image.url }}" alt="product image" />
+                            {% if product.expiry %}
+                            <span class="absolute top-0 left-0 m-2 rounded-full bg-red-600 px-2 text-center text-sm font-medium text-white">
+                                {{product.expiry}} days left
+                            </span>
+                            {% endif %}
+                        </a>
+                        <div class="mt-4 px-5 pb-5">
+                            <a href="{% url 'Shop:product_detail' product.pk %}">
+                                <h5 class="text-xl font-semibold tracking-tight h-16 text-slate-900">{{ product.name }}</h5>
+                            </a>
+                            <div class="mt-2 mb-5 flex items-center">
+                                <div class="flex items-center">
+                                    {% for i in "12345" %}
+                                        {% if product.rating|floatformat:1 >= i %}
+                                        <svg aria-hidden="true" class="h-5 w-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        {% else %}
+                                        <svg aria-hidden="true" class="h-5 w-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <span class="ml-2 rounded bg-yellow-200 px-2.5 py-0.5 text-xs font-semibold">{{ product.rating }}</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <p>
+                                    <span class="text-3xl font-bold text-slate-900">${{ product.price }}</span>
+                                    {% if product.discount_price %}
+                                    <span class="text-sm text-slate-900 line-through">${{ product.discount_price }}</span>
+                                    {% endif %}
+                                </p>
+                                <form action="{% url 'add_to_cart:add_to_cart' product.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" class="flex items-center rounded-md bg-slate-900 px-5 py-2 text-center text-md font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                        </svg>
+                                       Add
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}

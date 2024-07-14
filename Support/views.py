@@ -3,11 +3,20 @@
 from django.contrib.auth.decorators import login_required
 from .models import Query, FAQ, TicketStatus
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import QueryForm, TicketNumberForm, UpdateStatusForm
+from .forms import QueryForm, UpdateStatusForm, TicketNumberForm
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
 
+
+def support_home(request):
+    return render(request, 'support/support.html')
+
+def update_sucess(request):
+    return render(request, 'support/update_success.html')
+
+def query_sucess(request):
+    return render(request, 'support/query_success.html')
 
 
 @login_required
@@ -49,6 +58,7 @@ def track_ticket(request):
                 error = "Ticket number not found."
 
     return render(request, 'support/track_ticket.html', {'form': form, 'query': query, 'error': error})
+
 
 @staff_member_required
 def update_status(request, ticket_number):
