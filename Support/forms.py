@@ -26,7 +26,7 @@ class TicketInputForm(forms.Form):
     ticket_number = forms.IntegerField(
         label='Ticket Number',
         max_value=9999999999,
-        widget=forms.TextInput(attrs={'placeholder': 'Enter ticket Number here', 'maxlength': '10'})
+        widget=forms.TextInput(attrs={'placeholder': 'Enter Ticket Number Here!', 'maxlength': '10'})
     )
 
 class UpdateStatusForm(forms.Form):

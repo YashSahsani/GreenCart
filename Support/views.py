@@ -68,6 +68,8 @@ def ticket_input(request):
     else:
         form = TicketInputForm()
 
+    return render(request, 'support/ticket_input.html', {'form': form})
+
 @staff_member_required
 def update_status(request, ticket_number):
     query = get_object_or_404(Query, ticket_number=ticket_number)
