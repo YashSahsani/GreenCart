@@ -1,4 +1,3 @@
-<!-- payments/templates/payments/checkout.html -->
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -12,15 +11,15 @@
     <form id="payment-form">
         <div>
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
+            <input type="text" id="name" name="name" value="{{ payment.Name }}" required>
         </div>
         <div>
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" value="{{ payment.Email }}" required>
         </div>
         <div>
             <label for="amount">Total Amount</label>
-            <input type="number" id="amount" name="amount" required>
+            <input type="number" id="amount" name="amount" value="{{ payment.Amount }}" required>
         </div>
         <div>
             <label for="description">Description</label>
@@ -28,7 +27,7 @@
         </div>
         <div>
             <label for="zipcode">Zip Code</label>
-            <input type="text" id="zipcode" name="zipcode" required>
+            <input type="text" id="zipcode" name="zipcode" value="{{ payment.zipcode }}" required>
         </div>
         <div id="card-element">
             <!-- A Stripe Element will be inserted here. -->
@@ -77,8 +76,6 @@
             }).then(function(result) {
                 if (result.error) {
                     // Show error to your customer (e.g., insufficient funds)
-                    {#var errorElement = document.getElementById('card-error');#}
-                    {#errorElement.textContent = result.error.message;#}
                     window.location.href = "{% url 'payments:payment_failed' %}";
                 } else {
                     // The payment succeeded!
