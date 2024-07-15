@@ -83,7 +83,7 @@
                             <img class="object-cover w-full transform transition-transform duration-500 group-hover:scale-110" src="{{ product.image.url }}" alt="product image" />
                             {% if product.expiry %}
                             <span class="absolute top-0 left-0 m-2 rounded-full bg-red-600 px-2 text-center text-sm font-medium text-white">
-                                {{product.expiry}} days left
+                                {{product.days_left }} days left
                             </span>
                             {% endif %}
                         </a>
