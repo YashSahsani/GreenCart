@@ -44,7 +44,7 @@
                             </svg>
                         </button>
                     </form>
-                    <input class="mx-2 border text-center w-8" type="number" name="quantity" value="{{ item.quantity }}" min="1">
+                    <input class="mx-2 border text-center w-8" type="text" name="quantity" value="{{ item.quantity }}" min="1">
                     <form action="{% url 'add_to_cart:increment_quantity' item.id %}" method="POST">
                         {% csrf_token %}
                         <button type="submit">
@@ -81,7 +81,7 @@
             <!-- Proceed to Checkout Button -->
             <div class="flex justify-end mt-10">
                 <button class="bg-green-600 flex font-semibold hover:bg-green-700 items-center px-10 py-2 rounded-full text-white text-sm">
-                    Proceed to Checkout
+                    Proceed to Payment
                 </button>
             </div>
         {% else %}
