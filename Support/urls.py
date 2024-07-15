@@ -7,6 +7,7 @@ from django.views.generic import TemplateView
 app_name = 'support'
 
 urlpatterns = [
+    path('', views.support_home, name='support-home'),
     path('submit-query/', views.query_form, name='submit_query'),
     path('query-success/', TemplateView.as_view(template_name='support/query_success.html'), name='query_success'),
     path('track-ticket/', views.track_ticket, name='track_ticket'),
