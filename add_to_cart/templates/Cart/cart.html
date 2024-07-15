@@ -80,9 +80,9 @@
             </div>
             <!-- Proceed to Checkout Button -->
             <div class="flex justify-end mt-10">
-                <button class="bg-green-600 flex font-semibold hover:bg-green-700 items-center px-10 py-2 rounded-full text-white text-sm">
+                <a href="{% url 'payments:payment_form' %}" class="bg-green-600 flex font-semibold hover:bg-green-700 items-center px-10 py-2 rounded-full text-white text-sm">
                     Proceed to Payment
-                </button>
+                </a>
             </div>
         {% else %}
         <!-- Empty Cart Message -->
