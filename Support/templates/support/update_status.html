@@ -1,0 +1,16 @@
+{% extends 'support/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="form-container">
+    <h1 class="form-title">Update Ticket Status</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="form-submit">Update Status</button>
+    </form>
+</div>
+{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'Support/static/support/css/styles.css' %}">
+{% endblock %}
