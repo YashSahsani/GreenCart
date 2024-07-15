@@ -57,6 +57,5 @@ def plant_care_tips(request):
 def subscribe(request):
     if request.method == "POST":
     
-        # Redirect to the success page
         return render(request, 'FooterPages/subscription_success.html')
     return redirect(reverse('home'))

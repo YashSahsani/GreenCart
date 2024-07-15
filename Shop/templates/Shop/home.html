@@ -3,18 +3,70 @@
 {% block content %}
     <div class="container mx-auto px-6">
 
-
-
           <!-- Greeting Message -->
         <h1 class="text-4xl font-bold text-green-800 mb-6 mt-6">{{ greeting }}, {{ user_name }}!</h1>
 
-        <!-- Search Bar -->
-        <form method="GET" class="flex flex-col md:flex-row items-center mb-6">
-            <div class="flex w-full md:max-w-3xl mb-4 md:mb-0">
-                <input type="text" name="query" placeholder="Search for any kind of plants, flowers & more" class="py-3 px-4 rounded-l-lg border border-green-400 focus:outline-none focus:border-green-600 w-full">
-                <button type="submit" class="py-2 px-4 bg-green-600 text-white rounded-r-lg hover:bg-green-700 focus:outline-none focus:bg-green-700">Search</button>
-            </div>
-        </form>
+                <!-- Search Bar -->
+                <div class="relative">
+                    <form method="GET" class="flex flex-col md:flex-row items-center mb-6">
+                        <div class="flex w-full md:max-w-3xl mb-4 md:mb-0">
+                            <input type="text" name="query" placeholder="Search for any kind of plants, flowers & more" class="py-3 px-4 rounded-l-lg border border-green-400 focus:outline-none focus:border-green-600 w-full" id="searchInput">
+                            <button type="submit" class="py-2 px-4 bg-green-600 text-white rounded-r-lg hover:bg-green-700 focus:outline-none focus:bg-green-700">Search</button>
+                        </div>
+                    </form>
+                    <div id="searchHistory" class="absolute bg-white shadow-lg rounded-lg w-full max-w-3xl mt-[-15px] hidden z-10">
+                        <h3 class="px-4 py-2 text-gray-600 font-semibold">Recent Searches:</h3>
+                        <ul class="px-4 pb-2 text-gray-600">
+                            {% for item in search_history %}
+                                <li class="flex justify-between items-center">
+                                    <a href="?query={{ item }}" class="block py-1">{{ item }}</a>
+                                    <button class="text-gray-500" onclick="removeHistory('{{ item }}')">✖</button>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="text-right px-4 py-2">
+                            <button onclick="clearHistory()" class="py-2 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:bg-green-700">Clear all</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Additional filters and content... -->
+        
+            <script>
+                document.getElementById('searchInput').addEventListener('focus', function() {
+                    document.getElementById('searchHistory').classList.remove('hidden');
+                });
+        
+                document.addEventListener('click', function(event) {
+                    const searchHistory = document.getElementById('searchHistory');
+                    if (!searchHistory.contains(event.target) && event.target.id !== 'searchInput') {
+                        searchHistory.classList.add('hidden');
+                    }
+                });
+        
+                function clearHistory() {
+                    fetch('/clear_search_history/')
+                        .then(response => {
+                            if (response.ok) {
+                                location.reload();
+                            }
+                        });
+                }
+        
+                function removeHistory(item) {
+                    fetch(`/remove_search_history/?item=${encodeURIComponent(item)}`)
+                        .then(response => {
+                            if (response.ok) {
+                                location.reload();
+                            }
+                        });
+                }
+            </script>
+
+        
+
+
+
 
 
 
@@ -71,6 +123,7 @@
 
          
 
+                
                 
             </div>
 
@@ -131,4 +184,36 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('searchInput').addEventListener('focus', function() {
+            document.getElementById('searchHistory').classList.remove('hidden');
+        });
+    
+        document.addEventListener('click', function(event) {
+            const searchHistory = document.getElementById('searchHistory');
+            if (!searchHistory.contains(event.target) && event.target.id !== 'searchInput') {
+                searchHistory.classList.add('hidden');
+            }
+        });
+    
+        function clearHistory() {
+            fetch('/clear_search_history/')
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    }
+                });
+        }
+    
+        function removeHistory(item) {
+            fetch(`/remove_search_history/?item=${encodeURIComponent(item)}`)
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    }
+                });
+        }
+    </script>
+
 {% endblock %}

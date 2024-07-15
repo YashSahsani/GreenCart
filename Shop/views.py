@@ -30,13 +30,20 @@ def home(request):
 
     if query:
         products = products.filter(name__icontains=query)
+        # Store the search query in session
+        if 'search_history' in request.session:
+            if query not in request.session['search_history']:
+                request.session['search_history'].append(query)
+        else:
+            request.session['search_history'] = [query]
+        request.session.modified = True
 
     if min_price:
         products = products.filter(price__gte=min_price)
 
     if max_price:
         products = products.filter(price__lte=max_price)
-    
+
     if min_rating:
         products = products.filter(rating__gte=min_rating)  
         
@@ -54,9 +61,31 @@ def home(request):
         greeting = "Good evening"
 
     user_name = request.user.first_name if request.user.is_authenticated else "Guest"
+    search_history = request.session.get('search_history', [])
 
-    return render(request, 'Shop/home.html', {'products': products,'greeting': greeting,'user_name': user_name,'title': 'GreenCart | Home','user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+    return render(request, 'Shop/home.html', {
+        'products': products,
+        'greeting': greeting,
+        'user_name': user_name,
+        'title': 'GreenCart | Home',
+        'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url,
+        'search_history': search_history,
+    })
+    
+@login_required
+def clear_search_history(request):
+    if 'search_history' in request.session:
+        del request.session['search_history']
+    return redirect('home')
 
+@login_required
+def remove_search_history(request):
+    item = request.GET.get('item', '')
+    if 'search_history' in request.session:
+        request.session['search_history'] = [q for q in request.session['search_history'] if q != item]
+        request.session.modified = True
+    return redirect('home')
+    
 @login_required
 def product_detail(request,id):
     if request.method == 'POST':
