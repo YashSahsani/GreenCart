@@ -1,6 +1,5 @@
 from django.db import models
 
-
 # Define choices for country and city
 COUNTRY_CHOICES = [
     ('USA', 'United States'),
@@ -109,6 +108,7 @@ CITY_CHOICES = [
     ('HCM', 'Ho Chi Minh City'),  # Added Vietnamese cities
 ]
 
+
 class Payment(models.Model):
     Name = models.CharField(max_length=255, default="John")
     address = models.CharField(max_length=264, blank=True)
@@ -122,13 +122,16 @@ class Payment(models.Model):
     def __str__(self):
         return f"{self.Email} - {self.Amount}"
 
+
 class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
     total_items = models.IntegerField()
+    payment = models.ForeignKey(Payment, on_delete=models.CASCADE, related_name='orders', null=True, blank=True)
 
     def __str__(self):
         return f'Order {self.id}'
+
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)

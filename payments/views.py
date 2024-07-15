@@ -16,20 +16,9 @@ def payment_view(request):
         form = PaymentForm(request.POST)
         if form.is_valid():
             payment = form.save(commit=False)
-            payment_intent = stripe.PaymentIntent.create(
-                amount=int(payment.Amount * 100),
-                currency='cad',
-                metadata={'email': payment.Email}
-            )
-            payment.stripe_payment_intent_id = payment_intent['id']
             payment.save()
-            return render(request, 'payments/checkout.html', {
-                'payment_intent_client_secret': payment_intent['client_secret'],
-                'STRIPE_PUBLISHABLE_KEY': settings.STRIPE_PUBLISHABLE_KEY,
-                'payment': payment
-            })
-    # return render(request, 'payments/payment_form.html', {'form': form})#
-    return render(request, 'payments/order_summary.html')
+            return redirect('payments:order_view', payment_id=payment.id)
+    return render(request, 'payments/payment_form.html', {'form': form})
 
 
 def payment_success(request):
@@ -40,13 +29,14 @@ def payment_failed(request):
     return render(request, 'payments/payment_failed.html')
 
 
-def order_summary(request):
+def order_summary(request, payment_id):
+    payment = Payment.objects.get(id=payment_id)
     cart_items = CartItem.objects.all()
     total_amount = sum(item.total_price() for item in cart_items)
     total_items = sum(item.quantity for item in cart_items)
 
     if request.method == 'POST':
-        order = Order.objects.create(total_amount=total_amount, total_items=total_items)
+        order = Order.objects.create(total_amount=total_amount, total_items=total_items, payment=payment)
         for item in cart_items:
             OrderItem.objects.create(
                 order=order,
@@ -55,14 +45,25 @@ def order_summary(request):
                 price=item.product.price,
             )
         cart_items.delete()  # Clear the cart after creating the order
-        return redirect('order_success', order_id=order.id)
+
+        payment_intent = stripe.PaymentIntent.create(
+            amount=int(total_amount * 100),
+            currency='cad',
+            metadata={'email': payment.Email}
+        )
+        payment.stripe_payment_intent_id = payment_intent['id']
+        payment.save()
+
+        return render(request, 'payments/checkout.html', {
+            'payment_intent_client_secret': payment_intent['client_secret'],
+            'STRIPE_PUBLISHABLE_KEY': settings.STRIPE_PUBLISHABLE_KEY,
+            'order': order,
+            'payment': payment,
+        })
 
     return render(request, 'payments/order_summary.html', {
         'cart_items': cart_items,
         'total_amount': total_amount,
         'total_items': total_items,
+        'payment': payment,
     })
-
-def order_success(request, order_id):
-    order = Order.objects.get(id=order_id)
-    return render(request, 'order_success.html', {'order': order})
