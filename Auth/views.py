@@ -14,6 +14,8 @@ from django.http import HttpResponse
 
 class Login(View):
     def get(self, request):
+        if request.user.is_authenticated:
+            return redirect('Shop:home')  # Redirect to home page if user is already logged in
         loginForm = LoginForm()
         return render(request, 'Auth/login.html', {'form': loginForm})
 
@@ -41,6 +43,8 @@ class Login(View):
 
 class Signup(View):
     def get(self, request):
+        if request.user.is_authenticated:
+            return redirect('Shop:home')  # Redirect to home page if user is already logged in
         form = SignupForm()
         return render(request, 'Auth/signup.html', {'form': form})
 
@@ -58,6 +62,8 @@ class Signup(View):
             return response
 
 def forgot_password(request):
+    if request.user.is_authenticated:
+        return redirect('Shop:home')  # Redirect to home page if user is already logged in
     form = ForgotPasswordForm()
     if request.method == 'POST':
         form = ForgotPasswordForm(request.POST)
@@ -70,6 +76,8 @@ def forgot_password(request):
     return render(request, 'Auth/forgot_password.html', {'form': form})
 
 def reset_password(request):
+    if request.user.is_authenticated:
+        return redirect('Shop:home')  # Redirect to home page if user is already logged in
     email = request.GET.get('email')
     form = ResetPasswordForm(email=email)
     if not email:
@@ -95,4 +103,4 @@ def logout_view(request):
     logout(request)
     request.session.flush()
     messages.warning(request, 'You have been logged out')
-    return redirect('/')
+    return redirect('GreenCartEcom:index') 

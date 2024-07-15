@@ -1,7 +1,6 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import navCategories, offer
+from .models import  offer
 
-admin.site.register(navCategories)
 admin.site.register(offer)

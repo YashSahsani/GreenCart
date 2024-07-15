@@ -3,6 +3,7 @@ from Shop.models import Product
 from userprofile.models import UserProfile
 from .models import CartItem, WishlistItem
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 @login_required
@@ -21,7 +22,8 @@ def add_to_cart(request, product_id):
     if not created:
         cart_item.quantity += 1
     cart_item.save()
-    return redirect('add_to_cart:cart')
+    messages.success(request, 'Product added to cart')
+    return redirect('Shop:home')
 
 
 def remove_from_cart(request, cart_item_id):
