@@ -59,6 +59,7 @@ def order_summary(request, payment_id):
             'STRIPE_PUBLISHABLE_KEY': settings.STRIPE_PUBLISHABLE_KEY,
             'order': order,
             'payment': payment,
+            'total_amount': total_amount,
         })
 
     return render(request, 'payments/order_summary.html', {

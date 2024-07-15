@@ -115,12 +115,12 @@ class Payment(models.Model):
     zipcode = models.CharField(max_length=10, blank=True)
     country = models.CharField(max_length=264, choices=COUNTRY_CHOICES, blank=True, default='CAN')
     city = models.CharField(max_length=264, choices=CITY_CHOICES, blank=True, default='TOR')
-    Amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    # Amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     Email = models.EmailField()
     stripe_payment_intent_id = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.Email} - {self.Amount}"
+        return f"{self.Email}"
 
 
 class Order(models.Model):
