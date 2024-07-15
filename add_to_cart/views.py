@@ -47,12 +47,16 @@ def decrement_quantity(request, cart_item_id):
     return redirect('add_to_cart:cart')
 
 
-def add_to_wishlist(request, cart_item_id):
-    cart_item = get_object_or_404(CartItem, id=cart_item_id)
-    WishlistItem.objects.create(product=cart_item.product)
-    cart_item.delete()
-    return redirect('add_to_cart:cart')
-
+def add_to_wishlist(request, cart_item_id=None, product_id=None):
+    if cart_item_id:
+        cart_item = get_object_or_404(CartItem, id=cart_item_id)
+        WishlistItem.objects.create(product=cart_item.product)
+        cart_item.delete()
+        return redirect('add_to_cart:cart')
+    elif product_id:
+        product = get_object_or_404(Product, id=product_id)
+        WishlistItem.objects.create(product=product)
+    return redirect('add_to_cart:wishlist')
 
 @login_required
 def wishlist_view(request):
