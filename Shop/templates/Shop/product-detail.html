@@ -18,7 +18,7 @@
     <!-- Carousel Items -->
     <div class="carousel relative flex overflow-hidden rounded-lg shadow-md h-full group">
         <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover">
-        <form action="{% url 'add_to_cart:add_to_wishlist' product.id %}" method="POST" class="absolute top-0 right-0 m-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <form action="{% url 'AddToCart:add_product_wishlist' product.id %}" method="POST" class="absolute top-0 right-0 m-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             {% csrf_token %}
             <button type="submit" class="text-white hover:text-red-600 focus:outline-none">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-red-500 transition-colors duration-300 hover:fill-red-500">
