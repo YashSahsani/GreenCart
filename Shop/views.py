@@ -1,13 +1,21 @@
 from datetime import datetime
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404
 from .models import Product, Reviews
 from .forms import ProductForm
-
+from django.shortcuts import render, redirect
 from userprofile.models import UserProfile
 
-# Create your views here.
+
+def navbar(request):
+    if request.user.is_authenticated:
+        return render(request, 'navbar.html',
+                      {'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+    else:
+        return render(request, 'Dashboard/navbar.html')
+
+
 @login_required
 def home(request):
     query = request.GET.get('query', '')
@@ -26,14 +34,21 @@ def home(request):
 
     if max_price:
         products = products.filter(price__lte=max_price)
-    
+
     if min_rating:
-        products = products.filter(rating__gte=min_rating)  
-        
+        products = products.filter(rating__gte=min_rating)
+
+    not_expired_products = []
+    for product in products:
+        if product.days_left() >= 0:
+            not_expired_products.append(product)
+
+    products = not_expired_products
+
     if sort_by == 'expiry_asc':
         products = products.order_by('expiry')
     elif sort_by == 'expiry_desc':
-        products = products.order_by('-expiry')        
+        products = products.order_by('-expiry')
 
     current_hour = datetime.now().hour
     if current_hour < 12:
@@ -45,10 +60,13 @@ def home(request):
 
     user_name = request.user.first_name if request.user.is_authenticated else "Guest"
 
-    return render(request, 'Shop/home.html', {'products': products,'greeting': greeting,'user_name': user_name,'title': 'GreenCart | Home','user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+    return render(request, 'Shop/home.html',
+                  {'products': products, 'greeting': greeting, 'user_name': user_name, 'title': 'GreenCart | Home',
+                   'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+
 
 @login_required
-def product_detail(request,id):
+def product_detail(request, id):
     if request.method == 'POST':
         expired_products = Product.objects.all()
         for product in expired_products:
@@ -72,9 +90,10 @@ def product_detail(request,id):
             return redirect('Shop:product_detail', id=id)
         else:
             reviews = Reviews.objects.filter(product=product)
-            return render(request, 'Shop/product-detail.html', {'product': product, 'reviews': reviews, 'rating': product.rating,
-                                                            'user_profile_pic': UserProfile.objects.get(
-                                                                user=request.user).profile_pic.url})
+            return render(request, 'Shop/product-detail.html',
+                          {'product': product, 'reviews': reviews, 'rating': product.rating,
+                           'user_profile_pic': UserProfile.objects.get(
+                               user=request.user).profile_pic.url})
     else:
         expired_products = Product.objects.all()
         for product in expired_products:
@@ -83,32 +102,18 @@ def product_detail(request,id):
                 product.save()
         product = get_object_or_404(Product, pk=id)
         reviews = Reviews.objects.filter(product=product)
-        return render(request,'Shop/product-detail.html',{'product':product,'reviews':reviews,'rating':product.rating,'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+        return render(request, 'Shop/product-detail.html',
+                      {'product': product, 'reviews': reviews, 'rating': product.rating,
+                       'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+
 
 @login_required
 def product_list(request):
     user = request.user
     products = Product.objects.filter(user_id=user.id)
-    return render(request, 'Shop/product_list.html', {'products': products,'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+    return render(request, 'Shop/product_list.html', {'products': products, 'user_profile_pic': UserProfile.objects.get(
+        user=request.user).profile_pic.url})
 
-def about(request):
-    return render(request, 'about.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url} )
-
-def privacy_policy(request):
-    return render(request, 'FooterPages/privacy_policy.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
-
-def terms_and_conditions(request):
-    return render(request, 'FooterPages/terms_conditions.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
-
-def gardening_guides(request):
-    return render(request, 'FooterPages/gardening_guides.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
-
-def plant_care_tips(request):
-    return render(request, 'FooterPages/plant_care_tips.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
-
-@login_required
-def about(request):
-    return render(request, 'about.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url} )
 
 @login_required
 def create_product(request):
@@ -123,7 +128,8 @@ def create_product(request):
         return redirect('Shop:product_list')  # Redirect to the product list or another appropriate page
     else:
         form = ProductForm()
-    return render(request, 'Shop/create_product.html', {'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+    return render(request, 'Shop/create_product.html',
+                  {'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 
 @login_required
@@ -140,7 +146,10 @@ def edit_product(request, product_id):
     else:
         form = ProductForm(instance=product)
 
-    return render(request, 'Shop/edit_product.html',{'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url,'product': product})
+    return render(request, 'Shop/edit_product.html',
+                  {'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url,
+                   'product': product})
+
 
 @login_required
 def delete_product(request):
@@ -149,4 +158,3 @@ def delete_product(request):
         product = get_object_or_404(Product, id=product_id)
         product.delete()
         return redirect('Shop:product_list')
-

@@ -1,5 +1,3 @@
-<!-- query_form.html -->
-
 {% extends 'support/base.html' %}
 {% load static %}
 
@@ -12,18 +10,7 @@
     <h1 class="form-title">Submit Query</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <!-- Input fields with appropriate class names -->
-        <input type="text" name="first_name" class="form-input" placeholder="First Name" required>
-        <input type="text" name="last_name" class="form-input" placeholder="Last Name" required>
-        <input type="email" name="email" class="form-input" placeholder="Email" required>
-        <select name="type" class="form-dropdown" required>
-            <option value="" disabled selected>Select Type</option>
-            <option value="order_status">Order Status</option>
-            <option value="order_delivery">Order Delivery</option>
-            <option value="other">Other</option>
-        </select>
-        <textarea name="description" class="form-textarea" placeholder="Description" rows="5" required></textarea>
-        <input type="file" name="attachment" class="form-file">
+        {{ form.as_p }}
         <button type="submit" class="form-submit">Submit</button>
     </form>
 </div>

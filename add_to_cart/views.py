@@ -2,14 +2,18 @@ from django.shortcuts import render, redirect, get_object_or_404
 from Shop.models import Product
 from userprofile.models import UserProfile
 from .models import CartItem, WishlistItem
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
+@login_required
 def cart_view(request):
     cart_items = CartItem.objects.all()
     total_amount = sum(item.total_price() for item in cart_items)
     total_items = sum(item.quantity for item in cart_items)
     return render(request, 'Cart/cart.html',
-                  {'cart_items': cart_items, 'total_amount': total_amount, 'total_items': total_items,'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+                  {'cart_items': cart_items, 'total_amount': total_amount, 'total_items': total_items,
+                   'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 
 def add_to_cart(request, product_id):
@@ -18,7 +22,8 @@ def add_to_cart(request, product_id):
     if not created:
         cart_item.quantity += 1
     cart_item.save()
-    return redirect('add_to_cart:cart')
+    messages.success(request, 'Product added to cart')
+    return redirect('Shop:home')
 
 
 def remove_from_cart(request, cart_item_id):
@@ -44,13 +49,18 @@ def decrement_quantity(request, cart_item_id):
     return redirect('add_to_cart:cart')
 
 
-def add_to_wishlist(request, cart_item_id):
-    cart_item = get_object_or_404(CartItem, id=cart_item_id)
-    WishlistItem.objects.create(product=cart_item.product)
-    cart_item.delete()
-    return redirect('add_to_cart:cart')
+def add_to_wishlist(request, cart_item_id=None, product_id=None):
+    if cart_item_id:
+        cart_item = get_object_or_404(CartItem, id=cart_item_id)
+        WishlistItem.objects.create(product=cart_item.product)
+        cart_item.delete()
+        return redirect('add_to_cart:cart')
+    elif product_id:
+        product = get_object_or_404(Product, id=product_id)
+        WishlistItem.objects.create(product=product)
+    return redirect('add_to_cart:wishlist')
 
-
+@login_required
 def wishlist_view(request):
     wishlist_items = WishlistItem.objects.all()
     return render(request, 'Cart/wishlist.html', {'wishlist_items': wishlist_items})
