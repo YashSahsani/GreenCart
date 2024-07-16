@@ -40,22 +40,14 @@
         
                     <!-- Navigation Links (Visible on larger screens) -->
                     <div class="hidden md:flex items-center space-x-4 relative">
-                        <a href="{% url 'Auth:login' %}" class="pr-4 text-green-500/50 hover:text-green-600 text-lg font-semibold">Login</a>
+                        <a href="{% url 'GreenCartEcom:about' %}" class="pr-4 text-green-500/50 hover:text-green-600 text-lg font-semibold">About Us</a>
+                        <a href="{% url 'Auth:login' %}" class="pr-4 text-green-500/50 hover:text-green-600 text-lg font-semibold">SignIn</a>
                     </div>
                 </div>
             </div>
         </nav>
     </div>
 
-    <!-- Search Bar -->
-    <form method="GET" class="flex flex-col md:flex-row items-center p-6">
-        <div class="flex w-full md:max-w-3xl mb-4 md:mb-0">
-            <input type="text" name="query" placeholder="Search for any kind of plants, flowers & more"
-                class="py-3 px-4 rounded-l-lg border border-green-400 focus:outline-none focus:border-green-600 w-full">
-            <button type="submit"
-                class="py-2 px-4 bg-green-600 text-white rounded-r-lg hover:bg-green-700 focus:outline-none focus:bg-green-700">Search</button>
-        </div>
-    </form>
 
     <!-- Main content section with scrollbar -->
     <div class="flex flex-col flex-grow">
@@ -66,7 +58,7 @@
         </div>
 
         <!-- Footer section -->
-        <footer class="text-black py-4 flex-shrink-0">
+        <footer class="bg-gray-800 text-white">
             {% include 'footer.html' %}
         </footer>
     </div>

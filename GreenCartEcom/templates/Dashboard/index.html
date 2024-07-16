@@ -4,7 +4,7 @@
 
 <!-- Carousel Section -->
  <!-- imporved carousel height -->
-<div id="custom-carousel" class="relative w-full p-4" data-carousel="slide">
+<div id="custom-carousel" class="relative w-full" data-carousel="slide">
 
   <!-- Carousel wrapper -->
   <div class="relative h-96 md:h-[32rem] overflow-hidden">
@@ -86,8 +86,8 @@
         {% for product in products %}
         <div class="relative overflow-hidden rounded-lg shadow-lg flex flex-col justify-between h-100 min-w-[250px]">
             {% if product.image.url %}
-            <div class="relative pt-10 px-10 flex items-center justify-center h-48">
-                <img class="relative w-40 h-40 object-cover" src="{{ product.image.url }}" alt="{{ product.name }}">
+            <div class="relative p-4 flex items-center justify-center h-48">
+                <img class="relative object-cover" src="{{ product.image.url }}" alt="{{ product.name }}">
             </div>
             {% endif %}
             <div class="relative text-black px-6 pb-6 mt-6 flex flex-col justify-between flex-grow">
@@ -96,11 +96,36 @@
                     <span class="block bg-white rounded-full text-black text-xs font-bold px-3 py-2 leading-none flex items-center">${{ product.price }}</span>
                 </div>
                 <div class="flex justify-center mt-4">
-                    <button class="w-full bg-green-600 text-white px-4 py-2 rounded font-bold text-sm">Add to Cart</button>
+                    <form method="post" action="{% url 'add_to_cart:add_to_cart' product.id %}" class="add-to-cart-form">
+                        {% csrf_token %}
+                        <button type="submit" class="w-full bg-green-600 text-white px-12 py-2 rounded font-bold text-sm">Add to Cart</button>
+                    </form>
                 </div>
             </div>
         </div>
         {% endfor %}
+    </div>
+</div>
+
+<!-- New Section for Benefits -->
+<div class="mt-8 p-4 bg-gray-100 rounded-lg flex flex-wrap justify-between">
+    <div class="flex items-center mb-4 w-full sm:w-1/2 lg:w-1/4">
+        <div>
+            <h3 class="font-bold">Largest Nursery</h3>
+            <p>1.2 Million plant lovers connected with us</p>
+        </div>
+    </div>
+    <div class="flex items-center mb-4 w-full sm:w-1/2 lg:w-1/4">
+        <div>
+            <h3 class="font-bold">Lifetime Support</h3>
+            <p>We help you grow your garden for lifetime</p>
+        </div>
+    </div>
+    <div class="flex items-center mb-4 w-full sm:w-1/2 lg:w-1/4">
+        <div>
+            <h3 class="font-bold">Secure Shipping</h3>
+            <p>Diligent care taken to deliver healthy plants</p>
+        </div>
     </div>
 </div>
 
@@ -127,35 +152,6 @@
     {% endfor %}
 </div>
 
-<!-- New Section for Benefits -->
-<div class="mt-8 p-4 bg-gray-100 rounded-lg flex flex-wrap justify-between">
-    <div class="flex items-center mb-4 w-full sm:w-1/2 lg:w-1/4">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mr-3 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89-3.56a2 2 0 011.62 0L21 8m-9-6v10m0 0L3 18m18-2L12 12m0 10v-10m0 10L3 18m9 2l9-2" />
-        </svg>
-        <div>
-            <h3 class="font-bold">Largest Nursery</h3>
-            <p>1.2 Million plant lovers connected with us</p>
-        </div>
-    </div>
-    <div class="flex items-center mb-4 w-full sm:w-1/2 lg:w-1/4">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mr-3 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89-3.56a2 2 0 011.62 0L21 8m-9-6v10m0 0L3 18m18-2L12 12m0 10v-10m0 10L3 18m9 2l9-2" />
-        </svg>
-        <div>
-            <h3 class="font-bold">Lifetime Support</h3>
-            <p>We help you grow your garden for lifetime</p>
-        </div>
-    </div>
-    <div class="flex items-center mb-4 w-full sm:w-1/2 lg:w-1/4">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mr-3 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89-3.56a2 2 0 011.62 0L21 8m-9-6v10m0 0L3 18m18-2L12 12m0 10v-10m0 10L3 18m9 2l9-2" />
-        </svg>
-        <div>
-            <h3 class="font-bold">Secure Shipping</h3>
-            <p>Diligent care taken to deliver healthy plants</p>
-        </div>
-    </div>
-</div>
+
 
 {% endblock %}

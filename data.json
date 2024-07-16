@@ -159,5 +159,45 @@
             "expiry_date": "2024-07-19T00:00:00Z",
             "user_id": "2"
         }
+    },
+    {
+        "model": "GreenCartEcom.offer",
+        "pk": 1,
+        "fields" : {
+            "title": "Indoor Plants",
+            "image": "offers_poster/indoor.jpg"
+        }
+    },
+    {
+        "model": "GreenCartEcom.offer",
+        "pk": 2,
+        "fields" : {
+            "title": "Outdoor Plants",
+            "image": "offers_poster/Outdoor_plants.jpg"
+        }
+    },
+    {
+        "model": "GreenCartEcom.offer",
+        "pk": 3,
+        "fields" : {
+            "title": "Gardening Toolkit",
+            "image": "offers_poster/toolkit.webp"
+        }
+    },
+    {
+        "model": "GreenCartEcom.offer",
+        "pk": 4,
+        "fields" : {
+            "title": "Pot sets",
+            "image": "offers_poster/pot_sets.jpg"
+        }
+    },
+    {
+        "model": "GreenCartEcom.offer",
+        "pk": 5,
+        "fields" : {
+            "title": "Art and crafts for Decoration",
+            "image": "offers_poster/arts.webp"
+        }
     }
 ]
