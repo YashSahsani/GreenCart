@@ -43,7 +43,7 @@ def home(request):
 
     if max_price:
         products = products.filter(price__lte=max_price)
-
+    
     if min_rating:
         products = products.filter(rating__gte=min_rating)  
         
@@ -82,8 +82,11 @@ def clear_search_history(request):
 def remove_search_history(request):
     item = request.GET.get('item', '')
     if 'search_history' in request.session:
-        request.session['search_history'] = [q for q in request.session['search_history'] if q != item]
-        request.session.modified = True
+        search_history = request.session['search_history']
+        if item in search_history:
+            search_history.remove(item)
+            request.session['search_history'] = search_history
+            request.session.modified = True
     return redirect('home')
     
 @login_required
