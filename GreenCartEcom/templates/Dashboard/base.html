@@ -27,18 +27,5 @@
     <footer class="bg-gray-800 text-white">
         {% include 'footer.html' %}
     </footer>
-
-    <script>
-        function showModal(productId, productName, productImage) {
-            document.getElementById('modal-product-id').value = productId;
-            document.getElementById('modal-product-name').textContent = productName;
-            document.getElementById('modal-product-image').src = productImage;
-            document.getElementById('deleteModal').classList.remove('hidden');
-        }
-
-        function hideModal() {
-            document.getElementById('deleteModal').classList.add('hidden');
-        }
-    </script>
 </body>
 </html>

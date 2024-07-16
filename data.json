@@ -26,48 +26,6 @@
         }
     },
     {
-        "model": "GreenCartEcom.navCategories",
-        "pk": 1,
-        "fields": {
-            "title": "Gardening"
-        }
-    },
-    {
-        "model": "GreenCartEcom.navCategories",
-        "pk": 2,
-        "fields": {
-            "title": "Plants"
-        }
-    },
-    {
-        "model": "GreenCartEcom.navCategories",
-        "pk": 2,
-        "fields": {
-            "title": "Seeds"
-        }
-    },
-    {
-        "model": "GreenCartEcom.navCategories",
-        "pk": 2,
-        "fields": {
-            "title": "Fertilizers"
-        }
-    },
-    {
-        "model": "GreenCartEcom.navCategories",
-        "pk": 2,
-        "fields": {
-            "title": "Pots"
-        }
-    },
-    {
-        "model": "GreenCartEcom.navCategories",
-        "pk": 2,
-        "fields": {
-            "title": "Accessories"
-        }
-    },
-    {
         "model": "Shop.Product",
         "pk": 1,
         "fields": {

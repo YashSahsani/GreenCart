@@ -7,6 +7,7 @@
     <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com/"></script>
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <script src="https://js.stripe.com/v3/"></script>
     {% block extra_css %}{% endblock %}
 </head>
 <body class="bg-gray-100">
@@ -15,7 +16,6 @@
         {% block content %}
         {% endblock %}
     </div>
-    <script src="{% static 'js/setTimeoutForAlert.js' %}"></script>
     {% include 'footer.html' %}
 </body>
 </html>

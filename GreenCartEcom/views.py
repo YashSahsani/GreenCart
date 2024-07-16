@@ -2,19 +2,18 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 
 from userprofile.models import UserProfile
-from .models import navCategories, offer
+from .models import  offer
 from Shop.models import Product
 
 def index(request):
-    categoryList = navCategories.objects.all()
+    if request.user.is_authenticated:
+        return redirect('Shop:home')  # Redirect to home page if user is already logged in
     productList = Product.objects.all()  
     offerPosterList = offer.objects.all()
     # Fetch all products
     return render(request, 'Dashboard/index.html', {
-        'navCategories': categoryList,
         'products': productList,
         'offers': offerPosterList
-         # Pass products to the template
     })
 
 def contact(request):
