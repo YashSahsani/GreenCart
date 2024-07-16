@@ -4,7 +4,7 @@ setTimeout(() => {
     alert.style.display = "none";
     alert.style.hidden = true;
   }
-}, 1000);
+}, 500);
 
 function showModal(productId, productName, productImage) {
   document.getElementById("modal-product-id").value = productId;
