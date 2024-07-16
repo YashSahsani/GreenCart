@@ -24,7 +24,7 @@ def home(request):
     min_rating = request.GET.get('min_rating', 0)
     sort_by = request.GET.get('sort_by', '')
 
-    products = Product.objects.filter(expire_date__gte=datetime.now())
+    products = Product.objects.filter(expiry_date__gte=datetime.now())
     
     if query:
         products = products.filter(name__icontains=query)
@@ -38,6 +38,7 @@ def home(request):
     if min_rating:
         products = products.filter(rating__gte=min_rating)
 
+    
 
     if sort_by == 'expiry_asc':
         products = products.order_by('expiry')
