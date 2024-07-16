@@ -108,16 +108,39 @@ CITY_CHOICES = [
     ('HCM', 'Ho Chi Minh City'),  # Added Vietnamese cities
 ]
 
+
 class Payment(models.Model):
     Name = models.CharField(max_length=255, default="John")
-    Description = models.CharField(max_length=255)
     address = models.CharField(max_length=264, blank=True)
     zipcode = models.CharField(max_length=10, blank=True)
     country = models.CharField(max_length=264, choices=COUNTRY_CHOICES, blank=True, default='CAN')
     city = models.CharField(max_length=264, choices=CITY_CHOICES, blank=True, default='TOR')
-    Amount = models.DecimalField(max_digits=10, decimal_places=2)
+    # Amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     Email = models.EmailField()
     stripe_payment_intent_id = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.Email} - {self.Amount}"
+        return f"{self.Email}"
+
+
+class Order(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    total_items = models.IntegerField()
+    payment = models.ForeignKey(Payment, on_delete=models.CASCADE, related_name='orders', null=True, blank=True)
+
+    def __str__(self):
+        return f'Order {self.id}'
+
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
+    product = models.CharField(max_length=100)  # Or use a ForeignKey to a Product model if you have one
+    quantity = models.IntegerField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def total_price(self):
+        return self.quantity * self.price
+
+    def __str__(self):
+        return f'{self.product} ({self.quantity})'

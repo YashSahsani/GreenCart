@@ -1,0 +1,48 @@
+{% extends 'payments/base.html' %}
+{% load static %}
+
+{% block title %}Order Summary{% endblock %}
+
+{% block content %}
+<div class="container mx-auto p-4">
+    <div class="bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-2xl font-bold mb-4">Order Summary</h2>
+        <div class="mb-4">
+            <h3 class="text-lg font-semibold">Order ID: <span class="font-normal">{{ order.id }}</span></h3>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white">
+                <thead>
+                    <tr>
+                        <th class="py-2 px-4 bg-gray-200 text-gray-600 font-bold uppercase text-sm text-left">Item</th>
+                        <th class="py-2 px-4 bg-gray-200 text-gray-600 font-bold uppercase text-sm text-left">Image</th>
+                        <th class="py-2 px-4 bg-gray-200 text-gray-600 font-bold uppercase text-sm text-left">Quantity</th>
+                        <th class="py-2 px-4 bg-gray-200 text-gray-600 font-bold uppercase text-sm text-left">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                    <tr>
+                        <td class="py-2 px-4 border-b border-gray-200">{{ item.product.name }}</td>
+                        <td class="py-2 px-4 border-b border-gray-200">
+                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="w-16 h-16 object-cover">
+                        </td>
+                        <td class="py-2 px-4 border-b border-gray-200">{{ item.quantity }}</td>
+                        <td class="py-2 px-4 border-b border-gray-200">{{ item.total_price }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-4">
+            <h3 class="text-lg font-semibold">Total Amount: <span class="font-normal">{{ total_amount }}</span></h3>
+        </div>
+        <div class="mt-6 flex justify-end">
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600">Place Order</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

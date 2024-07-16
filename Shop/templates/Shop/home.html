@@ -1,6 +1,5 @@
 {% extends 'Shop/base.html' %}
-
-{% block title %}GreenCart | Home {% endblock %}
+{% block title %}GreenCart | Dashboard {% endblock %}
 {% block content %}
     <div class="container mx-auto px-6">
 
@@ -83,10 +82,26 @@
                         <a class="relative flex h-60 overflow-hidden rounded-t-lg group" href="{% url 'Shop:product_detail' product.pk %}">
                             <img class="object-cover w-full transform transition-transform duration-500 group-hover:scale-110" src="{{ product.image.url }}" alt="product image" />
                             {% if product.expiry %}
-                            <span class="absolute top-0 left-0 m-2 rounded-full bg-red-600 px-2 text-center text-sm font-medium text-white">
-                                {{product.expiry}} days left
-                            </span>
+
+                                {% if product.expiry_status %}
+                                    <span class="absolute top-0 left-0 m-2 px-3 py-1 mt-2 text-xs font-semibold text-red-700 bg-red-200 rounded-full">
+                                        Expired
+                                    </span>
+
+                                    {% else %}
+                                    <span class="absolute top-0 left-0 m-2 rounded-full bg-red-600 px-2 text-center text-sm font-medium text-white">
+                                        {{product.expiry}} days left
+                                    </span>
+                                    {%  endif %}
                             {% endif %}
+                            <form action="{% url 'AddToCart:add_product_wishlist' product.id %}" method="POST" class="absolute top-0 right-0 m-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                {% csrf_token %}
+                                <button type="submit" class="text-white hover:text-red-600 focus:outline-none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-red-500 transition-colors duration-300 hover:fill-red-500">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                                    </svg>
+                                </button>
+                            </form>
                         </a>
                         <div class="mt-4 px-5 pb-5">
                             <a href="{% url 'Shop:product_detail' product.pk %}">

@@ -4,14 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com/"></script>
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
 </head>
-<body>
-{% include 'alert.html' %}
-{% include 'Shop/navbar.html' %}
-{% block content %}
-{% endblock %}
-{% include 'footer.html' %}
+<body class="flex flex-col min-h-screen">
+    {% include 'alert.html' %}
+
+    <header>
+        {% if user.is_authenticated %}
+            {% include 'Shop/navbar.html' %}
+        {% else %}
+            {% include 'Dashboard/navbar.html' %}
+        {% endif %}
+    </header>
+
+    <main class="flex-grow">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="bg-gray-800 text-white">
+        {% include 'footer.html' %}
+    </footer>
+
+    <script>
+        function showModal(productId, productName, productImage) {
+            document.getElementById('modal-product-id').value = productId;
+            document.getElementById('modal-product-name').textContent = productName;
+            document.getElementById('modal-product-image').src = productImage;
+            document.getElementById('deleteModal').classList.remove('hidden');
+        }
+
+        function hideModal() {
+            document.getElementById('deleteModal').classList.add('hidden');
+        }
+    </script>
 </body>
 </html>
