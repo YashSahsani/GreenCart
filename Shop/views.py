@@ -23,8 +23,8 @@ def home(request):
     min_rating = request.GET.get('min_rating', 0)
     sort_by = request.GET.get('sort_by', '')
 
-    products = Product.objects.all()
-
+    products = Product.objects.filter(expiry_date__gte=datetime.now())
+    
     if query:
         products = products.filter(name__icontains=query)
 
@@ -37,12 +37,7 @@ def home(request):
     if min_rating:
         products = products.filter(rating__gte=min_rating)
 
-    not_expired_products = []
-    for product in products:
-        if product.days_left() >= 0:
-            not_expired_products.append(product)
-
-    products = not_expired_products
+    
 
     if sort_by == 'expiry_asc':
         products = products.order_by('expiry')
@@ -57,12 +52,21 @@ def home(request):
     else:
         greeting = "Good evening"
 
-    user_name = request.user.first_name if request.user.is_authenticated else "Guest"
 
-    return render(request, 'Shop/home.html',
-                  {'products': products, 'greeting': greeting, 'user_name': user_name, 'title': 'GreenCart | Home',
-                   'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+    # User profile picture
+    user_profile_pic = None
+    if request.user.is_authenticated:
+        user_profile = UserProfile.objects.get(user=request.user)
+        user_profile_pic = user_profile.profile_pic.url
+        user_name = request.user.first_name
 
+    return render(request, 'Shop/home.html', {
+        'products': products,
+        'greeting': greeting,
+        'user_name': user_name,
+        'title': 'GreenCart | Home',
+        'user_profile_pic': user_profile_pic
+    })
 
 @login_required
 def product_detail(request, id):
