@@ -1,11 +1,10 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from .models import Product, Reviews
 from .forms import ProductForm
 from django.shortcuts import render, redirect
 from userprofile.models import UserProfile
-from django.db.models import F, ExpressionWrapper, fields
 
 
 def navbar(request):
