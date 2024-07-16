@@ -20,7 +20,8 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-
+    
+    @property
     def expire_date(self):
         return self.created_at + timedelta(days=self.expiry)
 
