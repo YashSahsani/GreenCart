@@ -1,5 +1,4 @@
 from datetime import datetime
-from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from .models import Product, Reviews
@@ -68,11 +67,6 @@ def home(request):
 @login_required
 def product_detail(request, id):
     if request.method == 'POST':
-        expired_products = Product.objects.all()
-        for product in expired_products:
-            if product.has_expired():
-                product.expiry_status = True
-                product.save()
         product = get_object_or_404(Product, pk=id)
         name = request.POST.get('name')
         review = request.POST.get('review')
@@ -95,11 +89,6 @@ def product_detail(request, id):
                            'user_profile_pic': UserProfile.objects.get(
                                user=request.user).profile_pic.url})
     else:
-        expired_products = Product.objects.all()
-        for product in expired_products:
-            if product.has_expired():
-                product.expiry_status = True
-                product.save()
         product = get_object_or_404(Product, pk=id)
         reviews = Reviews.objects.filter(product=product)
         return render(request, 'Shop/product-detail.html',
