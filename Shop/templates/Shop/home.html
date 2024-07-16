@@ -82,9 +82,17 @@
                         <a class="relative flex h-60 overflow-hidden rounded-t-lg group" href="{% url 'Shop:product_detail' product.pk %}">
                             <img class="object-cover w-full transform transition-transform duration-500 group-hover:scale-110" src="{{ product.image.url }}" alt="product image" />
                             {% if product.expiry %}
-                            <span class="absolute top-0 left-0 m-2 rounded-full bg-red-600 px-2 text-center text-sm font-medium text-white">
-                                {{product.days_left }} days left
-                            </span>
+
+                                {% if product.expiry_status %}
+                                    <span class="absolute top-0 left-0 m-2 px-3 py-1 mt-2 text-xs font-semibold text-red-700 bg-red-200 rounded-full">
+                                        Expired
+                                    </span>
+
+                                    {% else %}
+                                    <span class="absolute top-0 left-0 m-2 rounded-full bg-red-600 px-2 text-center text-sm font-medium text-white">
+                                        {{product.expiry}} days left
+                                    </span>
+                                    {%  endif %}
                             {% endif %}
                             <form action="{% url 'AddToCart:add_product_wishlist' product.id %}" method="POST" class="absolute top-0 right-0 m-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 {% csrf_token %}
