@@ -25,6 +25,7 @@
 </head>
 
 <body class="flex flex-col min-h-screen">
+    {% include 'alert.html' %}
     <!-- Top section: Header -->
     <div class="sticky top-0 z-50">
         <nav class="py-5 flex-wrap bg-green-100">
@@ -32,7 +33,7 @@
                 <div class="flex items-center justify-between">
         
                     <div class="flex items-center">
-                        <a href="/shop" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                        <a href="/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
                             <img src="{% static 'images/logo.png' %}" class="h-8" alt="GreenCart Logo" />
                         </a>
                     </div>
