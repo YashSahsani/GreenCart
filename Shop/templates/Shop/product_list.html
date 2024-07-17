@@ -5,9 +5,9 @@
 {% block content %}
     <div class="container mx-auto p-6">
         <div class="w-100 flex justify-between items-center p-0">
-            <h1 class="text-3xl font-bold mb-5 p-0 m-0">Product List</h1>
+            <h1 class="text-3xl font-bold mb-5 p-0 m-0 text-green-800">Product List</h1>
             <a href="{% url 'Shop:create_product' %}" class="block mt-4">
-                <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Add New Product</button>
+                <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg">Add New Product</button>
             </a>
         </div>
         {% if products %}
@@ -89,7 +89,9 @@
                 <button type="button" onclick="hideModal()"
                         class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded">Cancel
                 </button>
-                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">Delete</button>
+                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg">
+                Yes
+                </button>
             </form>
         </div>
     </div>
