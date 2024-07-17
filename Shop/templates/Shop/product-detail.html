@@ -1,4 +1,6 @@
 {% extends 'Shop/base.html' %}
+{% block title %}GreenCart | Product Info {% endblock %}
+
 {% load static %}
 {% block content %}
 <a href="{% url 'Shop:home' %}"
@@ -14,9 +16,18 @@
             <div class="flex flex-col p-20 items-center h-full">
                 <div class="relative img-height">
     <!-- Carousel Items -->
-    <div class="carousel flex overflow-hidden rounded-lg shadow-md h-full">
-      <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover">
+    <div class="carousel relative flex overflow-hidden rounded-lg shadow-md h-full group">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover">
+        <form action="{% url 'AddToCart:add_product_wishlist' product.id %}" method="POST" class="absolute top-0 right-0 m-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            {% csrf_token %}
+            <button type="submit" class="text-white hover:text-red-600 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-red-500 transition-colors duration-300 hover:fill-red-500">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </svg>
+            </button>
+        </form>
     </div>
+
 
   </div>
             </div>
@@ -47,7 +58,6 @@
   <p class="text-gray-700 mb-6">
     {{ product.description }}
   </p>
-
   <!-- Quantity Selector -->
   <div class="flex items-center mb-4">
     <label for="quantity" class="mr-3 text-gray-700">Quantity:</label>
@@ -62,10 +72,11 @@
           </button>
     </form>
 
-  <!-- Expiration Notice -->
+      <!-- Expiration Notice -->
   <p class="text-red-500 mb-6 font-semibold">
     Hurry! Only {{ product.expiry }} days left until this plant is removed from the store.
   </p>
+
 
   <!-- Additional Information -->
   <div class="mt-6">

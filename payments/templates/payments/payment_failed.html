@@ -1,0 +1,14 @@
+{% extends 'payments/base.html' %}
+{% load static %}
+
+{% block title %}Payment Failed{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+        <h1 class="text-3xl font-bold text-red-600">Payment Failed!</h1>
+        <p class="mt-4 text-gray-600">There was an error processing your payment. Please try again.</p>
+        <a href="" class="mt-6 inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300">Try Again</a>
+    </div>
+</div>
+{% endblock %}

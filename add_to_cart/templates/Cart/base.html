@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Add To Cart{% endblock %}</title>
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
     <!-- Load Tailwind CSS from CDN -->
     <script src="https://cdn.tailwindcss.com/"></script>
     <!-- Load custom CSS file -->
@@ -19,14 +20,16 @@
 </head>
 
 <body class="bg-gray-100 flex flex-col min-h-screen">
-    {% include 'Shop/navbar.html' %}
+    <header>
+        {% include 'Shop/navbar.html' %}
+    </header>
     <main class="flex-grow">
         {% block content %}
         {% endblock %}
     </main>
-    {% include 'footer.html' %}
-    <!-- Load custom JavaScript file -->
-    <script src="{% static 'js/setTimeoutForAlert.js' %}"></script>
+    <footer class="bg-gray-800 text-white">
+        {% include 'footer.html' %}
+    </footer>
 </body>
 
 </html>

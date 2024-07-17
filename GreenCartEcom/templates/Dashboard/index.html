@@ -1,22 +1,30 @@
-{% extends 'Dashboard/navbar.html' %}
-{% block title %}GreenCart | Dashboard{% endblock %}
+{% extends 'Dashboard/base.html' %}
+{% block title %}GreenCart | Home{% endblock %}
 {% block content %}
 
 <!-- Carousel Section -->
+ <!-- imporved carousel height -->
 <div id="custom-carousel" class="relative w-full" data-carousel="slide">
+
   <!-- Carousel wrapper -->
-  <div class="relative h-92 md:h-96 overflow-hidden">
+  <div class="relative h-96 md:h-[32rem] overflow-hidden">
       <!-- Item 1 -->
       <div class="carousel-item duration-700 ease-in-out">
-          <img src="https://bloomscape.com/wp-content/uploads/2020/05/bloomscape_indoor-outdoor_4-1536x1024.jpg?ver=217611" class="absolute block w-full" alt="Image 1">
+        <a href="/shop">
+          <img src="/media/offers_poster/banner1.png" class="absolute block w-full" alt="Image 1">
+        </a>
       </div>
       <!-- Item 2 -->
       <div class="carousel-item duration-700 ease-in-out hidden">
-          <img src="https://images.pexels.com/photos/793012/pexels-photo-793012.jpeg?auto=compress&cs=tinysrgb&w=800" class="absolute block w-full" alt="Image 2">
+        <a href="/shop">
+          <img src="/media/offers_poster/banner2.png" class="absolute block w-full" alt="Image 2">
+        </a>
       </div>
       <!-- Item 3 -->
       <div class="carousel-item duration-700 ease-in-out hidden">
-          <img src="https://rootbridges.com/cdn/shop/articles/What_Are_The_Basic_Needs_Of_The_Indoor_Plants_To_Survive_1100x.jpg?v=1641212409" class="absolute block w-full" alt="Image 3">
+        <a href="/shop">
+          <img src="/media/offers_poster/banner3.png" class="absolute block w-full" alt="Image 3">
+        </a>
       </div>
   </div>
   <!-- Slider indicators -->
@@ -77,40 +85,6 @@
   setInterval(moveToNextSlide, 5000);
 </script>
 
-<script>
-  let currentSlide = 0;
-  const slides = document.querySelectorAll('.carousel-item');
-
-  function showSlide(index) {
-      slides.forEach((slide, i) => {
-          slide.classList.toggle('hidden', i !== index);
-          slide.classList.toggle('opacity-100', i === index);
-          slide.classList.toggle('opacity-0', i !== index);
-      });
-  }
-
-  function moveToSlide(index) {
-      currentSlide = index;
-      showSlide(currentSlide);
-  }
-
-  function moveToPrevSlide() {
-      currentSlide = (currentSlide > 0) ? currentSlide - 1 : slides.length - 1;
-      showSlide(currentSlide);
-  }
-
-  function moveToNextSlide() {
-      currentSlide = (currentSlide < slides.length - 1) ? currentSlide + 1 : 0;
-      showSlide(currentSlide);
-  }
-
-  // Initialize the slider
-  showSlide(currentSlide);
-
-  // Automatically move to the next slide every 5 seconds
-  setInterval(moveToNextSlide, 5000);
-</script>
-
 <!-- Product List Section -->
 <div class="mt-4 ml-4">
     <h2 class="font-bold text-xl">Featured Products</h2>
@@ -118,8 +92,8 @@
         {% for product in products %}
         <div class="relative overflow-hidden rounded-lg shadow-lg flex flex-col justify-between h-100 min-w-[250px]">
             {% if product.image.url %}
-            <div class="relative pt-10 px-10 flex items-center justify-center h-48">
-                <img class="relative w-40 h-40 object-cover" src="{{ product.image.url }}" alt="{{ product.name }}">
+            <div class="relative p-4 flex items-center justify-center h-48">
+                <img class="relative object-cover" src="{{ product.image.url }}" alt="{{ product.name }}">
             </div>
             {% endif %}
             <div class="relative text-black px-6 pb-6 mt-6 flex flex-col justify-between flex-grow">
@@ -128,7 +102,10 @@
                     <span class="block bg-white rounded-full text-black text-xs font-bold px-3 py-2 leading-none flex items-center">${{ product.price }}</span>
                 </div>
                 <div class="flex justify-center mt-4">
-                    <button class="w-full bg-green-600 text-white px-4 py-2 rounded font-bold text-sm">Add to Cart</button>
+                    <form method="post" action="{% url 'add_to_cart:add_to_cart' product.id %}" class="add-to-cart-form">
+                        {% csrf_token %}
+                        <button type="submit" class="w-full bg-green-600 text-white px-12 py-2 rounded font-bold text-sm">Add to Cart</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -136,8 +113,30 @@
     </div>
 </div>
 
+<!-- New Section for Benefits -->
+<div class="mt-8 p-4 bg-gray-100 rounded-lg flex flex-wrap justify-between">
+    <div class="flex items-center mb-4 w-full sm:w-1/2 lg:w-1/4">
+        <div>
+            <h3 class="font-bold">Largest Nursery</h3>
+            <p>1.2 Million plant lovers connected with us</p>
+        </div>
+    </div>
+    <div class="flex items-center mb-4 w-full sm:w-1/2 lg:w-1/4">
+        <div>
+            <h3 class="font-bold">Lifetime Support</h3>
+            <p>We help you grow your garden for lifetime</p>
+        </div>
+    </div>
+    <div class="flex items-center mb-4 w-full sm:w-1/2 lg:w-1/4">
+        <div>
+            <h3 class="font-bold">Secure Shipping</h3>
+            <p>Diligent care taken to deliver healthy plants</p>
+        </div>
+    </div>
+</div>
+
 <!-- Offer Grid Section -->
-<div class="grid grid-cols-2 gap-0 p-8 sm:grid-cols-3  xl:gap-5">
+<div class="grid grid-cols-2 gap-0 p-8 sm:grid-cols-3 xl:gap-5">
     {% for offer in offers %}
     {% if forloop.first %}
     <!-- Offer Image with larger width - start -->
@@ -158,8 +157,7 @@
     {% endif %}
     {% endfor %}
 </div>
-<div> 
-    .
-</div>
+
+
 
 {% endblock %}

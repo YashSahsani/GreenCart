@@ -1,0 +1,69 @@
+<!-- edit_product.html -->
+
+{% extends 'Shop/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mx-auto p-6">
+    <div class="bg-white shadow-lg rounded-lg p-6 flex">
+        <div class="w-1/2 pr-6">
+            <h1 class="text-3xl font-bold mb-5">Edit Product</h1>
+            <form method="post" enctype="multipart/form-data" class="space-y-4">
+                {% csrf_token %}
+                <div>
+                    <label for="id_name" class="block text-sm font-medium text-gray-700">Name</label>
+                    {{ form.name }}
+                </div>
+                <div>
+                    <label for="id_description" class="block text-sm font-medium text-gray-700">Description</label>
+                    {{ form.description }}
+                </div>
+                <div>
+                    <label for="id_price" class="block text-sm font-medium text-gray-700">Price</label>
+                    {{ form.price }}
+                </div>
+                <div>
+                    <label for="id_expiry" class="block text-sm font-medium text-gray-700">Expiry (in days)</label>
+                    {{ form.expiry }}
+                </div>
+                <div>
+                    <label for="id_discount_price" class="block text-sm font-medium text-gray-700">Discount Price</label>
+                    {{ form.discount_price }}
+                </div>
+                <div>
+                    <label for="id_image" class="block text-sm font-medium text-gray-700">Image</label>
+                    {{ form.image }}
+                </div>
+                <div>
+                    <label for="id_in_stock" class="block text-sm font-medium text-gray-700">In Stock</label>
+                    <label class="inline-flex items-center cursor-pointer">
+                        {{ form.in_stock }}
+                        <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                    </label>
+                </div>
+                <div>
+                    <label for="id_rating" class="block text-sm font-medium text-gray-700">Rating</label>
+                    {{ form.rating }}
+                </div>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mt-4">Save</button>
+            </form>
+        </div>
+        <div class="w-1/2 pl-6 flex items-center justify-center">
+            <div class="w-full h-full border-dashed border-4 border-gray-200 rounded-lg p-4 flex items-center justify-center">
+                <img id="product-image-preview" src="{% if form.instance.image %}{{ form.instance.image.url }}{% else %}{% static 'images/default.jpg' %}{% endif %}" alt="Product Image" class="max-w-full max-h-full object-cover rounded">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('id_image').addEventListener('change', function(event) {
+        const [file] = event.target.files;
+        if (file) {
+            const preview = document.getElementById('product-image-preview');
+            preview.src = URL.createObjectURL(file);
+            preview.onload = () => URL.revokeObjectURL(preview.src);
+        }
+    });
+</script>
+{% endblock %}
