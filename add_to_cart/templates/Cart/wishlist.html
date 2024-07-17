@@ -22,7 +22,7 @@
                             <div class="mt-4 px-4 mb-4 flex justify-between items-center">
                                 <form action="{% url 'add_to_cart:add_to_cart' item.product.id %}" method="POST">
                                     {% csrf_token %}
-                                    <button type="submit" class="bg-gray-800 text-white py-1 px-3 rounded-lg text-sm font-semibold hover:bg-gray-900 flex items-center justify-center">
+                                    <button type="submit" class="bg-gray-600 text-white py-1 px-3 rounded-lg text-sm font-semibold hover:bg-gray-900 flex items-center justify-center">
                                         {% comment %} <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5H21m-7 8a2 2 0 11-4 0 2 2 0 014 0zm-6 0a2 2 0 11-4 0 2 2 0 014 0zm6-6H7l4-8h6l2.3 4.6M7 13v8h10v-8H7z" />
                                         </svg> {% endcomment %}
