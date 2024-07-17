@@ -14,7 +14,9 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
                     {% for item in wishlist_items %}
                     <div class="group relative mx-auto my-6 w-full max-w-xs flex flex-col overflow-hidden rounded-lg bg-white shadow-m">
-                        <img class="object-cover w-full transform transition-transform duration-500 group-hover:scale-110" src="{{ item.product.image.url }}" alt="product"/>
+                        <div class="h-48 w-full overflow-hidden"> <!-- Fixed height container for the image -->
+                            <img class="object-cover h-full w-full transform transition-transform duration-500 group-hover:scale-110" src="{{ item.product.image.url }}" alt="product"/>
+                        </div>
                         <div class="flex flex-col justify-between flex-1">
                             <div class="mt-4 px-4">
                                 <span class="font-bold text-md text-gray-600">{{ item.product.name }}</span>

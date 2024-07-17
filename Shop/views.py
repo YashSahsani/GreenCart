@@ -23,7 +23,7 @@ def home(request):
     min_rating = request.GET.get('min_rating', 0)
     sort_by = request.GET.get('sort_by', '')
 
-    products = Product.objects.filter(expiry_date__gte=datetime.now())
+    products = Product.objects.filter(expiry_date__gte=datetime.now(), in_stock=True)
     
     if query:
         products = products.filter(name__icontains=query)
