@@ -77,7 +77,7 @@
                                 <img class="object-cover w-full transform transition-transform duration-500 group-hover:scale-110" src="{{ product.image.url }}" alt="product image" />
                                 {% if product.expiry %}
                                     <span class="absolute top-0 left-0 m-2 rounded-full bg-red-600 px-2 text-center text-sm font-medium text-white">
-                                        {{ product.days_left }} days left
+                                        {{ product.expiry }} days left
                                     </span>
                                 {% endif %}
                                 <form action="{% url 'AddToCart:add_product_wishlist' product.id %}" method="POST" class="absolute top-0 right-0 m-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -111,9 +111,9 @@
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <p>
-                                        <span class="text-3xl font-bold text-slate-900">${{ product.price }}</span>
                                         {% if product.discount_price %}
-                                        <span class="text-sm text-slate-900 line-through">${{ product.discount_price }}</span>
+                                        <span class="text-3xl font-bold text-slate-900">${{ product.discount_price }}</span>
+                                        <span class="text-sm text-slate-900 line-through">${{ product.price }}</span>
                                         {% endif %}
                                     </p>
                                     <form action="{% url 'add_to_cart:add_to_cart' product.id %}" method="POST">
