@@ -20,12 +20,16 @@
 </head>
 
 <body class="bg-gray-100 flex flex-col min-h-screen">
-    {% include 'Shop/navbar.html' %}
+    <header>
+        {% include 'Shop/navbar.html' %}
+    </header>
     <main class="flex-grow">
         {% block content %}
         {% endblock %}
     </main>
-    {% include 'footer.html' %}
+    <footer class="bg-gray-800 text-white">
+        {% include 'footer.html' %}
+    </footer>
 </body>
 
 </html>

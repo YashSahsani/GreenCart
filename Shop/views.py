@@ -23,8 +23,8 @@ def home(request):
     min_rating = request.GET.get('min_rating', 0)
     sort_by = request.GET.get('sort_by', '')
 
-    products = Product.objects.all()
-
+    products = Product.objects.filter(expiry_date__gte=datetime.now())
+    
     if query:
         products = products.filter(name__icontains=query)
         # Store the search query in session
@@ -44,12 +44,7 @@ def home(request):
     if min_rating:
         products = products.filter(rating__gte=min_rating)
 
-    not_expired_products = []
-    for product in products:
-        if product.days_left() >= 0:
-            not_expired_products.append(product)
-
-    products = not_expired_products
+    
 
     if sort_by == 'expiry_asc':
         products = products.order_by('expiry')
@@ -64,8 +59,9 @@ def home(request):
     else:
         greeting = "Good evening"
 
-    user_name = request.user.first_name if request.user.is_authenticated else "Guest"
+    user_name = request.user.first_name
     search_history = request.session.get('search_history', [])
+
 
     return render(request, 'Shop/home.html', {
         'products': products,
@@ -81,6 +77,7 @@ def clear_search_history(request):
     if 'search_history' in request.session:
         del request.session['search_history']
     return redirect('home')
+
 
 @login_required
 def remove_search_history(request):
