@@ -27,7 +27,9 @@
 <body class="flex flex-col min-h-screen">
     {% include 'alert.html' %}
     <!-- Top section: Header -->
-    <div class="sticky top-0 z-50">
+     {% include 'Dashboard/navbar.html' %}
+    
+     {% comment %} <div class="sticky top-0 z-50">
         <nav class="py-5 flex-wrap bg-green-100">
             <div class="container mx-auto px-6 md:px-0">
                 <div class="flex items-center justify-between">
@@ -46,7 +48,7 @@
                 </div>
             </div>
         </nav>
-    </div>
+    </div> {% endcomment %}
 
 
     <!-- Main content section with scrollbar -->
