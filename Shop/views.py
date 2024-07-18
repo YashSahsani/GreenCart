@@ -24,16 +24,18 @@ def home(request):
     sort_by = request.GET.get('sort_by', '')
 
     products = Product.objects.filter(expiry_date__gte=datetime.now())
-    
+
+    search_history = request.COOKIES.get('search_history', '')
+    search_history = search_history.split(',') if search_history else []
+
     if query:
         products = products.filter(name__icontains=query)
-        # Store the search query in session
-        if 'search_history' in request.session:
-            if query not in request.session['search_history']:
-                request.session['search_history'].append(query)
+        # Store the search query in cookies
+        if query not in search_history:
+            search_history.append(query)
+            search_history_cookie = ','.join(search_history)
         else:
-            request.session['search_history'] = [query]
-        request.session.modified = True
+            search_history_cookie = ','.join(search_history)
 
     if min_price:
         products = products.filter(price__gte=min_price)
@@ -43,8 +45,6 @@ def home(request):
 
     if min_rating:
         products = products.filter(rating__gte=min_rating)
-
-    
 
     if sort_by == 'expiry_asc':
         products = products.order_by('expiry')
@@ -60,10 +60,8 @@ def home(request):
         greeting = "Good evening"
 
     user_name = request.user.first_name
-    search_history = request.session.get('search_history', [])
 
-
-    return render(request, 'Shop/home.html', {
+    response = render(request, 'Shop/home.html', {
         'products': products,
         'greeting': greeting,
         'user_name': user_name,
@@ -71,24 +69,19 @@ def home(request):
         'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url,
         'search_history': search_history,
     })
-    
+
+    # Set the search history cookie
+    if query:
+        response.set_cookie('search_history', search_history_cookie, max_age=365*24*60*60)  # Cookie expires in one year
+
+    return response
+
 @login_required
 def clear_search_history(request):
-    if 'search_history' in request.session:
-        del request.session['search_history']
-    return redirect('home')
+    response = redirect('Shop:home')
+    response.delete_cookie('search_history')
+    return response
 
-
-@login_required
-def remove_search_history(request):
-    item = request.GET.get('item', '')
-    if 'search_history' in request.session:
-        search_history = request.session['search_history']
-        if item in search_history:
-            search_history.remove(item)
-            request.session['search_history'] = search_history
-            request.session.modified = True
-    return redirect('home')
     
 @login_required
 def product_detail(request, id):

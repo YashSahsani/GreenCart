@@ -20,12 +20,13 @@
                             {% for item in search_history %}
                                 <li class="flex justify-between items-center">
                                     <a href="?query={{ item }}" class="block py-1">{{ item }}</a>
-                                    <button class="text-gray-500" onclick="removeHistory('{{ item }}')">✖</button>
                                 </li>
                             {% endfor %}
                         </ul>
                         <div class="text-right px-4 py-2">
-                            <button onclick="clearHistory()" class="py-2 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:bg-green-700">Clear all</button>
+                            <a href="{% url 'Shop:clear_search_history' %}">
+                                <button class="text-green-600  hover:underline hover:text-green-800">Clear all</button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -44,23 +45,6 @@
                     }
                 });
         
-                function clearHistory() {
-                    fetch('/clear_search_history/')
-                        .then(response => {
-                            if (response.ok) {
-                                location.reload();
-                            }
-                        });
-                }
-        
-                function removeHistory(item) {
-                    fetch(`/remove_search_history/?item=${encodeURIComponent(item)}`)
-                        .then(response => {
-                            if (response.ok) {
-                                location.reload();
-                            }
-                        });
-                }
             </script>
 
         

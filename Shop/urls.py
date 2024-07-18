@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import clear_search_history, home, product_detail, product_list, create_product, edit_product, delete_product, remove_search_history
+from .views import clear_search_history, home, product_detail, product_list, create_product, edit_product, delete_product
 
 app_name = 'Shop'
 
@@ -15,7 +15,6 @@ urlpatterns = [
     path('edit_product/<int:product_id>/', edit_product, name='edit_product'),
     path('delete_product/', delete_product, name='delete_product'),
     path('clear_search_history/', clear_search_history, name='clear_search_history'),
-    path('remove_search_history/', remove_search_history, name='remove_search_history'),
 
 ]
 
