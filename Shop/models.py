@@ -15,7 +15,7 @@ class Product(models.Model):
     discount_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     image = models.ImageField(default='default.jpg', upload_to='products/')
     in_stock = models.BooleanField(default=True)
-    rating = models.DecimalField(max_digits=3, decimal_places=2, default=0.0)
+    rating = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     user_id = models.CharField(max_length=10,default="1")

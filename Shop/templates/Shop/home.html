@@ -3,16 +3,54 @@
 {% block content %}
     <div class="container mx-auto px-6">
 
-        <!-- Greeting Message -->
+          <!-- Greeting Message -->
         <h1 class="text-4xl font-bold text-green-800 mb-6 mt-6">{{ greeting }}, {{ user_name }}!</h1>
 
-        <!-- Search Bar -->
-        <form method="GET" class="flex flex-col md:flex-row items-center mb-6">
-            <div class="flex w-full md:max-w-3xl mb-4 md:mb-0">
-                <input type="text" name="query" placeholder="Search for any kind of plants, flowers & more" class="py-3 px-4 rounded-l-lg border border-green-400 focus:outline-none focus:border-green-600 w-full">
-                <button type="submit" class="py-2 px-4 bg-green-600 text-white rounded-r-lg hover:bg-green-700 focus:outline-none focus:bg-green-700">Search</button>
-            </div>
-        </form>
+                <!-- Search Bar -->
+                <div class="relative">
+                    <form method="GET" class="flex flex-col md:flex-row items-center mb-6">
+                        <div class="flex w-full md:max-w-3xl mb-4 md:mb-0">
+                            <input type="text" name="query" placeholder="Search for any kind of plants, flowers & more" class="py-3 px-4 rounded-l-lg border border-green-400 focus:outline-none focus:border-green-600 w-full" id="searchInput">
+                            <button type="submit" class="py-2 px-4 bg-green-600 text-white rounded-r-lg hover:bg-green-700 focus:outline-none focus:bg-green-700">Search</button>
+                        </div>
+                    </form>
+                    <div id="searchHistory" class="absolute bg-white shadow-lg rounded-lg w-full max-w-3xl mt-[-15px] hidden z-10">
+                        <h3 class="px-4 py-2 text-gray-600 font-semibold">Recent Searches:</h3>
+                        <ul class="px-4 pb-2 text-gray-600">
+                            {% for item in search_history %}
+                                <li class="flex justify-between items-center">
+                                    <a href="?query={{ item }}" class="block py-1">{{ item }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="text-right px-4 py-2">
+                            <a href="{% url 'Shop:clear_search_history' %}">
+                                <button class="text-green-600  hover:underline hover:text-green-800">Clear all</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Additional filters and content... -->
+        
+            <script>
+                document.getElementById('searchInput').addEventListener('focus', function() {
+                    document.getElementById('searchHistory').classList.remove('hidden');
+                });
+        
+                document.addEventListener('click', function(event) {
+                    const searchHistory = document.getElementById('searchHistory');
+                    if (!searchHistory.contains(event.target) && event.target.id !== 'searchInput') {
+                        searchHistory.classList.add('hidden');
+                    }
+                });
+        
+            </script>
+
+        
+
+
+
 
         <div class="flex flex-col md:flex-row">
             <div class="w-full md:w-1/5 md:pr-4 mb-6 md:mb-0">
@@ -77,7 +115,7 @@
                                 <img class="object-cover w-full transform transition-transform duration-500 group-hover:scale-110" src="{{ product.image.url }}" alt="product image" />
                                 {% if product.expiry %}
                                     <span class="absolute top-0 left-0 m-2 rounded-full bg-red-600 px-2 text-center text-sm font-medium text-white">
-                                        {{ product.days_left }} days left
+                                        {{ product.expiry }} days left
                                     </span>
                                 {% endif %}
                                 <form action="{% url 'AddToCart:add_product_wishlist' product.id %}" method="POST" class="absolute top-0 right-0 m-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -111,9 +149,9 @@
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <p>
-                                        <span class="text-3xl font-bold text-slate-900">${{ product.price }}</span>
                                         {% if product.discount_price %}
-                                        <span class="text-sm text-slate-900 line-through">${{ product.discount_price }}</span>
+                                        <span class="text-3xl font-bold text-slate-900">${{ product.discount_price }}</span>
+                                        <span class="text-sm text-slate-900 line-through">${{ product.price }}</span>
                                         {% endif %}
                                     </p>
                                     <form action="{% url 'add_to_cart:add_to_cart' product.id %}" method="POST">
@@ -139,4 +177,36 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('searchInput').addEventListener('focus', function() {
+            document.getElementById('searchHistory').classList.remove('hidden');
+        });
+    
+        document.addEventListener('click', function(event) {
+            const searchHistory = document.getElementById('searchHistory');
+            if (!searchHistory.contains(event.target) && event.target.id !== 'searchInput') {
+                searchHistory.classList.add('hidden');
+            }
+        });
+    
+        function clearHistory() {
+            fetch('/clear_search_history/')
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    }
+                });
+        }
+    
+        function removeHistory(item) {
+            fetch(`/remove_search_history/?item=${encodeURIComponent(item)}`)
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    }
+                });
+        }
+    </script>
+
 {% endblock %}

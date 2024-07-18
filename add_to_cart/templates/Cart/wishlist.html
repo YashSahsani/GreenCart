@@ -4,35 +4,48 @@
 
 {% block content %}
 <div class="container mx-auto mt-10">
-    <div class="shadow-md my-10">
-        <div class="w-full bg-white px-10 py-10">
+    <div class="shadow-md my-10 rounded-lg">
+        <div class="w-full bg-white px-10 py-10 rounded-lg">
             <div class="flex justify-between border-b pb-8">
-                <h1 class="font-semibold text-2xl text-green-600">Wishlist</h1>
-                <h2 class="font-semibold text-2xl text-green-600">{{ wishlist_items|length }} Items</h2>
+                <h1 class="font-semibold text-3xl text-green-700">Wishlist 💚</h1>
+                <h2 class="font-semibold text-2xl text-green-700">Total: {{ wishlist_items|length }} Items</h2>
             </div>
             {% if wishlist_items %}
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
                     {% for item in wishlist_items %}
-                    <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col justify-between h-full">
-                        <div>
-                            <img class="h-48 w-full object-cover" src="{{ item.product.image.url }}" alt="product">
-                            <div class="mt-4">
-                                <span class="font-bold text-sm text-green-600">{{ item.product.name }}</span>
-                            </div>
+                    <div class="group relative mx-auto my-6 w-full max-w-xs flex flex-col overflow-hidden rounded-lg bg-white shadow-m">
+                        <div class="h-48 w-full overflow-hidden"> <!-- Fixed height container for the image -->
+                            <img class="object-cover h-full w-full transform transition-transform duration-500 group-hover:scale-110" src="{{ item.product.image.url }}" alt="product"/>
                         </div>
-                        <div class="mt-4 flex justify-between items-center">
-                            <form action="{% url 'add_to_cart:add_to_cart' item.product.id %}" method="POST">
-                                {% csrf_token %}
-                                <button type="submit" class="bg-green-600 text-white py-1 px-3 rounded-lg text-xs font-semibold hover:bg-green-700">Add to Cart</button>
-                            </form>
-                            <form action="{% url 'add_to_cart:remove_from_wishlist' item.id %}" method="POST">
-                                {% csrf_token %}
-                                <button type="submit" class="bg-red-600 text-white py-1 px-3 rounded-lg text-xs font-semibold hover:bg-red-700">Remove</button>
-                            </form>
+                        <div class="flex flex-col justify-between flex-1">
+                            <div class="mt-4 px-4">
+                                <span class="font-bold text-md text-gray-600">{{ item.product.name }}</span>
+                            </div>
+                            <div class="mt-4 px-4 mb-4 flex justify-between items-center">
+                                <form action="{% url 'add_to_cart:add_to_cart' item.product.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" class="bg-gray-600 text-white py-1 px-3 rounded-lg text-sm font-semibold hover:bg-gray-900 flex items-center justify-center">
+                                        ⮐ Move to Cart
+                                    </button>                                
+                                </form>
+                                <form action="{% url 'add_to_cart:remove_from_wishlist' item.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" class="bg-red-600 text-white py-1 px-3 rounded-lg text-sm font-semibold hover:bg-red-700 flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                        Remove
+                                    </button>                                
+                                </form>
+                            </div>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
+
+
+
+
                 <div class="flex justify-between mt-10">
                     <div class="w-1/2">
                         <a href="{% url 'Shop:home' %}" class="flex font-semibold text-green-600 text-sm mt-10">

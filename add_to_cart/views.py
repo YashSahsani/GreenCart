@@ -63,7 +63,7 @@ def add_to_wishlist(request, cart_item_id=None, product_id=None):
 @login_required
 def wishlist_view(request):
     wishlist_items = WishlistItem.objects.all()
-    return render(request, 'Cart/wishlist.html', {'wishlist_items': wishlist_items})
+    return render(request, 'Cart/wishlist.html', {'wishlist_items': wishlist_items, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 
 def remove_from_wishlist(request, wishlist_item_id):

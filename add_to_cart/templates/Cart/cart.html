@@ -2,7 +2,17 @@
 
 {% block title %}Shopping Cart{% endblock %}
 
+
+
 {% block content %}
+
+<style>
+    .wish-list-icon:hover {
+        fill: red;
+    }
+</style>
+
+
 <div class="container mx-auto mt-10">
     <div class="flex shadow-md my-10 rounded-lg">
         <div class="w-full bg-white px-10 py-10 rounded-lg">
@@ -24,14 +34,20 @@
             {% for item in cart_items %}
             <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
                 <div class="flex w-2/5">
-                    <div class="w-20">
-                        <img class="h-30" src="{{ item.product.image.url }}" alt="product">
+                    <div class="w-30">
+                        <img class="w-20" src="{{ item.product.image.url }}" alt="product">
                     </div>
                     <div class="flex flex-col justify-between ml-4 flex-grow">
                         <span class="font-bold text-md text-gray-600">{{ item.product.name }}</span>
                         <form action="{% url 'add_to_cart:remove_from_cart' item.id %}" method="POST">
                             {% csrf_token %}
-                            <button type="submit" class="font-semibold hover:text-green-600 text-red-500 text-xs">Remove</button>
+                            {% comment %} <button type="submit" class="font-semibold hover:text-green-600 text-red-500 text-xs">Remove</button> {% endcomment %}
+                            <button type="submit" class="bg-gray-600 text-white py-1 px-3 rounded-lg text-xs font-semibold hover:bg-red-600 hover:text-white flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                                Remove
+                            </button>  
                         </form>
                     </div>
                 </div>
@@ -59,7 +75,12 @@
                 <div class="text-center w-1/5">
                     <form action="{% url 'add_to_cart:add_to_wishlist' item.id %}" method="POST">
                         {% csrf_token %}
-                        <button type="submit" class="font-semibold hover:text-green-600 text-red-500 text-md">Add to Wish List 💚</button>
+                        <button type="submit" class="font-semibold bg-white py-1 px-3 rounded-lg text-red-500 hover:text-white hover:bg-gray-600 text-md flex items-center justify-center hover:fill-red-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 wish-list-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                            </svg>
+                            Add to Wish List
+                        </button>     
                     </form>
                 </div>
             </div>
