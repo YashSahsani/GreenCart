@@ -23,7 +23,7 @@ def home(request):
     min_rating = request.GET.get('min_rating', 0)
     sort_by = request.GET.get('sort_by', '')
 
-    products = Product.objects.filter(expiry_date__gte=datetime.now())
+    products = Product.objects.filter(expiry_date__gte=datetime.now(), in_stock=True)
 
     search_history = request.COOKIES.get('search_history', '')
     search_history = search_history.split(',') if search_history else []
