@@ -20,8 +20,8 @@
                                  src="{{ product.image.url }}" alt="{{ product.name }}">
                             {% if product.expiry %}
                                 <span class="absolute top-0 left-0 m-2 rounded-full bg-red-600 px-2 text-center text-sm font-medium text-white">
-                    {% if product.days_left > 0 %}
-                    	{{ product.days_left }} days left
+                    {% if product.expiry > 0 %}
+                    	{{ product.expiry }} days left
                     {% else %}
                         Expired
                     {% endif %}
