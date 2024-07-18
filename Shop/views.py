@@ -24,9 +24,18 @@ def home(request):
     sort_by = request.GET.get('sort_by', '')
 
     products = Product.objects.filter(expiry_date__gte=datetime.now(), in_stock=True)
-    
+
+    search_history = request.COOKIES.get('search_history', '')
+    search_history = search_history.split(',') if search_history else []
+
     if query:
         products = products.filter(name__icontains=query)
+        # Store the search query in cookies
+        if query not in search_history:
+            search_history.append(query)
+            search_history_cookie = ','.join(search_history)
+        else:
+            search_history_cookie = ','.join(search_history)
 
     if min_price:
         products = products.filter(price__gte=min_price)
@@ -36,8 +45,6 @@ def home(request):
 
     if min_rating:
         products = products.filter(rating__gte=min_rating)
-
-    
 
     if sort_by == 'expiry_asc':
         products = products.order_by('expiry')
@@ -52,22 +59,30 @@ def home(request):
     else:
         greeting = "Good evening"
 
+    user_name = request.user.first_name
 
-    # User profile picture
-    user_profile_pic = None
-    if request.user.is_authenticated:
-        user_profile = UserProfile.objects.get(user=request.user)
-        user_profile_pic = user_profile.profile_pic.url
-        user_name = request.user.first_name
-
-    return render(request, 'Shop/home.html', {
+    response = render(request, 'Shop/home.html', {
         'products': products,
         'greeting': greeting,
         'user_name': user_name,
         'title': 'GreenCart | Home',
-        'user_profile_pic': user_profile_pic
+        'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url,
+        'search_history': search_history,
     })
 
+    # Set the search history cookie
+    if query:
+        response.set_cookie('search_history', search_history_cookie, max_age=365*24*60*60)  # Cookie expires in one year
+
+    return response
+
+@login_required
+def clear_search_history(request):
+    response = redirect('Shop:home')
+    response.delete_cookie('search_history')
+    return response
+
+    
 @login_required
 def product_detail(request, id):
     if request.method == 'POST':
