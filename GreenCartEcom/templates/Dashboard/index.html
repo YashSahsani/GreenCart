@@ -143,19 +143,19 @@
     {% for offer in offers %}
     {% if forloop.first %}
     <!-- Offer Image with larger width - start -->
-    <a href="#" class="group relative flex col-span-2 h-48 items-end overflow-hidden bg-gray-100 shadow-lg md:h-80">
+    <div class="group relative flex col-span-2 h-48 items-end overflow-hidden bg-gray-100 shadow-lg md:h-80">
         <img src="{{ offer.image.url }}" loading="lazy" alt="{{ offer.title }}" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
         <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"></div>
         <span class="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">{{ offer.title }}</span>
-    </a>
+    </div>
     <!-- Offer Image with larger width - end -->
     {% else %}
     <!-- Offer Image - start -->
-    <a href="#" class="group relative flex h-48 items-end overflow-hidden bg-gray-100 shadow-lg md:h-80">
+    <div class="group relative flex h-48 items-end overflow-hidden bg-gray-100 shadow-lg md:h-80">
         <img src="{{ offer.image.url }}" loading="lazy" alt="{{ offer.title }}" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
         <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"></div>
         <span class="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">{{ offer.title }}</span>
-    </a>
+    </div>
     <!-- Offer Image - end -->
     {% endif %}
     {% endfor %}
