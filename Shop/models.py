@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+from Auth.models import User
 
 
 class Product(models.Model):
@@ -36,11 +37,10 @@ class Product(models.Model):
 
 class Reviews(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    # name = models.CharField(max_length=100)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,default=1)
     review = models.TextField()
     rating = models.DecimalField(max_digits=3, decimal_places=2, default=0.0)
-    def __str__(self):
-        return self.name
 
 @receiver(post_save, sender=Product)
 def set_expiry_date(sender, instance, created, **kwargs):
