@@ -1,0 +1,45 @@
+{% extends 'Shop/base.html' %}
+{% block content %}
+    <a href="{% url 'Shop:home' %}"
+   class="absolute ml-16 w-fit flex items-center text-green-500 hover:text-green-600 py-2 px-4 rounded cursor-pointer z-50">
+   <!-- Arrow icon -->
+   <svg class="h-4 w-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+       <path d="M10 19l-7-7 7-7m-7 7h18"></path>
+   </svg>
+   Back
+</a>
+    <div class="container mx-auto px-6 py-8" style="min-height: 400px">
+        {% if reviews %}
+            <h1 class="text-4xl font-bold mb-4 text-green-800">My Reviews</h1>
+            <table class="min-w-full bg-white border border-gray-300">
+                <thead class="bg-green-100 text-green-700">
+                    <tr>
+                        <th class="py-2 px-4 border-b">Product</th>
+                        <th class="py-2 px-4 border-b">Review</th>
+                        <th class="py-2 px-4 border-b">Rating</th>
+                        <th class="py-2 px-4 border-b">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% if reviews %}
+                    {% for review in reviews %}
+                    <tr class="hover:bg-gray-50">
+                        <td class="py-2 px-4 border-b text-center">{{ review.product.name }}</td>
+                        <td class="py-2 px-4 border-b text-center">{{ review.review }}</td>
+                        <td class="py-2 px-4 border-b text-center">{{ review.rating }}</td>
+                        <td class="py-2 px-4 border-b text-center">
+                            <a href="{% url 'Shop:edit_review' review.id %}" class="text-green-600 hover:text-green-800">Edit</a> |
+                            <a href="{% url 'Shop:delete_review' review.id %}" class="text-red-600 hover:text-red-800">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="flex justify-center">
+                <h1 class="text-2xl font-bold text-gray-800 mb-4">There are no reviews yet !!</h1>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -2,7 +2,7 @@ from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from .models import Product, Reviews
-from .forms import ProductForm
+from .forms import ProductForm, ReviewForm
 from django.shortcuts import render, redirect
 from userprofile.models import UserProfile
 
@@ -87,11 +87,11 @@ def clear_search_history(request):
 def product_detail(request, id):
     if request.method == 'POST':
         product = get_object_or_404(Product, pk=id)
-        name = request.POST.get('name')
+        # name = request.POST.get('name')
         review = request.POST.get('review')
         rating = request.POST.get('rating')
-        if str.strip(name) and str.strip(review) and rating:
-            Reviews.objects.create(product=product, name=name, review=review, rating=rating)
+        if str.strip(review) and rating:
+            Reviews.objects.create(product=product,user= request.user, review=review, rating=rating)
             reviews = Reviews.objects.filter(product=product)
             cal_rating = 0
             if reviews:
@@ -166,3 +166,50 @@ def delete_product(request):
         product = get_object_or_404(Product, id=product_id)
         product.delete()
         return redirect('Shop:product_list')
+
+@login_required
+def manage_reviews(request):
+    reviews = Reviews.objects.filter(user=request.user)
+    print(reviews)
+    return render(request,'Shop/manage-review.html',{'reviews':reviews})
+
+@login_required
+def edit_review(request, review_id):
+    review = get_object_or_404(Reviews, id=review_id)
+    print(review)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            cal_product = review.product
+            cal_reviews = Reviews.objects.filter(product=cal_product)
+            cal_rating = 0
+            if cal_reviews:
+                for cal_review in cal_reviews:
+                    cal_rating += cal_review.rating
+                cal_rating = round(cal_rating / len(cal_reviews), 1)
+                cal_product.rating = float(cal_rating)
+                cal_product.save()
+            return redirect("Shop:manage_reviews")
+    else:
+        form = ReviewForm(instance=review)
+    return render(request, 'Shop/edit_review.html', {'form': form,'review_id':review_id})
+
+@login_required
+def delete_review(request, review_id):
+    review = get_object_or_404(Reviews, id=review_id)
+    print(review)
+    cal_product = review.product
+    review.delete()
+    cal_reviews = Reviews.objects.filter(product=cal_product)
+    cal_rating = 0
+    if cal_reviews:
+        for cal_review in cal_reviews:
+            cal_rating += cal_review.rating
+        cal_rating = round(cal_rating / len(cal_reviews), 1)
+        cal_product.rating = float(cal_rating)
+        cal_product.save()
+    else:
+        cal_product.rating = 0
+        cal_product.save()
+    return redirect('Shop:manage_reviews')
