@@ -38,10 +38,10 @@ def home(request):
             search_history_cookie = ','.join(search_history)
 
     if min_price:
-        products = products.filter(price__gte=min_price)
+        products = products.filter(discount_price__gte=min_price)
 
     if max_price:
-        products = products.filter(price__lte=max_price)
+        products = products.filter(discount_price__lte=max_price)
 
     if min_rating:
         products = products.filter(rating__gte=min_rating)

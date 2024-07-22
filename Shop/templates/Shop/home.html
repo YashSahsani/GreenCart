@@ -113,7 +113,7 @@
                         <div class="relative mx-auto my-6 w-full max-w-xs flex-col overflow-hidden rounded-lg bg-white shadow-md">
                             <a class="relative flex h-60 overflow-hidden rounded-t-lg group" href="{% url 'Shop:product_detail' product.pk %}">
                                 <img class="object-cover w-full transform transition-transform duration-500 group-hover:scale-110" src="{{ product.image.url }}" alt="product image" />
-                                {% if product.days_left %}
+                                {% if product.days_left >= 0 %}
                                     <span class="absolute top-0 left-0 m-2 rounded-full bg-red-600 px-2 text-center text-sm font-medium text-white">
                                         {{ product.days_left }} days left
                                     </span>
