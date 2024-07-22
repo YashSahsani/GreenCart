@@ -1,5 +1,5 @@
 from django.db import models
-
+import uuid
 # Define choices for country and city
 COUNTRY_CHOICES = [
     ('USA', 'United States'),
@@ -110,7 +110,7 @@ CITY_CHOICES = [
 
 
 class Payment(models.Model):
-    Name = models.CharField(max_length=255, default="John")
+    Name = models.CharField(max_length=255, default="test")
     address = models.CharField(max_length=264, blank=True)
     zipcode = models.CharField(max_length=10, blank=True)
     country = models.CharField(max_length=264, choices=COUNTRY_CHOICES, blank=True, default='CAN')
@@ -124,13 +124,14 @@ class Payment(models.Model):
 
 
 class Order(models.Model):
+    order_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
     total_items = models.IntegerField()
     payment = models.ForeignKey(Payment, on_delete=models.CASCADE, related_name='orders', null=True, blank=True)
 
     def __str__(self):
-        return f'Order {self.id}'
+        return f'Order {self.order_id}'
 
 
 class OrderItem(models.Model):

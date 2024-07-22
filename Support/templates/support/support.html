@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'support/css/styles.css' %}">
+{% comment %} <link rel="stylesheet" href="{% static 'support/css/styles.css' %}"> {% endcomment %}
 {% endblock %}
 
 {% block content %}
@@ -13,13 +13,13 @@
     </div>
 </div>
 
-<div class="form-container">
+<div class="support-container">
     <div class="options">
-        <a class="ticket" href="{% url 'support:submit_query' %}">Raise Query</a>
-        <a class="ticket" href="{% url 'support:faq' %}">FAQs</a>
-        <a class="ticket" href="{% url 'support:track_ticket' %}">Track Tickets</a>
+        <a class="ticket hover:bg-green-600 hover:text-white" href="{% url 'support:submit_query' %}">Raise Query</a>
+        <a class="ticket hover:bg-green-600 hover:text-white" href="{% url 'support:faq' %}">FAQs</a>
+        <a class="ticket hover:bg-green-600 hover:text-white" href="{% url 'support:track_ticket' %}">Track Tickets</a>
         {% if user.is_staff or user.is_superuser %}
-            <a class="ticket" href="{% url 'support:ticket_input' %}">Update Ticket Status</a>
+            <a class="ticket hover:bg-green-600 hover:text-white" href="{% url 'support:ticket_input' %}">Update Ticket Status</a>
         {% endif %}
     </div>
 </div>

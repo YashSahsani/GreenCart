@@ -1,22 +1,25 @@
 # Support/views.py
 
 from django.contrib.auth.decorators import login_required
+
+from userprofile.models import UserProfile
 from .models import Query, FAQ, TicketStatus
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import QueryForm, UpdateStatusForm, TicketInputForm ,TicketNumberForm
+from .forms import QueryForm, UpdateStatusForm, TicketInputForm ,TicketNumberForm, FAQSearchForm
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
+from userprofile.models import UserProfile
 
-
+@login_required
 def support_home(request):
-    return render(request, 'support/support.html')
+    return render(request, 'support/support.html', {'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 def update_sucess(request):
-    return render(request, 'support/update_success.html')
+    return render(request, 'support/update_success.html', {'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 def query_sucess(request):
-    return render(request, 'support/query_success.html')
+    return render(request, 'support/query_success.html', {'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 
 @login_required
@@ -37,11 +40,11 @@ def query_form(request):
             recipient_list = ['support@greencart.com']
             send_mail(subject, message, from_email, recipient_list, fail_silently=True)
 
-            return render(request, 'support/query_success.html', {'ticket_number': query.ticket_number})
+            return render(request, 'support/query_success.html', {'ticket_number': query.ticket_number, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
     else:
         form = QueryForm()
 
-    return render(request, 'support/query_form.html', {'form': form})
+    return render(request, 'support/query_form.html', {'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 def track_ticket(request):
     query = None
@@ -57,7 +60,7 @@ def track_ticket(request):
             except Query.DoesNotExist:
                 error = "Ticket number not found."
 
-    return render(request, 'support/track_ticket.html', {'form': form, 'query': query, 'error': error})
+    return render(request, 'support/track_ticket.html', {'form': form, 'query': query, 'error': error, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 def ticket_input(request):
     if request.method == 'POST':
@@ -68,7 +71,7 @@ def ticket_input(request):
     else:
         form = TicketInputForm()
 
-    return render(request, 'support/ticket_input.html', {'form': form})
+    return render(request, 'support/ticket_input.html', {'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 @staff_member_required
 def update_status(request, ticket_number):
@@ -83,13 +86,30 @@ def update_status(request, ticket_number):
             context = {
                 'ticket_number': ticket_number,
                 'new_status': new_status,
+                'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url
             }
             return render(request, 'support/update_success.html', context)
 
-    return render(request, 'support/update_status.html', {'form': form, 'query': query})
+    return render(request, 'support/update_status.html', {'form': form, 'query': query, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
-@login_required
+
 def faq(request):
+    form = FAQSearchForm(request.GET or None)
     faqs = FAQ.objects.all()
-    return render(request, 'support/faq.html', {'faqs': faqs})
 
+    if form.is_valid():
+        query = form.cleaned_data.get('query')
+        category = form.cleaned_data.get('category')
+
+        if query:
+            faqs = faqs.filter(question__icontains=query) | faqs.filter(answer__icontains=query)
+
+        if category:
+            faqs = faqs.filter(category__name__icontains=category)
+
+    context = {
+        'faqs': faqs,
+        'form': form,
+        'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url
+    }
+    return render(request, 'support/faq.html', context)

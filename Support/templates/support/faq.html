@@ -1,11 +1,17 @@
-<!-- Support/templates/support/faq.html -->
-
 {% extends 'support/base.html' %}
 {% load static %}
 {% block content %}
 <div class="container">
     <h1 class="faq-heading">Frequently Asked Questions</h1>
-    <div class="accordion">
+    <div class="form-container">
+        <form method="get" action="{% url 'support:faq' %}">
+            <h2 class="form-title">Search FAQs</h2>
+            {{ form.as_p }}
+            <br>
+            <button type="submit" class="form-submit">Search</button>
+        </form>
+    </div>
+    <div class="accordion" style="margin-top: 30px;">
         {% for faq in faqs %}
         <div class="faq-item">
             <div class="faq-question">
@@ -19,6 +25,12 @@
         {% empty %}
         <p>No FAQs available.</p>
         {% endfor %}
+    </div>
+
+    <div class="query-box">
+        <h2>Could not find your question?</h2>
+        <p>Raise a query and we'll get back to you.</p>
+        <a href="{% url 'support:submit_query' %}" class="raise-query-link">Raise Query</a>
     </div>
 </div>
 {% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'Shop/base.html' %}
+
+{% block content %}
+    <a href="{% url 'Shop:manage_reviews' %}"
+   class="absolute ml-16 w-fit flex items-center text-green-500 hover:text-green-600 py-2 px-4 rounded cursor-pointer z-50">
+   <!-- Arrow icon -->
+   <svg class="h-4 w-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+       <path d="M10 19l-7-7 7-7m-7 7h18"></path>
+   </svg>
+   Back
+</a>
+<div class="container mx-auto px-6 py-8 ">
+    <div class="flex justify-center">
+
+    <form method="post" action="{% url 'Shop:edit_review' review_id %}" class="bg-white p-6 rounded-lg shadow-md w-1/2">
+    <h1 class="text-4xl font-bold mb-4 text-green-800">Edit Review</h1>
+
+        {% csrf_token %}
+        <div class="mb-4">
+            <label for="review" class="block text-gray-700 font-bold mb-2">Review:</label>
+            <textarea id="review" name="review" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ">{{ form.review.value }}</textarea>
+        </div>
+        <div class="mb-4">
+            <label for="rating" class="block text-gray-700 font-bold mb-2">Rating:</label>
+            <input type="number" id="rating" name="rating" value="{{ form.rating.value }}" min="0" max="5" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <button type="submit" class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700">
+            Save
+        </button>
+    </form>
+    </div>
+</div>
+{% endblock %}

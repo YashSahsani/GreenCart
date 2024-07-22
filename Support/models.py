@@ -44,11 +44,16 @@ class TicketStatus(models.Model):
     def __str__(self):
         return f"{self.query.ticket_number} - {self.status} at {self.updated_at}"
 
+class faqCategory(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
 class FAQ(models.Model):
     question = models.CharField(max_length=255)
     answer = models.TextField()
-
+    category = models.ForeignKey(faqCategory, on_delete=models.CASCADE, null=True, blank=True)
     def __str__(self):
         return self.question
-
 

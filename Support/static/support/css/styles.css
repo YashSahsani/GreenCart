@@ -1,3 +1,13 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    padding: 0; /* Remove padding around the body */
+    margin: 0; /* Remove margin around the body */
+    background-color: #ffffff;
+}
+
+/* Alert Styles */
 .alert {
     position: fixed;
     top: 1rem;
@@ -5,17 +15,19 @@
     z-index: 1000;
 }
 
+/* Container Styles */
 .container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0px;
 }
 
+/* FAQ Styles */
 .faq-heading {
     text-align: center;
     margin-bottom: 30px;
     font-size: 2.5rem;
-    color: #4CAF50;
+    color: rgb(5, 150, 105); /* Updated color */
 }
 
 .accordion {
@@ -30,7 +42,7 @@
 }
 
 .faq-question {
-    background-color: #4CAF50;
+    background-color: rgb(5, 150, 105); /* Updated color */
     color: #fff;
     padding: 15px;
     display: flex;
@@ -90,15 +102,10 @@
     }
 }
 
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f0f0;
-    padding: 20px;
-}
-
+/* Form Styles */
 .form-container {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 50px auto;
     background-color: #ffffff;
     padding: 30px;
     border-radius: 10px;
@@ -106,14 +113,16 @@ body {
 }
 
 .form-title {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: bold;
-    color: #2e7d32;
     text-align: center;
     margin-bottom: 20px;
 }
 
-.form-input {
+.form-input,
+.form-dropdown,
+.form-textarea,
+.form-file {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -123,56 +132,39 @@ body {
 }
 
 .form-dropdown {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
     background-color: #f9fbe7;
-}
-
-.form-textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
 }
 
 .form-submit {
     width: 100%;
     padding: 10px;
-    background-color: #2e7d32;
+    background-color: rgb(5, 150, 105); /* Updated color */
     color: #ffffff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 18px;
+    transition: background-color 0.3s;
 }
 
 .form-submit:hover {
-    background-color: #4caf50;
+    background-color: rgb(5, 150, 105); /* Updated color */
 }
 
-.form-file {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    font-size: 16px;
-}
-
+/* Banner Styles */
 .banner {
-    background-color: #4CAF50;
+    background-color: rgb(5, 150, 105); /* Updated color */
     color: white;
     padding: 60px 0;
     text-align: center;
+    margin-top: 0; /* Ensure no space above */
 }
 
 .banner-content {
     max-width: 600px;
     margin: 0 auto;
+    color: white;
+
 }
 
 .banner h1 {
@@ -185,6 +177,7 @@ body {
     margin-bottom: 20px;
 }
 
+/* Ticket Styles */
 .ticket {
     font-size: 24px;
     margin-top: 20px;
@@ -193,12 +186,12 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: inline-block;
-    color: #4CAF50;
+    color: rgb(5, 150, 105); /* Updated color */
     text-decoration: none;
 }
 
 .ticket-label {
-    color: #4CAF50;
+    color: rgb(5, 150, 105); /* Updated color */
     font-size: 1.2em;
     margin-bottom: 10px;
 }
@@ -212,17 +205,60 @@ body {
     margin-top: 30px;
 }
 
+/* Options Styles */
 .options {
     display: flex;
     flex-direction: column;
     gap: 15px;
     align-items: center;
+    margin: 50px;
 }
 
+/* Ticket Form Styles */
 .ticket-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
     margin-top: 20px;
     width: 100%;
+}
+.query-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 20px 0;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    background-color: #e8f5e9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+.query-box h2 {
+    color: #2e7d32;
+    font-size: 24px;
+    margin: 0;
+}
+
+.query-box p {
+    color: #388e3c;
+    font-size: 18px;
+    margin: 0 20px;
+}
+
+.query-box .raise-query-link {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #ffffff;
+    background-color: #66bb6a;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.query-box .raise-query-link:hover {
+    background-color: #4CAF50;
 }

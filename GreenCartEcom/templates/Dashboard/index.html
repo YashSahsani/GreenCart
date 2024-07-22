@@ -10,7 +10,7 @@
   <div class="relative h-96 md:h-[32rem] overflow-hidden">
       <!-- Item 1 -->
       <div class="carousel-item duration-700 ease-in-out">
-        <a href="/shop">
+        <a href="/shop/">
           <img src="/media/offers_poster/banner1.png" class="absolute block w-full" alt="Image 1">
         </a>
       </div>
@@ -84,34 +84,37 @@
   // Automatically move to the next slide every 5 seconds
   setInterval(moveToNextSlide, 5000);
 </script>
-
 <!-- Product List Section -->
 <div class="mt-4 ml-4">
     <h2 class="font-bold text-xl">Featured Products</h2>
-    <div class="flex overflow-x-auto space-x-6 p-4">
+    <div class="flex overflow-x-auto space-x-6 p-4 py-2">
+      <!-- Wrapper to center the items -->
+      <div class="flex flex-grow justify-center">
         {% for product in products %}
-        <div class="relative overflow-hidden rounded-lg shadow-lg flex flex-col justify-between h-100 min-w-[250px]">
-            {% if product.image.url %}
-            <div class="relative p-4 flex items-center justify-center h-48">
-                <img class="relative object-cover" src="{{ product.image.url }}" alt="{{ product.name }}">
+        <div class="relative overflow-hidden rounded-lg shadow-lg flex flex-col justify-between h-100 min-w-[250px] w-64 flex-shrink-0">
+          {% if product.image.url %}
+          <div class="relative p-4 flex items-center justify-center h-48">
+            <img class="relative object-cover" src="{{ product.image.url }}" alt="{{ product.name }}">
+          </div>
+          {% endif %}
+          <div class="relative text-black px-6 pb-6 mt-6 flex flex-col justify-between flex-grow">
+            <div class="flex justify-between">
+              <span class="block font-semibold text-sm">{{ product.name }}</span>
+              <span class="block bg-white rounded-full text-black text-xs font-bold px-3 py-2 leading-none flex items-center">${{ product.price }}</span>
             </div>
-            {% endif %}
-            <div class="relative text-black px-6 pb-6 mt-6 flex flex-col justify-between flex-grow">
-                <div class="flex justify-between">
-                    <span class="block font-semibold text-sm">{{ product.name }}</span>
-                    <span class="block bg-white rounded-full text-black text-xs font-bold px-3 py-2 leading-none flex items-center">${{ product.price }}</span>
-                </div>
-                <div class="flex justify-center mt-4">
-                    <form method="post" action="{% url 'add_to_cart:add_to_cart' product.id %}" class="add-to-cart-form">
-                        {% csrf_token %}
-                        <button type="submit" class="w-full bg-green-600 text-white px-12 py-2 rounded font-bold text-sm">Add to Cart</button>
-                    </form>
-                </div>
+            <div class="flex justify-center mt-4">
+              <form method="post" action="{% url 'add_to_cart:add_to_cart' product.id %}" class="add-to-cart-form">
+                {% csrf_token %}
+                <button type="submit" class="w-full bg-green-600 text-white px-12 py-2 rounded font-bold text-sm">Add to Cart</button>
+              </form>
             </div>
+          </div>
         </div>
         {% endfor %}
+      </div>
     </div>
-</div>
+  </div>
+  
 
 <!-- New Section for Benefits -->
 <div class="m-8 p-4 bg-gray-100 rounded-lg flex flex-wrap justify-between">
@@ -143,19 +146,19 @@
     {% for offer in offers %}
     {% if forloop.first %}
     <!-- Offer Image with larger width - start -->
-    <a href="#" class="group relative flex col-span-2 h-48 items-end overflow-hidden bg-gray-100 shadow-lg md:h-80">
+    <div class="group relative flex col-span-2 h-48 items-end overflow-hidden bg-gray-100 shadow-lg md:h-80">
         <img src="{{ offer.image.url }}" loading="lazy" alt="{{ offer.title }}" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
         <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"></div>
         <span class="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">{{ offer.title }}</span>
-    </a>
+    </div>
     <!-- Offer Image with larger width - end -->
     {% else %}
     <!-- Offer Image - start -->
-    <a href="#" class="group relative flex h-48 items-end overflow-hidden bg-gray-100 shadow-lg md:h-80">
+    <div class="group relative flex h-48 items-end overflow-hidden bg-gray-100 shadow-lg md:h-80">
         <img src="{{ offer.image.url }}" loading="lazy" alt="{{ offer.title }}" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
         <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"></div>
         <span class="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">{{ offer.title }}</span>
-    </a>
+    </div>
     <!-- Offer Image - end -->
     {% endif %}
     {% endfor %}
