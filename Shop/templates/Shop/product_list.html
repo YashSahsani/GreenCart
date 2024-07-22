@@ -18,10 +18,10 @@
                            href="{% url 'Shop:edit_product' product.id %}">
                             <img class="object-cover w-full transform transition-transform duration-500 group-hover:scale-110"
                                  src="{{ product.image.url }}" alt="{{ product.name }}">
-                            {% if product.expiry %}
+                            {% if product.days_left %}
                                 <span class="absolute top-0 left-0 m-2 rounded-full bg-red-600 px-2 text-center text-sm font-medium text-white">
-                    {% if product.expiry > 0 %}
-                    	{{ product.expiry }} days left
+                    {% if product.days_left > 0 %}
+                    	{{ product.days_left }} days left
                     {% else %}
                         Expired
                     {% endif %}
