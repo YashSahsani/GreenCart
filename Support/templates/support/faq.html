@@ -2,24 +2,16 @@
 {% load static %}
 {% block content %}
 <div class="container">
-    <h1 class="faq-heading">Frequently Asked Questions</h1>
-    <div class="form-container">
-        <form method="get" action="{% url 'support:faq' %}">
-            <h2 class="form-title">Search FAQs</h2>
-            {{ form.as_p }}
-            <br>
-            <button type="submit" class="form-submit">Search</button>
-        </form>
-    </div>
-    <div class="accordion" style="margin-top: 30px;">
+    <h1 class="faq-heading text-green-800">Frequently Asked Questions</h1>
+    <div class="accordion">
         {% for faq in faqs %}
         <div class="faq-item">
             <div class="faq-question">
-                <h3>{{ faq.question }}</h3>
+                <h3>{{ faq.question }} </h3>
                 <button class="accordion-btn">+</button>
             </div>
             <div class="faq-answer">
-                <p>{{ faq.answer }}</p>
+                <p>{{ faq.answer }} </p>
             </div>
         </div>
         {% empty %}
