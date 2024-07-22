@@ -113,9 +113,9 @@
                         <div class="relative mx-auto my-6 w-full max-w-xs flex-col overflow-hidden rounded-lg bg-white shadow-md">
                             <a class="relative flex h-60 overflow-hidden rounded-t-lg group" href="{% url 'Shop:product_detail' product.pk %}">
                                 <img class="object-cover w-full transform transition-transform duration-500 group-hover:scale-110" src="{{ product.image.url }}" alt="product image" />
-                                {% if product.expiry %}
+                                {% if product.days_left %}
                                     <span class="absolute top-0 left-0 m-2 rounded-full bg-red-600 px-2 text-center text-sm font-medium text-white">
-                                        {{ product.expiry }} days left
+                                        {{ product.days_left }} days left
                                     </span>
                                 {% endif %}
                                 <form action="{% url 'AddToCart:add_product_wishlist' product.id %}" method="POST" class="absolute top-0 right-0 m-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
