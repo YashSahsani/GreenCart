@@ -1,6 +1,8 @@
 # Support/views.py
 
 from django.contrib.auth.decorators import login_required
+
+from userprofile.models import UserProfile
 from .models import Query, FAQ, TicketStatus
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import QueryForm, UpdateStatusForm, TicketInputForm ,TicketNumberForm, FAQSearchForm
@@ -10,12 +12,14 @@ from django.contrib.admin.views.decorators import staff_member_required
 from userprofile.models import UserProfile
 
 def support_home(request):
-    return render(request, 'support/support.html',{'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+    return render(request, 'support/support.html', {'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 def update_sucess(request):
     return render(request, 'support/update_success.html', {'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+    return render(request, 'support/update_success.html', {'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 def query_sucess(request):
+    return render(request, 'support/query_success.html', {'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
     return render(request, 'support/query_success.html', {'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 
@@ -37,10 +41,11 @@ def query_form(request):
             recipient_list = ['support@greencart.com']
             send_mail(subject, message, from_email, recipient_list, fail_silently=True)
 
-            return render(request, 'support/query_success.html', {'ticket_number': query.ticket_number})
+            return render(request, 'support/query_success.html', {'ticket_number': query.ticket_number, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
     else:
         form = QueryForm()
 
+    return render(request, 'support/query_form.html', {'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
     return render(request, 'support/query_form.html', {'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 def track_ticket(request):
@@ -58,6 +63,7 @@ def track_ticket(request):
                 error = "Ticket number not found."
 
     return render(request, 'support/track_ticket.html', {'form': form, 'query': query, 'error': error, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+    return render(request, 'support/track_ticket.html', {'form': form, 'query': query, 'error': error, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 def ticket_input(request):
     if request.method == 'POST':
@@ -68,6 +74,7 @@ def ticket_input(request):
     else:
         form = TicketInputForm()
 
+    return render(request, 'support/ticket_input.html', {'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
     return render(request, 'support/ticket_input.html', {'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 @staff_member_required
@@ -91,7 +98,7 @@ def update_status(request, ticket_number):
 
 
 def faq(request):
-    form = FAQSearchForm(request.GET)
+    form = FAQSearchForm(request.GET or None)
     faqs = FAQ.objects.all()
 
     if form.is_valid():
@@ -104,6 +111,9 @@ def faq(request):
         if category:
             faqs = faqs.filter(category__name__icontains=category)
 
-
-    return render(request, 'support/faq.html', {'faqs': faqs, 'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
-
+    context = {
+        'faqs': faqs,
+        'form': form,
+        'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url
+    }
+    return render(request, 'support/faq.html', context)

@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-extrabold mb-8 text-center text-blue-600">Checkout</h1>
+    <h1 class="text-4xl font-extrabold mb-8 text-center text-green-700">Checkout</h1>
     <form id="payment-form" class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-lg space-y-6" method="post">
         {% csrf_token %}
         <input type="hidden" id="payment_id" name="payment_id" value="{{ payment.id }}">
@@ -36,7 +36,7 @@
 
         <div id="card-error" role="alert" class="text-red-500 mb-4"></div>
 
-        <button id="submit" class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Pay</button>
+        <button id="submit" class="w-full bg-green-800 text-white py-3 px-4 rounded-lg shadow-md hover:bg-green-800 transition duration-300">Pay</button>
     </form>
 </div>
 

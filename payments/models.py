@@ -110,7 +110,7 @@ CITY_CHOICES = [
 
 
 class Payment(models.Model):
-    Name = models.CharField(max_length=255, default="John")
+    Name = models.CharField(max_length=255, default="test")
     address = models.CharField(max_length=264, blank=True)
     zipcode = models.CharField(max_length=10, blank=True)
     country = models.CharField(max_length=264, choices=COUNTRY_CHOICES, blank=True, default='CAN')
