@@ -36,8 +36,8 @@
             "image": "products/anthurium_pink.jpg",
             "in_stock": true,
             "rating": 4.0,
-            "created_at": "2024-07-16T00:00:00Z",
-            "updated_at": "2024-07-16T00:00:00Z",
+            "created_at": "2024-07-22T00:00:00Z",
+            "updated_at": "2024-07-22T00:00:00Z",
             "expiry_date": "2024-07-19T00:00:00Z"
         }
     },
@@ -52,8 +52,8 @@
             "image": "products/areca_palm_small.webp",
             "in_stock": true,
             "rating": 5.0,
-            "created_at": "2024-07-16T00:00:00Z",
-            "updated_at": "2024-07-16T00:00:00Z",
+            "created_at": "2024-07-22T00:00:00Z",
+            "updated_at": "2024-07-22T00:00:00Z",
             "expiry_date": "2024-07-19T00:00:00Z",
             "user_id": "2"
         }
@@ -69,8 +69,8 @@
             "image": "products/air_purifier_pack.jpg",
             "in_stock": true,
             "rating": 3.0,
-            "created_at": "2024-07-16T00:00:00Z",
-            "updated_at": "2024-07-16T00:00:00Z",
+            "created_at": "2024-07-22T00:00:00Z",
+            "updated_at": "2024-07-22T00:00:00Z",
             "expiry_date": "2024-07-19T00:00:00Z",
             "user_id": "2"
         }
@@ -86,8 +86,8 @@
             "image": "products/snake_plant.jpg",
             "in_stock": true,
             "rating": 5.0,
-            "created_at": "2024-07-16T00:00:00Z",
-            "updated_at": "2024-07-16T00:00:00Z",
+            "created_at": "2024-07-22T00:00:00Z",
+            "updated_at": "2024-07-22T00:00:00Z",
             "expiry_date": "2024-07-19T00:00:00Z",
             "user_id": "2"
         }
@@ -103,8 +103,8 @@
             "image": "products/aptenia_heartleaf.jpg",
             "in_stock": true,
             "rating": 5.0,
-            "created_at": "2024-07-16T00:00:00Z",
-            "updated_at": "2024-07-16T00:00:00Z",
+            "created_at": "2024-07-22T00:00:00Z",
+            "updated_at": "2024-07-22T00:00:00Z",
             "expiry_date": "2024-07-19T00:00:00Z",
             "user_id": "2"
         }
@@ -120,8 +120,8 @@
             "image": "products/rose_red.webp",
             "in_stock": true,
             "rating": 2.0,
-            "created_at": "2024-07-16T00:00:00Z",
-            "updated_at": "2024-07-16T00:00:00Z",
+            "created_at": "2024-07-22T00:00:00Z",
+            "updated_at": "2024-07-22T00:00:00Z",
             "expiry_date": "2024-07-19T00:00:00Z",
             "user_id": "2"
         }
@@ -137,8 +137,8 @@
             "image": "products/hydrangea_macrophylla.jpg",
             "in_stock": true,
             "rating": 3.0,
-            "created_at": "2024-07-16T00:00:00Z",
-            "updated_at": "2024-07-16T00:00:00Z",
+            "created_at": "2024-07-22T00:00:00Z",
+            "updated_at": "2024-07-22T00:00:00Z",
             "expiry_date": "2024-07-19T00:00:00Z",
             "user_id": "2"
         }
@@ -154,8 +154,8 @@
             "image": "products/bonsai_adenium.jpg",
             "in_stock": true,
             "rating": 4.0,
-            "created_at": "2024-07-16T00:00:00Z",
-            "updated_at": "2024-07-16T00:00:00Z",
+            "created_at": "2024-07-22T00:00:00Z",
+            "updated_at": "2024-07-22T00:00:00Z",
             "expiry_date": "2024-07-19T00:00:00Z",
             "user_id": "2"
         }
