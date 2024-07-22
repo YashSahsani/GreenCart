@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from datetime import datetime
 
 from userprofile.models import UserProfile
 from .models import  offer
@@ -8,7 +9,8 @@ from Shop.models import Product
 def index(request):
     if request.user.is_authenticated:
         return redirect('Shop:home')  # Redirect to home page if user is already logged in
-    productList = Product.objects.all()  
+    # productList = Product.objects.all()
+    productList = Product.objects.filter(expiry_date__gte=datetime.now(), in_stock=True)
     offerPosterList = offer.objects.all()
     # Fetch all products
     return render(request, 'Dashboard/index.html', {
