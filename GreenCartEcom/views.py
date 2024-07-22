@@ -10,7 +10,8 @@ def index(request):
     if request.user.is_authenticated:
         return redirect('Shop:home')  # Redirect to home page if user is already logged in
     # productList = Product.objects.all()
-    productList = Product.objects.filter(expiry_date__gte=datetime.now(), in_stock=True)
+    productList = Product.objects.filter(in_stock=True)
+    productList = [product for product in productList if product.days_left() > 0]
     offerPosterList = offer.objects.all()
     # Fetch all products
     return render(request, 'Dashboard/index.html', {
