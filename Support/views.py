@@ -96,8 +96,24 @@ def update_status(request, ticket_number):
 
     return render(request, 'support/update_status.html', {'form': form, 'query': query, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
-def faq(request):
-    form = FAQSearchForm(request.GET)
-    faqs = FAQ.objects.all()
-    return render(request, 'support/faq.html', {'faqs': faqs, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
+def faq(request):
+    form = FAQSearchForm(request.GET or None)
+    faqs = FAQ.objects.all()
+
+    if form.is_valid():
+        query = form.cleaned_data.get('query')
+        category = form.cleaned_data.get('category')
+
+        if query:
+            faqs = faqs.filter(question__icontains=query) | faqs.filter(answer__icontains=query)
+
+        if category:
+            faqs = faqs.filter(category__name__icontains=category)
+
+    context = {
+        'faqs': faqs,
+        'form': form,
+        'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url
+    }
+    return render(request, 'support/faq.html', context)
