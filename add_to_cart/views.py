@@ -16,6 +16,7 @@ def cart_view(request):
                    'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 
+@login_required
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     cart_item, created = CartItem.objects.get_or_create(product=product)
@@ -26,12 +27,14 @@ def add_to_cart(request, product_id):
     return redirect('Shop:home')
 
 
+@login_required
 def remove_from_cart(request, cart_item_id):
     cart_item = get_object_or_404(CartItem, id=cart_item_id)
     cart_item.delete()
     return redirect('add_to_cart:cart')
 
 
+@login_required
 def increment_quantity(request, cart_item_id):
     cart_item = get_object_or_404(CartItem, id=cart_item_id)
     cart_item.quantity += 1
@@ -39,6 +42,7 @@ def increment_quantity(request, cart_item_id):
     return redirect('add_to_cart:cart')
 
 
+@login_required
 def decrement_quantity(request, cart_item_id):
     cart_item = get_object_or_404(CartItem, id=cart_item_id)
     if cart_item.quantity > 1:
@@ -49,6 +53,7 @@ def decrement_quantity(request, cart_item_id):
     return redirect('add_to_cart:cart')
 
 
+@login_required
 def add_to_wishlist(request, cart_item_id=None, product_id=None):
     if cart_item_id:
         cart_item = get_object_or_404(CartItem, id=cart_item_id)
@@ -60,12 +65,16 @@ def add_to_wishlist(request, cart_item_id=None, product_id=None):
         WishlistItem.objects.create(product=product)
     return redirect('add_to_cart:wishlist')
 
+
 @login_required
 def wishlist_view(request):
     wishlist_items = WishlistItem.objects.all()
-    return render(request, 'Cart/wishlist.html', {'wishlist_items': wishlist_items, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+    return render(request, 'Cart/wishlist.html', {'wishlist_items': wishlist_items,
+                                                  'user_profile_pic': UserProfile.objects.get(
+                                                      user=request.user).profile_pic.url})
 
 
+@login_required
 def remove_from_wishlist(request, wishlist_item_id):
     wishlist_item = get_object_or_404(WishlistItem, id=wishlist_item_id)
     wishlist_item.delete()
