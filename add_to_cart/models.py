@@ -13,7 +13,7 @@ class CartItem(models.Model):
         return f"{self.quantity} x {self.product.name}"
 
     def total_price(self):
-        return self.quantity * self.product.price
+        return self.quantity * self.product.discount_price
 
 
 class WishlistItem(models.Model):
