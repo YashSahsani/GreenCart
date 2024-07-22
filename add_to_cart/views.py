@@ -8,7 +8,7 @@ from datetime import datetime
 
 @login_required
 def cart_view(request):
-    cart_items = CartItem.objects.filter(product__expiry_date__gte=datetime.now())
+    cart_items = CartItem.objects.filter(product__expiry_date__gte=datetime.now(), user_id=request.user.id)
     total_amount = sum(item.total_price() for item in cart_items)
     total_items = sum(item.quantity for item in cart_items)
     return render(request, 'Cart/cart.html',
@@ -22,6 +22,7 @@ def add_to_cart(request, product_id):
     cart_item, created = CartItem.objects.get_or_create(product=product)
     if not created:
         cart_item.quantity += 1
+    cart_item.user_id = request.user.id
     cart_item.save()
     messages.success(request, 'Product added to cart')
     return redirect('Shop:home')
@@ -33,6 +34,7 @@ def add_to_cart_from_wishlist(request, product_id):
     cart_item, created = CartItem.objects.get_or_create(product=product)
     if not created:
         cart_item.quantity += 1
+    cart_item.user_id = request.user.id
     cart_item.save()
     messages.success(request, 'Product added to cart')
     return redirect('add_to_cart:wishlist')
@@ -77,10 +79,10 @@ def add_to_wishlist(request, cart_item_id=None, product_id=None):
         return redirect('Shop:home')
 
     # Check if the product is already in the wishlist
-    if WishlistItem.objects.filter(product=product).exists():
+    if WishlistItem.objects.filter(product=product, user_id=request.user.id).exists():
         messages.success(request, 'Product is already in your wishlist')
     else:
-        WishlistItem.objects.create(product=product)
+        WishlistItem.objects.create(product=product, user_id=request.user.id)
         messages.success(request, 'Product added to wishlist')
 
         if cart_item_id:
@@ -92,7 +94,7 @@ def add_to_wishlist(request, cart_item_id=None, product_id=None):
 
 @login_required
 def wishlist_view(request):
-    wishlist_items = WishlistItem.objects.filter(product__expiry_date__gte=datetime.now())
+    wishlist_items = WishlistItem.objects.filter(product__expiry_date__gte=datetime.now(), user_id=request.user.id)
     return render(request, 'Cart/wishlist.html', {'wishlist_items': wishlist_items,
                                                   'user_profile_pic': UserProfile.objects.get(
                                                       user=request.user).profile_pic.url})
