@@ -1,5 +1,3 @@
-<!-- Support/templates/support/faq.html -->
-
 {% extends 'support/base.html' %}
 {% load static %}
 {% block content %}
@@ -19,6 +17,12 @@
         {% empty %}
         <p>No FAQs available.</p>
         {% endfor %}
+    </div>
+
+    <div class="query-box">
+        <h2>Could not find your question?</h2>
+        <p>Raise a query and we'll get back to you.</p>
+        <a href="{% url 'support:submit_query' %}" class="raise-query-link">Raise Query</a>
     </div>
 </div>
 {% endblock %}

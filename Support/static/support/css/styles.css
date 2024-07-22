@@ -222,3 +222,43 @@ body {
     margin-top: 20px;
     width: 100%;
 }
+.query-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 20px 0;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    background-color: #e8f5e9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+.query-box h2 {
+    color: #2e7d32;
+    font-size: 24px;
+    margin: 0;
+}
+
+.query-box p {
+    color: #388e3c;
+    font-size: 18px;
+    margin: 0 20px;
+}
+
+.query-box .raise-query-link {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #ffffff;
+    background-color: #66bb6a;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.query-box .raise-query-link:hover {
+    background-color: #4CAF50;
+}

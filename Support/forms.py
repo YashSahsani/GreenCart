@@ -3,7 +3,7 @@
 from django import forms
 from .models import Query
 
-from .models import Query, TicketStatus
+from .models import Query, TicketStatus, faqCategory
 class QueryForm(forms.ModelForm):
     class Meta:
         model = Query
@@ -35,3 +35,7 @@ class UpdateStatusForm(forms.Form):
         widget=forms.Select(attrs={'class': 'form-dropdown'}),
         required=True
     )
+
+class FAQSearchForm(forms.Form):
+    query = forms.CharField(label='Type your Question Here:', max_length=255, required=False)
+    category = forms.ModelChoiceField(queryset=faqCategory.objects.all(), label='Category', required=False)
