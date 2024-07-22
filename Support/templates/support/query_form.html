@@ -7,11 +7,11 @@
 
 {% block content %}
 <div class="form-container">
-    <h1 class="form-title">Submit Query</h1>
+    <h1 class="form-title text-green-800">Submit Query</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="form-submit">Submit</button>
+        <button type="submit" class="form-submit bg-green-600 hover:bg-green-700">Submit</button>
     </form>
 </div>
 {% endblock %}
