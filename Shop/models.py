@@ -44,6 +44,10 @@ class Reviews(models.Model):
 
 @receiver(post_save, sender=Product)
 def set_expiry_date(sender, instance, created, **kwargs):
-    if created:  # Only calculate expiry_date if a new instance is created
+    if created:
         instance.expiry_date = instance.created_at + timedelta(days=instance.expiry)
         instance.save()
+    else:
+        Product.objects.filter(id=instance.id).update(
+            expiry_date=instance.created_at + timedelta(days=instance.expiry)
+        )
