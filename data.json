@@ -199,5 +199,242 @@
             "title": "Art and crafts for Decoration",
             "image": "offers_poster/arts.webp"
         }
+    },
+    {
+        "model": "Support.faqCategory",
+        "pk": 1,
+        "fields": {
+            "name": "Plant Care"
+        }
+    },
+    {
+        "model": "Support.faqCategory",
+        "pk": 2,
+        "fields": {
+            "name": "Gardening Tips"
+        }
+    },
+    {
+        "model": "Support.faqCategory",
+        "pk": 3,
+        "fields": {
+            "name": "Pet-Friendly Plants"
+        }
+    },
+    {
+        "model": "Support.faqCategory",
+        "pk": 4,
+        "fields": {
+            "name": "Indoor Plants"
+        }
+    },
+    {
+        "model": "Support.faqCategory",
+        "pk": 5,
+        "fields": {
+            "name": "Vegetable Gardening"
+        }
+    },
+    {
+        "model": "Support.faqCategory",
+        "pk": 6,
+        "fields": {
+            "name": "Pest Control"
+        }
+    },
+    {
+        "model": "Support.faqCategory",
+        "pk": 7,
+        "fields": {
+            "name": "Indoor Gardening"
+        }
+    },
+    {
+        "model": "Support.faqCategory",
+        "pk": 8,
+        "fields": {
+            "name": "Outdoor Gardening"
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 1,
+        "fields": {
+            "question": "What are the best plants for low light conditions?",
+            "answer": "Plants like snake plants, pothos, and peace lilies thrive in low light.",
+            "category": 1
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 2,
+        "fields": {
+            "question": "How often should I water my succulents?",
+            "answer": "Succulents prefer dry conditions; water them every 2-3 weeks, depending on the climate.",
+            "category": 2
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 3,
+        "fields": {
+            "question": "Which plants are pet-friendly?",
+            "answer": "Some pet-friendly plants include spider plants, Boston ferns, and African violets.",
+            "category": 3
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 4,
+        "fields": {
+            "question": "How can I prevent overwatering my houseplants?",
+            "answer": "Ensure your pots have drainage holes and check soil moisture before watering.",
+            "category": 1
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 5,
+        "fields": {
+            "question": "What are air-purifying plants?",
+            "answer": "Plants like peace lilies, spider plants, and snake plants help improve indoor air quality.",
+            "category": 4
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 6,
+        "fields": {
+            "question": "How do I propagate succulents?",
+            "answer": "Succulents can be propagated from leaf or stem cuttings placed in well-draining soil.",
+            "category": 2
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 7,
+        "fields": {
+            "question": "What is the best fertilizer for indoor plants?",
+            "answer": "Use a balanced liquid fertilizer diluted to half-strength during the growing season.",
+            "category": 1
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 8,
+        "fields": {
+            "question": "How much sunlight do tomato plants need?",
+            "answer": "Tomato plants require at least 6-8 hours of direct sunlight daily for optimal growth.",
+            "category": 5
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 9,
+        "fields": {
+            "question": "What causes yellowing leaves on houseplants?",
+            "answer": "Yellow leaves can result from overwatering, nutrient deficiencies, or insufficient light.",
+            "category": 1
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 10,
+        "fields": {
+            "question": "How can I control pests on my plants naturally?",
+            "answer": "Use neem oil, insecticidal soap, or introduce beneficial insects like ladybugs.",
+            "category": 6
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 11,
+        "fields": {
+            "question": "What is the best way to repot a plant?",
+            "answer": "Choose a pot one size larger, gently loosen roots, and add fresh potting mix.",
+            "category": 1
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 12,
+        "fields": {
+            "question": "Which herbs can I grow indoors year-round?",
+            "answer": "Herbs like basil, mint, parsley, and chives thrive indoors with adequate light.",
+            "category": 7
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 13,
+        "fields": {
+            "question": "How do I prevent fungus gnats in houseplants?",
+            "answer": "Allow soil to dry between waterings and use sticky traps to catch adult gnats.",
+            "category": 6
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 14,
+        "fields": {
+            "question": "What is the ideal humidity level for tropical houseplants?",
+            "answer": "Tropical plants prefer humidity levels of 50% or higher; misting can help maintain humidity.",
+            "category": 4
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 15,
+        "fields": {
+            "question": "Can I grow vegetables indoors?",
+            "answer": "Yes, vegetables like lettuce, cherry tomatoes, and peppers can be grown indoors with sufficient light.",
+            "category": 7
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 16,
+        "fields": {
+            "question": "How do I revive a wilting plant?",
+            "answer": "Check soil moisture and water as needed; trim any damaged leaves and provide appropriate light.",
+            "category": 1
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 17,
+        "fields": {
+            "question": "What are the benefits of using mulch in garden beds?",
+            "answer": "Mulch helps retain soil moisture, suppress weeds, and regulate soil temperature.",
+            "category": 2
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 18,
+        "fields": {
+            "question": "How can I create a herb garden in small spaces?",
+            "answer": "Use vertical planters, hanging baskets, or window boxes for compact herb gardens.",
+            "category": 7
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 19,
+        "fields": {
+            "question": "How do I prevent root rot in houseplants?",
+            "answer": "Ensure pots have drainage holes, use well-draining soil, and avoid overwatering.",
+            "category": 1
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 20,
+        "fields": {
+            "question": "Which plants are best suited for a balcony garden?",
+            "answer": "Herbs, succulents, and compact vegetables like cherry tomatoes and peppers thrive in balcony gardens.",
+            "category": 8
+        }
     }
 ]
+
