@@ -106,17 +106,18 @@ CITY_CHOICES = [
     ('BKK', 'Bangkok'),
     ('HAN', 'Hanoi'),  # Added Vietnamese cities
     ('HCM', 'Ho Chi Minh City'),  # Added Vietnamese cities
+    ('WIN', 'Windsor')
 ]
 
 
 class Payment(models.Model):
-    Name = models.CharField(max_length=255, default="test")
-    address = models.CharField(max_length=264, blank=True)
-    zipcode = models.CharField(max_length=10, blank=True)
+    Name = models.CharField(max_length=255, default="Jack Ryan")
+    address = models.CharField(max_length=264, blank=True, default="300 Ouellette Avenue")
+    zipcode = models.CharField(max_length=10, blank=True, default="N9A 7B4")
     country = models.CharField(max_length=264, choices=COUNTRY_CHOICES, blank=True, default='CAN')
-    city = models.CharField(max_length=264, choices=CITY_CHOICES, blank=True, default='TOR')
+    city = models.CharField(max_length=264, choices=CITY_CHOICES, blank=True, default='WIN')
     # Amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-    Email = models.EmailField()
+    Email = models.EmailField(default="test@greencart.ca")
     stripe_payment_intent_id = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
