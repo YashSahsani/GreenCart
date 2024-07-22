@@ -11,15 +11,14 @@ from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
 from userprofile.models import UserProfile
 
+@login_required
 def support_home(request):
     return render(request, 'support/support.html', {'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 def update_sucess(request):
     return render(request, 'support/update_success.html', {'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
-    return render(request, 'support/update_success.html', {'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 def query_sucess(request):
-    return render(request, 'support/query_success.html', {'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
     return render(request, 'support/query_success.html', {'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 
@@ -46,7 +45,6 @@ def query_form(request):
         form = QueryForm()
 
     return render(request, 'support/query_form.html', {'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
-    return render(request, 'support/query_form.html', {'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 def track_ticket(request):
     query = None
@@ -63,7 +61,6 @@ def track_ticket(request):
                 error = "Ticket number not found."
 
     return render(request, 'support/track_ticket.html', {'form': form, 'query': query, 'error': error, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
-    return render(request, 'support/track_ticket.html', {'form': form, 'query': query, 'error': error, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 def ticket_input(request):
     if request.method == 'POST':
@@ -74,7 +71,6 @@ def ticket_input(request):
     else:
         form = TicketInputForm()
 
-    return render(request, 'support/ticket_input.html', {'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
     return render(request, 'support/ticket_input.html', {'form': form, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 @staff_member_required
