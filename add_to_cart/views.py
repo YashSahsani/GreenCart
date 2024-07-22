@@ -4,11 +4,11 @@ from userprofile.models import UserProfile
 from .models import CartItem, WishlistItem
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
+from datetime import datetime
 
 @login_required
 def cart_view(request):
-    cart_items = CartItem.objects.all()
+    cart_items = CartItem.objects.filter(product__expiry_date__gte=datetime.now())
     total_amount = sum(item.total_price() for item in cart_items)
     total_items = sum(item.quantity for item in cart_items)
     return render(request, 'Cart/cart.html',
@@ -16,6 +16,7 @@ def cart_view(request):
                    'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 
+@login_required
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     cart_item, created = CartItem.objects.get_or_create(product=product)
@@ -26,12 +27,25 @@ def add_to_cart(request, product_id):
     return redirect('Shop:home')
 
 
+@login_required
+def add_to_cart_from_wishlist(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    cart_item, created = CartItem.objects.get_or_create(product=product)
+    if not created:
+        cart_item.quantity += 1
+    cart_item.save()
+    messages.success(request, 'Product added to cart')
+    return redirect('add_to_cart:wishlist')
+
+
+@login_required
 def remove_from_cart(request, cart_item_id):
     cart_item = get_object_or_404(CartItem, id=cart_item_id)
     cart_item.delete()
     return redirect('add_to_cart:cart')
 
 
+@login_required
 def increment_quantity(request, cart_item_id):
     cart_item = get_object_or_404(CartItem, id=cart_item_id)
     cart_item.quantity += 1
@@ -39,6 +53,7 @@ def increment_quantity(request, cart_item_id):
     return redirect('add_to_cart:cart')
 
 
+@login_required
 def decrement_quantity(request, cart_item_id):
     cart_item = get_object_or_404(CartItem, id=cart_item_id)
     if cart_item.quantity > 1:
@@ -49,23 +64,41 @@ def decrement_quantity(request, cart_item_id):
     return redirect('add_to_cart:cart')
 
 
+@login_required
 def add_to_wishlist(request, cart_item_id=None, product_id=None):
+    global cart_item
     if cart_item_id:
         cart_item = get_object_or_404(CartItem, id=cart_item_id)
-        WishlistItem.objects.create(product=cart_item.product)
-        cart_item.delete()
-        return redirect('add_to_cart:cart')
+        product = cart_item.product
     elif product_id:
         product = get_object_or_404(Product, id=product_id)
+    else:
+        messages.error(request, 'Invalid operation.')
+        return redirect('Shop:home')
+
+    # Check if the product is already in the wishlist
+    if WishlistItem.objects.filter(product=product).exists():
+        messages.success(request, 'Product is already in your wishlist')
+    else:
         WishlistItem.objects.create(product=product)
-    return redirect('add_to_cart:wishlist')
+        messages.success(request, 'Product added to wishlist')
+
+        if cart_item_id:
+            cart_item.delete()
+            return redirect('add_to_cart:cart')
+
+    return redirect('Shop:home')
+
 
 @login_required
 def wishlist_view(request):
-    wishlist_items = WishlistItem.objects.all()
-    return render(request, 'Cart/wishlist.html', {'wishlist_items': wishlist_items, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+    wishlist_items = WishlistItem.objects.filter(product__expiry_date__gte=datetime.now())
+    return render(request, 'Cart/wishlist.html', {'wishlist_items': wishlist_items,
+                                                  'user_profile_pic': UserProfile.objects.get(
+                                                      user=request.user).profile_pic.url})
 
 
+@login_required
 def remove_from_wishlist(request, wishlist_item_id):
     wishlist_item = get_object_or_404(WishlistItem, id=wishlist_item_id)
     wishlist_item.delete()
