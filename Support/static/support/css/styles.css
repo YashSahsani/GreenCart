@@ -262,3 +262,9 @@ body {
 .query-box .raise-query-link:hover {
     background-color: #4CAF50;
 }
+.error-message {
+    text-align: center;
+    color: darkgreen;
+    font-size: 2.5em;
+    margin: 20px 0;
+}

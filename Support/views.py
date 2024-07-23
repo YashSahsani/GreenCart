@@ -10,6 +10,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
 from userprofile.models import UserProfile
+from django.http import Http404
 
 @login_required
 def support_home(request):
@@ -75,7 +76,13 @@ def ticket_input(request):
 
 @staff_member_required
 def update_status(request, ticket_number):
-    query = get_object_or_404(Query, ticket_number=ticket_number)
+
+    try:
+        query = get_object_or_404(Query, ticket_number=ticket_number)
+    except Http404:
+        error = "Ticket Number not found! "
+        return render(request, 'support/update_status.html', {'error': error,  'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
+
     form = UpdateStatusForm(initial={'status': query.statuses.last().status if query.statuses.exists() else ''})
 
     if request.method == 'POST':

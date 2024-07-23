@@ -3,14 +3,20 @@
 
 {% block content %}
 <div class="form-container">
-    <h1 class="form-title text-green-800">Update Ticket Status</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="form-submit">Update Status</button>
-    </form>
+    {% if error %}
+        <div class="error-message">
+            <h1>{{ error }}</h1>
+        </div>
+    {% else %}
+        <h1 class="form-title text-green-800">Update Ticket Status</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="form-submit">Update Status</button>
+        </form>
+    {% endif %}
 </div>
 {% endblock %}
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'Support/static/support/css/styles.css' %}">
+<link rel="stylesheet" href="{% static 'support/css/styles.css' %}">
 {% endblock %}
