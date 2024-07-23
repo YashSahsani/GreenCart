@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="form-container">
-    <h1 class="form-title text-green-800">Track Your Ticket</h1>
+    <h1 class="form-title text-green-700">Track Your Ticket</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
@@ -20,7 +20,7 @@
             <p><strong>Status:</strong></p>
             <ul>
                 {% for status in query.statuses.all %}
-                    <li>{{ status.get_status_display }} - {{ status.updated_at }} (by {{ status.updated_by.username }})</li>
+                    <li>{{ status.get_status_display }} - {{ status.updated_at }}</li>
                 {% endfor %}
             </ul>
         </div>

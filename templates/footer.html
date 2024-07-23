@@ -23,7 +23,7 @@
                     <h2 class="mb-6 text-sm font-semibold text-gray-200 uppercase dark:text-white">Get in touch</h2>
                     <ul class="text-gray-400 dark:text-gray-400 font-medium">
                         <li class="mb-4">
-                            <a href="{% url 'support:support-home' %}" class="hover:underline">Contact Us</a>
+                            <a href="{% url 'support:support-home' %}" class="hover:underline">Support</a>
                         </li>
                         <li>
                             <a href="{% url 'GreenCartEcom:about' %}" class="hover:underline">About Us</a>
@@ -46,7 +46,7 @@
         
         
         <div class="flex h-full justify-center items-center mt-8">
-            <div class="p-6 w-full bg-gray-900">
+            <div class="p-6 w-full">
                 <div
                     class="flex flex-wrap items-center w-full max-w-5xl p-5 mx-auto text-left rounded-lg lg:flex-nowrap md:p-8 bg-white">
                     <div class="flex-1 w-full mb-5 md:mb-0 md:pr-5 lg:pr-10 md:w-1/2">
@@ -60,7 +60,7 @@
                             {% csrf_token %}
                             <input type="hidden">
                             <div class="flex flex-col sm:flex-row">
-                                <input type="email" id="email" name="email" placeholder="Enter your email address" class="flex-1 px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-lg sm:mr-5 focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 " required>
+                                <input type="email" id="email" name="email" placeholder="Enter your email address" class="flex-1 px-3 py-2 placeholder-gray-300 text-black border border-gray-300 rounded-lg sm:mr-5 focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 " required>
                                 <button type="submit"  class="w-full px-6 py-4 mt-5 text-white text-lg bg-green-600 hover:bg-green-700 rounded-lg sm:mt-0 sm:w-auto whitespace-nowrap"> Subscribe </button>
                             </div>
                         </form>

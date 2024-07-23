@@ -3,31 +3,14 @@
 
 {% block content %}
 <div class="form-container">
-    <h1 class="form-title">Track Your Ticket</h1>
+    <h1 class="form-title text-green-700">Provide Ticket Number to Update</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <br>
-        <button type="submit" class="form-submit">Track</button>
+        <button type="submit" class="form-submit">Find & Update</button>
     </form>
-    {% if query %}
-        <div class="ticket-info">
-            <h2>Ticket Information</h2>
-            <p><strong>Type:</strong> {{ query.get_type_display }}</p>
-            <p><strong>Name:</strong> {{ query.first_name }} {{ query.last_name }}</p>
-            <p><strong>Email:</strong> {{ query.email }}</p>
-            <p><strong>Description:</strong> {{ query.description }}</p>
-            <p><strong>Submitted At:</strong> {{ query.created_at }}</p>
-            <p><strong>Status:</strong></p>
-            <ul>
-                {% for status in query.statuses.all %}
-                    <li>{{ status.get_status_display }} - {{ status.updated_at }} (by {{ status.updated_by.username }})</li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% elif error %}
-        <p class="error">{{ error }}</p>
-    {% endif %}
+
 </div>
 {% endblock %}
 

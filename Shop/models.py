@@ -32,7 +32,7 @@ class Product(models.Model):
         now = timezone.now()
         expire_date = self.expire_date()
         delta = expire_date - now
-        return delta.days
+        return delta.days + 1
 
 
 class Reviews(models.Model):

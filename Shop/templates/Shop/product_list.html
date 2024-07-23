@@ -18,14 +18,14 @@
                            href="{% url 'Shop:edit_product' product.id %}">
                             <img class="object-cover w-full transform transition-transform duration-500 group-hover:scale-110"
                                  src="{{ product.image.url }}" alt="{{ product.name }}">
-                            {% if product.days_left %}
+                            {% if product.days_left >= 0 %}
                                 <span class="absolute top-0 left-0 m-2 rounded-full bg-red-600 px-2 text-center text-sm font-medium text-white">
-                    {% if product.days_left > 0 %}
-                    	{{ product.days_left }} days left
-                    {% else %}
-                        Expired
-                    {% endif %}
-                </span>
+                                {% if product.days_left > 0 %}
+                                    {{ product.days_left }} days left
+                                {% else %}
+                                    Expired
+                                {% endif %}
+                                </span>
                             {% endif %}
                         </a>
                         <div class="mt-4 px-5 pb-5">
@@ -65,10 +65,10 @@
         {% else %}
             <div class="flex items-center justify-center h-full">
                 <div class="text-center">
-                    <h2 class="text-2xl font-bold mb-4">No Products Listed</h2>
+                    <h2 class="text-2xl font-bold mb-4 text-green-800">No Products Listed</h2>
                     <p class="text-gray-700 mb-4">You haven't listed any products yet.</p>
                     <a href="{% url 'Shop:create_product' %}" class="block mt-4">
-                        <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Add New Product
+                        <button class="bg-green-600 hover:bg-green-800 text-white px-4 py-2 rounded">Add New Product
                         </button>
                     </a>
                 </div>
