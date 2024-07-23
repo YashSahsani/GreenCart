@@ -1,0 +1,1911 @@
+[
+    {
+        "model": "admin.logentry",
+        "pk": 1,
+        "fields": {
+            "action_time": "2024-07-22T19:42:30.589Z",
+            "user": 1,
+            "content_type": 7,
+            "object_id": "2",
+            "object_repr": "test@greencart.com",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Is staff\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 2,
+        "fields": {
+            "action_time": "2024-07-22T19:43:13.571Z",
+            "user": 1,
+            "content_type": 7,
+            "object_id": "2",
+            "object_repr": "test@greencart.com",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Is staff\"]}}]"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 1,
+        "fields": {
+            "name": "Can add log entry",
+            "content_type": 1,
+            "codename": "add_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 2,
+        "fields": {
+            "name": "Can change log entry",
+            "content_type": 1,
+            "codename": "change_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 3,
+        "fields": {
+            "name": "Can delete log entry",
+            "content_type": 1,
+            "codename": "delete_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 4,
+        "fields": {
+            "name": "Can view log entry",
+            "content_type": 1,
+            "codename": "view_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 5,
+        "fields": {
+            "name": "Can add permission",
+            "content_type": 2,
+            "codename": "add_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 6,
+        "fields": {
+            "name": "Can change permission",
+            "content_type": 2,
+            "codename": "change_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 7,
+        "fields": {
+            "name": "Can delete permission",
+            "content_type": 2,
+            "codename": "delete_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 8,
+        "fields": {
+            "name": "Can view permission",
+            "content_type": 2,
+            "codename": "view_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 9,
+        "fields": {
+            "name": "Can add group",
+            "content_type": 3,
+            "codename": "add_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 10,
+        "fields": {
+            "name": "Can change group",
+            "content_type": 3,
+            "codename": "change_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 11,
+        "fields": {
+            "name": "Can delete group",
+            "content_type": 3,
+            "codename": "delete_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 12,
+        "fields": {
+            "name": "Can view group",
+            "content_type": 3,
+            "codename": "view_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 13,
+        "fields": {
+            "name": "Can add content type",
+            "content_type": 4,
+            "codename": "add_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 14,
+        "fields": {
+            "name": "Can change content type",
+            "content_type": 4,
+            "codename": "change_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 15,
+        "fields": {
+            "name": "Can delete content type",
+            "content_type": 4,
+            "codename": "delete_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 16,
+        "fields": {
+            "name": "Can view content type",
+            "content_type": 4,
+            "codename": "view_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 17,
+        "fields": {
+            "name": "Can add session",
+            "content_type": 5,
+            "codename": "add_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 18,
+        "fields": {
+            "name": "Can change session",
+            "content_type": 5,
+            "codename": "change_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 19,
+        "fields": {
+            "name": "Can delete session",
+            "content_type": 5,
+            "codename": "delete_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 20,
+        "fields": {
+            "name": "Can view session",
+            "content_type": 5,
+            "codename": "view_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 21,
+        "fields": {
+            "name": "Can add offer",
+            "content_type": 6,
+            "codename": "add_offer"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 22,
+        "fields": {
+            "name": "Can change offer",
+            "content_type": 6,
+            "codename": "change_offer"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 23,
+        "fields": {
+            "name": "Can delete offer",
+            "content_type": 6,
+            "codename": "delete_offer"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 24,
+        "fields": {
+            "name": "Can view offer",
+            "content_type": 6,
+            "codename": "view_offer"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 25,
+        "fields": {
+            "name": "Can add user",
+            "content_type": 7,
+            "codename": "add_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 26,
+        "fields": {
+            "name": "Can change user",
+            "content_type": 7,
+            "codename": "change_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 27,
+        "fields": {
+            "name": "Can delete user",
+            "content_type": 7,
+            "codename": "delete_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 28,
+        "fields": {
+            "name": "Can view user",
+            "content_type": 7,
+            "codename": "view_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 29,
+        "fields": {
+            "name": "Can add product",
+            "content_type": 8,
+            "codename": "add_product"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 30,
+        "fields": {
+            "name": "Can change product",
+            "content_type": 8,
+            "codename": "change_product"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 31,
+        "fields": {
+            "name": "Can delete product",
+            "content_type": 8,
+            "codename": "delete_product"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 32,
+        "fields": {
+            "name": "Can view product",
+            "content_type": 8,
+            "codename": "view_product"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 33,
+        "fields": {
+            "name": "Can add reviews",
+            "content_type": 9,
+            "codename": "add_reviews"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 34,
+        "fields": {
+            "name": "Can change reviews",
+            "content_type": 9,
+            "codename": "change_reviews"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 35,
+        "fields": {
+            "name": "Can delete reviews",
+            "content_type": 9,
+            "codename": "delete_reviews"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 36,
+        "fields": {
+            "name": "Can view reviews",
+            "content_type": 9,
+            "codename": "view_reviews"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 37,
+        "fields": {
+            "name": "Can add wishlist item",
+            "content_type": 10,
+            "codename": "add_wishlistitem"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 38,
+        "fields": {
+            "name": "Can change wishlist item",
+            "content_type": 10,
+            "codename": "change_wishlistitem"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 39,
+        "fields": {
+            "name": "Can delete wishlist item",
+            "content_type": 10,
+            "codename": "delete_wishlistitem"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 40,
+        "fields": {
+            "name": "Can view wishlist item",
+            "content_type": 10,
+            "codename": "view_wishlistitem"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 41,
+        "fields": {
+            "name": "Can add cart item",
+            "content_type": 11,
+            "codename": "add_cartitem"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 42,
+        "fields": {
+            "name": "Can change cart item",
+            "content_type": 11,
+            "codename": "change_cartitem"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 43,
+        "fields": {
+            "name": "Can delete cart item",
+            "content_type": 11,
+            "codename": "delete_cartitem"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 44,
+        "fields": {
+            "name": "Can view cart item",
+            "content_type": 11,
+            "codename": "view_cartitem"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 45,
+        "fields": {
+            "name": "Can add payment",
+            "content_type": 12,
+            "codename": "add_payment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 46,
+        "fields": {
+            "name": "Can change payment",
+            "content_type": 12,
+            "codename": "change_payment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 47,
+        "fields": {
+            "name": "Can delete payment",
+            "content_type": 12,
+            "codename": "delete_payment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 48,
+        "fields": {
+            "name": "Can view payment",
+            "content_type": 12,
+            "codename": "view_payment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 49,
+        "fields": {
+            "name": "Can add order",
+            "content_type": 13,
+            "codename": "add_order"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 50,
+        "fields": {
+            "name": "Can change order",
+            "content_type": 13,
+            "codename": "change_order"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 51,
+        "fields": {
+            "name": "Can delete order",
+            "content_type": 13,
+            "codename": "delete_order"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 52,
+        "fields": {
+            "name": "Can view order",
+            "content_type": 13,
+            "codename": "view_order"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 53,
+        "fields": {
+            "name": "Can add order item",
+            "content_type": 14,
+            "codename": "add_orderitem"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 54,
+        "fields": {
+            "name": "Can change order item",
+            "content_type": 14,
+            "codename": "change_orderitem"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 55,
+        "fields": {
+            "name": "Can delete order item",
+            "content_type": 14,
+            "codename": "delete_orderitem"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 56,
+        "fields": {
+            "name": "Can view order item",
+            "content_type": 14,
+            "codename": "view_orderitem"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 57,
+        "fields": {
+            "name": "Can add user profile",
+            "content_type": 15,
+            "codename": "add_userprofile"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 58,
+        "fields": {
+            "name": "Can change user profile",
+            "content_type": 15,
+            "codename": "change_userprofile"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 59,
+        "fields": {
+            "name": "Can delete user profile",
+            "content_type": 15,
+            "codename": "delete_userprofile"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 60,
+        "fields": {
+            "name": "Can view user profile",
+            "content_type": 15,
+            "codename": "view_userprofile"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 61,
+        "fields": {
+            "name": "Can add faq",
+            "content_type": 16,
+            "codename": "add_faq"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 62,
+        "fields": {
+            "name": "Can change faq",
+            "content_type": 16,
+            "codename": "change_faq"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 63,
+        "fields": {
+            "name": "Can delete faq",
+            "content_type": 16,
+            "codename": "delete_faq"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 64,
+        "fields": {
+            "name": "Can view faq",
+            "content_type": 16,
+            "codename": "view_faq"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 65,
+        "fields": {
+            "name": "Can add query",
+            "content_type": 17,
+            "codename": "add_query"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 66,
+        "fields": {
+            "name": "Can change query",
+            "content_type": 17,
+            "codename": "change_query"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 67,
+        "fields": {
+            "name": "Can delete query",
+            "content_type": 17,
+            "codename": "delete_query"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 68,
+        "fields": {
+            "name": "Can view query",
+            "content_type": 17,
+            "codename": "view_query"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 69,
+        "fields": {
+            "name": "Can add ticket status",
+            "content_type": 18,
+            "codename": "add_ticketstatus"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 70,
+        "fields": {
+            "name": "Can change ticket status",
+            "content_type": 18,
+            "codename": "change_ticketstatus"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 71,
+        "fields": {
+            "name": "Can delete ticket status",
+            "content_type": 18,
+            "codename": "delete_ticketstatus"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 72,
+        "fields": {
+            "name": "Can view ticket status",
+            "content_type": 18,
+            "codename": "view_ticketstatus"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 73,
+        "fields": {
+            "name": "Can add faq category",
+            "content_type": 19,
+            "codename": "add_faqcategory"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 74,
+        "fields": {
+            "name": "Can change faq category",
+            "content_type": 19,
+            "codename": "change_faqcategory"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 75,
+        "fields": {
+            "name": "Can delete faq category",
+            "content_type": 19,
+            "codename": "delete_faqcategory"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 76,
+        "fields": {
+            "name": "Can view faq category",
+            "content_type": 19,
+            "codename": "view_faqcategory"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 1,
+        "fields": {
+            "app_label": "admin",
+            "model": "logentry"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 2,
+        "fields": {
+            "app_label": "auth",
+            "model": "permission"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 3,
+        "fields": {
+            "app_label": "auth",
+            "model": "group"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 4,
+        "fields": {
+            "app_label": "contenttypes",
+            "model": "contenttype"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 5,
+        "fields": {
+            "app_label": "sessions",
+            "model": "session"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 6,
+        "fields": {
+            "app_label": "GreenCartEcom",
+            "model": "offer"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 7,
+        "fields": {
+            "app_label": "Auth",
+            "model": "user"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 8,
+        "fields": {
+            "app_label": "Shop",
+            "model": "product"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 9,
+        "fields": {
+            "app_label": "Shop",
+            "model": "reviews"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 10,
+        "fields": {
+            "app_label": "add_to_cart",
+            "model": "wishlistitem"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 11,
+        "fields": {
+            "app_label": "add_to_cart",
+            "model": "cartitem"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 12,
+        "fields": {
+            "app_label": "payments",
+            "model": "payment"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 13,
+        "fields": {
+            "app_label": "payments",
+            "model": "order"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 14,
+        "fields": {
+            "app_label": "payments",
+            "model": "orderitem"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 15,
+        "fields": {
+            "app_label": "userprofile",
+            "model": "userprofile"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 16,
+        "fields": {
+            "app_label": "Support",
+            "model": "faq"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 17,
+        "fields": {
+            "app_label": "Support",
+            "model": "query"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 18,
+        "fields": {
+            "app_label": "Support",
+            "model": "ticketstatus"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 19,
+        "fields": {
+            "app_label": "Support",
+            "model": "faqcategory"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "5xe5tqife0n967pj3zdss287km44jwe5",
+        "fields": {
+            "session_data": ".eJxVjEEOwiAQRe_C2hAY2gou3XsGMjCDRQ2Y0iYa4921SRe6_e_99xIel3n0S-PJZxIHYcTudwsYr1xWQBcs5ypjLfOUg1wVudEmT5X4dtzcv8CIbfy-FWgbkovOBI0p6OBYu2Scs1EDQE-6GygRIei-R2VVNBG6jpUdAIZ9WqONW8u1eH7c8_QUB_X-AH5DPqU:1sW041:1K-qtu2iMXMEQcpw2TbrpRWA7bSqhsQ2q4-SijZhx-c",
+            "expire_date": "2024-08-05T20:55:21.226Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "736w8ehum4r40w2z36ywsfxrz8zz0s3i",
+        "fields": {
+            "session_data": ".eJxVjMsOwiAUBf-FtSHQy7NL934D4XGxqAFT2kRj_Hdt0oVuz8yZF3F-XSa3dpxdSWQknBx-t-DjFesG0sXXc6Ox1WUugW4K3Wmnp5bwdtzdv8Dk-_R9B5ktY2CUNkrmZDKDxITQFnCAHIXkIcjIJWSWYDAMreAarFYIJlqlt2jH3kurDh_3Mj_JyN4fS0892g:1sVg0O:_44rEByqxlJKlXDABAlZkOwBrsaRK5O8OYKizohXSEA",
+            "expire_date": "2024-08-04T23:30:16.474Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "f0dsjbwtzy4e2kc9w1t19d0kgf9wx206",
+        "fields": {
+            "session_data": ".eJxVjMsOwiAUBf-FtSHQy7NL934D4XGxqAFT2kRj_Hdt0oVuz8yZF3F-XSa3dpxdSWQknBx-t-DjFesG0sXXc6Ox1WUugW4K3Wmnp5bwdtzdv8Dk-_R9B5ktY2CUNkrmZDKDxITQFnCAHIXkIcjIJWSWYDAMreAarFYIJlqlt2jH3kurDh_3Mj_JyN4fS0892g:1sVyXG:vq-t6E10s7ODGycHpygINXBR6eACAmlMyAnjkUZE7No",
+            "expire_date": "2024-08-05T19:17:26.991Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "r2tr9vbqquuqbpfmxjgdb2zkix78xb25",
+        "fields": {
+            "session_data": ".eJxVjMsOwiAUBf-FtSHQy7NL934D4XGxqAFT2kRj_Hdt0oVuz8yZF3F-XSa3dpxdSWQknBx-t-DjFesG0sXXc6Ox1WUugW4K3Wmnp5bwdtzdv8Dk-_R9B5ktY2CUNkrmZDKDxITQFnCAHIXkIcjIJWSWYDAMreAarFYIJlqlt2jH3kurDh_3Mj_JyN4fS0892g:1sW0gs:AM-ppy4TokwHaVe50uJ2g-RKgePhU_1F7bRVfogQCRc",
+            "expire_date": "2024-08-05T21:35:30.568Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "t583odv68uskl5g0d6j9shlhx2u5j84z",
+        "fields": {
+            "session_data": ".eJxVjMsOwiAUBf-FtSHQy7NL934D4XGxqAFT2kRj_Hdt0oVuz8yZF3F-XSa3dpxdSWQknBx-t-DjFesG0sXXc6Ox1WUugW4K3Wmnp5bwdtzdv8Dk-_R9B5ktY2CUNkrmZDKDxITQFnCAHIXkIcjIJWSWYDAMreAarFYIJlqlt2jH3kurDh_3Mj_JyN4fS0892g:1sViIj:LQr59CItxrVwtNSi8dZr6OnVGiTU6GrYS_Q4aJAsS1k",
+            "expire_date": "2024-08-05T01:57:21.489Z"
+        }
+    },
+    {
+        "model": "GreenCartEcom.offer",
+        "pk": 1,
+        "fields": {
+            "title": "Indoor Plants",
+            "image": "offers_poster/indoor.jpg"
+        }
+    },
+    {
+        "model": "GreenCartEcom.offer",
+        "pk": 2,
+        "fields": {
+            "title": "Outdoor Plants",
+            "image": "offers_poster/Outdoor_plants.jpg"
+        }
+    },
+    {
+        "model": "GreenCartEcom.offer",
+        "pk": 3,
+        "fields": {
+            "title": "Gardening Toolkit",
+            "image": "offers_poster/toolkit.webp"
+        }
+    },
+    {
+        "model": "GreenCartEcom.offer",
+        "pk": 4,
+        "fields": {
+            "title": "Pot sets",
+            "image": "offers_poster/pot_sets.jpg"
+        }
+    },
+    {
+        "model": "GreenCartEcom.offer",
+        "pk": 5,
+        "fields": {
+            "title": "Art and crafts for Decoration",
+            "image": "offers_poster/arts.webp"
+        }
+    },
+    {
+        "model": "Auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$0FjuZXUItXGWbeWFurh8u3$dQsM8ptw+Pad5B0I6cstdfDKM9g6Q2ig4CJaMRkZaVY=",
+            "last_login": "2024-07-22T21:35:30.567Z",
+            "is_superuser": true,
+            "first_name": "admin",
+            "last_name": "admin",
+            "email": "admin@greencart.com",
+            "is_active": true,
+            "is_staff": true,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "Auth.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$sH4aon10SebzQ0LdhwAj8T$b8UEWHglxnZYEziQMRukhf56QExfKpgH4/ecOlWE0a0=",
+            "last_login": "2024-07-22T21:30:43.034Z",
+            "is_superuser": false,
+            "first_name": "test",
+            "last_name": "user",
+            "email": "test@greencart.com",
+            "is_active": true,
+            "is_staff": true,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "Auth.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$YiaJMIpEv0MtsXgUQDlvr9$wtUhW3fCldFJhIlGGJevWwS/5aojdKtwEODxXMBf4t4=",
+            "last_login": "2024-07-22T21:32:06.013Z",
+            "is_superuser": false,
+            "first_name": "Meet",
+            "last_name": "Patel",
+            "email": "meet@test.com",
+            "is_active": true,
+            "is_staff": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "Shop.product",
+        "pk": 1,
+        "fields": {
+            "name": "Anthurium (Pink) - Plant",
+            "description": "Anthurium is a genus of about 1,000 species of flowering plants, native to the Americas. These plants are known for their bright flowers and can be used as a decorative indoor plant.",
+            "price": "29.00",
+            "expiry": 3,
+            "discount_price": "19.00",
+            "image": "products/anthurium_pink.jpg",
+            "in_stock": true,
+            "rating": 4,
+            "created_at": "2024-07-16T00:00:00Z",
+            "updated_at": "2024-07-16T00:00:00Z",
+            "user_id": "1",
+            "expiry_date": "2024-07-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "Shop.product",
+        "pk": 2,
+        "fields": {
+            "name": "Areca Palm (Small) - Plant",
+            "description": "Areca Palm is a popular houseplant and also known as Butterfly Palm. It is one of the most widely used palms for bright interiors. What makes it special: NASA recommended an air purifier plant. Popular indoor house plant. Best plant for AC rooms, office desk.",
+            "price": "50.00",
+            "expiry": 3,
+            "discount_price": "30.00",
+            "image": "products/areca_palm_small.webp",
+            "in_stock": true,
+            "rating": 5,
+            "created_at": "2024-07-16T00:00:00Z",
+            "updated_at": "2024-07-16T00:00:00Z",
+            "user_id": "2",
+            "expiry_date": "2024-07-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "Shop.product",
+        "pk": 3,
+        "fields": {
+            "name": "Top 5 air purifier and oxygen enriching plant pack",
+            "description": "This plant pack includes the top 5 plants recommended by NASA for air purification and oxygen enrichment. Perfect for any home or office.",
+            "price": "80.00",
+            "expiry": 3,
+            "discount_price": "70.00",
+            "image": "products/air_purifier_pack.jpg",
+            "in_stock": true,
+            "rating": 3,
+            "created_at": "2024-07-16T00:00:00Z",
+            "updated_at": "2024-07-16T00:00:00Z",
+            "user_id": "2",
+            "expiry_date": "2024-07-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "Shop.product",
+        "pk": 4,
+        "fields": {
+            "name": "Sansevieria trifasciata Hahnii, Snake Plant - Plant",
+            "description": "Sansevieria trifasciata Hahnii is a popular houseplant with dark green leaves marked with a pattern of wavy cross stripes in a lighter color. What makes it special: NASA recommended an air purifier plant. Best plant for AC rooms, office desk. Zero maintenance plant. Best indoor plant for low light condition.",
+            "price": "26.00",
+            "expiry": 3,
+            "discount_price": "16.00",
+            "image": "products/snake_plant.jpg",
+            "in_stock": true,
+            "rating": 5,
+            "created_at": "2024-07-16T00:00:00Z",
+            "updated_at": "2024-07-16T00:00:00Z",
+            "user_id": "2",
+            "expiry_date": "2024-07-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "Shop.product",
+        "pk": 5,
+        "fields": {
+            "name": "Aptenia, Heartleaf Ice - Succulent Plant",
+            "description": "Aptenia is a genus of succulent plants with heart-shaped leaves and bright flowers. These plants are perfect for indoor decoration and require minimal care.",
+            "price": "30.00",
+            "expiry": 3,
+            "discount_price": "20.00",
+            "image": "products/aptenia_heartleaf.jpg",
+            "in_stock": true,
+            "rating": 5,
+            "created_at": "2024-07-16T00:00:00Z",
+            "updated_at": "2024-07-16T00:00:00Z",
+            "user_id": "2",
+            "expiry_date": "2024-07-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "Shop.product",
+        "pk": 6,
+        "fields": {
+            "name": "Rose (Red) - Plant",
+            "description": "Red Roses are a symbol of love and beauty. This plant can be grown indoors and is known for its vibrant red flowers.",
+            "price": "21.00",
+            "expiry": 300,
+            "discount_price": "11.00",
+            "image": "products/rose_red.webp",
+            "in_stock": true,
+            "rating": 2,
+            "created_at": "2024-07-16T00:00:00Z",
+            "updated_at": "2024-07-22T20:01:43.501Z",
+            "user_id": "2",
+            "expiry_date": "2025-05-12T00:00:00Z"
+        }
+    },
+    {
+        "model": "Shop.product",
+        "pk": 7,
+        "fields": {
+            "name": "Hydrangea macrophylla (Any Color) - Plant",
+            "description": "Hydrangea macrophylla is known for its large and colorful flower heads. These plants are perfect for indoor decoration and can come in various colors.",
+            "price": "17.00",
+            "expiry": 3,
+            "discount_price": "14.00",
+            "image": "products/hydrangea_macrophylla.jpg",
+            "in_stock": true,
+            "rating": 3,
+            "created_at": "2024-07-16T00:00:00Z",
+            "updated_at": "2024-07-16T00:00:00Z",
+            "user_id": "2",
+            "expiry_date": "2024-07-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "Shop.product",
+        "pk": 8,
+        "fields": {
+            "name": "Set of 2 Bonsai Looking Grafted Adeniums",
+            "description": "This set includes two Bonsai looking Adenium plants. These plants are known for their unique appearance and are perfect for indoor decoration.",
+            "price": "26.00",
+            "expiry": 3,
+            "discount_price": "22.00",
+            "image": "products/bonsai_adenium.jpg",
+            "in_stock": true,
+            "rating": 4,
+            "created_at": "2024-07-16T00:00:00Z",
+            "updated_at": "2024-07-16T00:00:00Z",
+            "user_id": "2",
+            "expiry_date": "2024-07-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "Shop.product",
+        "pk": 9,
+        "fields": {
+            "name": "Heartstone Pitcher",
+            "description": "Three cheers for this delightful mix! Arranged in a keepsake ceramic pitcher - a lovely gift - this mix of favourite blooms is a guaranteed smile-getter. Approx. 12\" H x 10\" W",
+            "price": "27.00",
+            "expiry": 36,
+            "discount_price": "22.00",
+            "image": "products/jm-product.jpg",
+            "in_stock": true,
+            "rating": 3,
+            "created_at": "2024-07-17T14:21:28.255Z",
+            "updated_at": "2024-07-17T23:40:42.549Z",
+            "user_id": "1",
+            "expiry_date": "2024-08-07T14:21:28.255Z"
+        }
+    },
+    {
+        "model": "Shop.product",
+        "pk": 10,
+        "fields": {
+            "name": "2 Layer Lucky Bamboo Plant in a Bowl with Pebbles",
+            "description": "Lucky Bamboo is well-known for bringing good fortune, prosperity and positive vibes.\r\nLucky bamboo symbolize happy life making it a perfect gift for any occasion.\r\nThese plants are extremely easy to take care and require very little maintenance.\r\nYou can keep this plant in air-conditioned rooms also.\r\n\r\n\r\nCare Instructions\r\nKeep the Lucky bamboo plant away from direct sunlight to avoid overheat from sun exposure.\r\nDo not spray water or mist in the lucky bamboo leaves, a gentle wiping will remove dust or dirt from it.\r\nAvoid the use of chlorinated water as it may cause damage to the plant. Maintain the water level to keep the roots submerged in water.\r\nChange the water, clean the roots of the plant and pot once in a week to keep plants healthy.",
+            "price": "15.00",
+            "expiry": 7,
+            "discount_price": "11.00",
+            "image": "products/nurserylive-g-plants-2-layer-lucky-bamboo-plant-in-a-bowl-with-pebbles-564917_600x600.webp",
+            "in_stock": true,
+            "rating": 5,
+            "created_at": "2024-07-17T14:40:41.001Z",
+            "updated_at": "2024-07-22T19:07:01.495Z",
+            "user_id": "1",
+            "expiry_date": "2024-07-24T14:40:41.001Z"
+        }
+    },
+    {
+        "model": "Shop.product",
+        "pk": 11,
+        "fields": {
+            "name": "Sun flower",
+            "description": "Sunflower in yellow",
+            "price": "49.00",
+            "expiry": 19,
+            "discount_price": "40.00",
+            "image": "products/photo-1597848212624-a19eb35e2651.jpg",
+            "in_stock": true,
+            "rating": 1,
+            "created_at": "2024-07-17T23:42:16.052Z",
+            "updated_at": "2024-07-18T00:00:38.351Z",
+            "user_id": "1",
+            "expiry_date": "2024-07-24T23:42:16.052Z"
+        }
+    },
+    {
+        "model": "Shop.product",
+        "pk": 13,
+        "fields": {
+            "name": "Flamingo Flower",
+            "description": "The Flamingo Flower Plant, known scientifically as Anthurium andraeanum, is a striking and vibrant addition to any indoor garden. Belonging to the Araceae family, this tropical plant originates from the rainforests of Central and South America. It features glossy, heart-shaped leaves and distinctive, long-lasting blooms in various colors, including red, pink, white, and purple. For instance, the Pink Flamingo Flower is a popular variety, adding a touch of elegance and color to any setting.\r\n\r\nFlamingo plants thrive in hardy zones 10-11, making them well-suited for warm, humid environments. They are relatively easy to care for and prefer bright, indirect light and consistent moisture. The Flamingo Lily is related to the Peace Lily and shares similar care needs.\r\n\r\nIn Feng Shui, the Flamingo Flower symbolizes hospitality and happiness, making it a popular choice for homes and as a gift. While not as toxic as other houseplants, it can still harm pets’ well-being if ingested.",
+            "price": "50.00",
+            "expiry": 1,
+            "discount_price": "43.00",
+            "image": "products/b2df66a3fbdb--PDP-6in-Flamingo-Flower-White-Ceramic-01.webp",
+            "in_stock": true,
+            "rating": 5,
+            "created_at": "2024-07-22T21:33:38.187Z",
+            "updated_at": "2024-07-22T21:34:18.497Z",
+            "user_id": "3",
+            "expiry_date": "2024-07-23T21:33:38.187Z"
+        }
+    },
+    {
+        "model": "Shop.reviews",
+        "pk": 1,
+        "fields": {
+            "product": 2,
+            "user": 1,
+            "review": "okayish",
+            "rating": "3.00"
+        }
+    },
+    {
+        "model": "Shop.reviews",
+        "pk": 2,
+        "fields": {
+            "product": 9,
+            "user": 1,
+            "review": "okayish",
+            "rating": "3.00"
+        }
+    },
+    {
+        "model": "Shop.reviews",
+        "pk": 3,
+        "fields": {
+            "product": 9,
+            "user": 1,
+            "review": "nice",
+            "rating": "3.00"
+        }
+    },
+    {
+        "model": "Shop.reviews",
+        "pk": 4,
+        "fields": {
+            "product": 11,
+            "user": 1,
+            "review": "i want blue",
+            "rating": "1.00"
+        }
+    },
+    {
+        "model": "Shop.reviews",
+        "pk": 5,
+        "fields": {
+            "product": 13,
+            "user": 3,
+            "review": "love it!!! it's super healthy and a perfect size!",
+            "rating": "5.00"
+        }
+    },
+    {
+        "model": "add_to_cart.cartitem",
+        "pk": 28,
+        "fields": {
+            "product": 2,
+            "quantity": 2,
+            "user_id": "1"
+        }
+    },
+    {
+        "model": "add_to_cart.cartitem",
+        "pk": 30,
+        "fields": {
+            "product": 4,
+            "quantity": 2,
+            "user_id": "1"
+        }
+    },
+    {
+        "model": "add_to_cart.cartitem",
+        "pk": 33,
+        "fields": {
+            "product": 6,
+            "quantity": 1,
+            "user_id": "1"
+        }
+    },
+    {
+        "model": "add_to_cart.cartitem",
+        "pk": 35,
+        "fields": {
+            "product": 9,
+            "quantity": 1,
+            "user_id": "1"
+        }
+    },
+    {
+        "model": "add_to_cart.cartitem",
+        "pk": 36,
+        "fields": {
+            "product": 13,
+            "quantity": 1,
+            "user_id": "1"
+        }
+    },
+    {
+        "model": "add_to_cart.wishlistitem",
+        "pk": 15,
+        "fields": {
+            "product": 2,
+            "user_id": "1"
+        }
+    },
+    {
+        "model": "add_to_cart.wishlistitem",
+        "pk": 16,
+        "fields": {
+            "product": 7,
+            "user_id": "1"
+        }
+    },
+    {
+        "model": "add_to_cart.wishlistitem",
+        "pk": 17,
+        "fields": {
+            "product": 2,
+            "user_id": "1"
+        }
+    },
+    {
+        "model": "add_to_cart.wishlistitem",
+        "pk": 18,
+        "fields": {
+            "product": 1,
+            "user_id": "1"
+        }
+    },
+    {
+        "model": "add_to_cart.wishlistitem",
+        "pk": 19,
+        "fields": {
+            "product": 2,
+            "user_id": "1"
+        }
+    },
+    {
+        "model": "add_to_cart.wishlistitem",
+        "pk": 20,
+        "fields": {
+            "product": 11,
+            "user_id": "1"
+        }
+    },
+    {
+        "model": "add_to_cart.wishlistitem",
+        "pk": 21,
+        "fields": {
+            "product": 6,
+            "user_id": "1"
+        }
+    },
+    {
+        "model": "payments.payment",
+        "pk": 1,
+        "fields": {
+            "Name": "Yash Patel",
+            "address": "232 BRIDGE AVE, WINDSOR, ON",
+            "zipcode": "N9B2M2",
+            "country": "CAN",
+            "city": "TOR",
+            "Email": "yashpatel4936.yp@gmail.com",
+            "stripe_payment_intent_id": "pi_3PdYlYRtHtPlgcai0FSXkXmq"
+        }
+    },
+    {
+        "model": "payments.payment",
+        "pk": 2,
+        "fields": {
+            "Name": "John",
+            "address": "232 BRIDGE AVE, WINDSOR, ON",
+            "zipcode": "390011",
+            "country": "IND",
+            "city": "TOR",
+            "Email": "yashpatel4936.yp@gmail.com",
+            "stripe_payment_intent_id": "pi_3Pf17zRtHtPlgcai1vtJpPgr"
+        }
+    },
+    {
+        "model": "payments.payment",
+        "pk": 3,
+        "fields": {
+            "Name": "John",
+            "address": "8 Melpham Ct",
+            "zipcode": "M9V 2H3",
+            "country": "USA",
+            "city": "TOR",
+            "Email": "yashpatel.sde@gmail.com",
+            "stripe_payment_intent_id": "pi_3Pf1HhRtHtPlgcai0GDWYMll"
+        }
+    },
+    {
+        "model": "payments.order",
+        "pk": 1,
+        "fields": {
+            "order_id": "ae00a368-60a9-4366-b0ec-276850690794",
+            "created_at": "2024-07-17T14:23:35.562Z",
+            "total_amount": "26.00",
+            "total_items": 1,
+            "payment": 1
+        }
+    },
+    {
+        "model": "payments.order",
+        "pk": 2,
+        "fields": {
+            "order_id": "8b6fa593-4a46-4efd-8f34-7ba3c7dfa448",
+            "created_at": "2024-07-21T14:52:47.267Z",
+            "total_amount": "155.00",
+            "total_items": 4,
+            "payment": 2
+        }
+    },
+    {
+        "model": "payments.order",
+        "pk": 3,
+        "fields": {
+            "order_id": "940462bb-5bc5-472a-9868-8ac541f40c5b",
+            "created_at": "2024-07-21T14:55:36.576Z",
+            "total_amount": "155.00",
+            "total_items": 4,
+            "payment": 3
+        }
+    },
+    {
+        "model": "payments.order",
+        "pk": 4,
+        "fields": {
+            "order_id": "5185ae9c-656b-41b2-9c8a-d0daf3ed76c8",
+            "created_at": "2024-07-21T15:02:49.345Z",
+            "total_amount": "155.00",
+            "total_items": 4,
+            "payment": 3
+        }
+    },
+    {
+        "model": "payments.orderitem",
+        "pk": 1,
+        "fields": {
+            "order": 1,
+            "product": "Sansevieria trifasciata Hahnii, Snake Plant - Plant",
+            "quantity": 1,
+            "price": "26.00"
+        }
+    },
+    {
+        "model": "payments.orderitem",
+        "pk": 2,
+        "fields": {
+            "order": 2,
+            "product": "Anthurium (Pink) - Plant",
+            "quantity": 1,
+            "price": "29.00"
+        }
+    },
+    {
+        "model": "payments.orderitem",
+        "pk": 3,
+        "fields": {
+            "order": 2,
+            "product": "Areca Palm (Small) - Plant",
+            "quantity": 2,
+            "price": "50.00"
+        }
+    },
+    {
+        "model": "payments.orderitem",
+        "pk": 4,
+        "fields": {
+            "order": 2,
+            "product": "Sansevieria trifasciata Hahnii, Snake Plant - Plant",
+            "quantity": 1,
+            "price": "26.00"
+        }
+    },
+    {
+        "model": "payments.orderitem",
+        "pk": 5,
+        "fields": {
+            "order": 3,
+            "product": "Anthurium (Pink) - Plant",
+            "quantity": 1,
+            "price": "29.00"
+        }
+    },
+    {
+        "model": "payments.orderitem",
+        "pk": 6,
+        "fields": {
+            "order": 3,
+            "product": "Areca Palm (Small) - Plant",
+            "quantity": 2,
+            "price": "50.00"
+        }
+    },
+    {
+        "model": "payments.orderitem",
+        "pk": 7,
+        "fields": {
+            "order": 3,
+            "product": "Sansevieria trifasciata Hahnii, Snake Plant - Plant",
+            "quantity": 1,
+            "price": "26.00"
+        }
+    },
+    {
+        "model": "payments.orderitem",
+        "pk": 8,
+        "fields": {
+            "order": 4,
+            "product": "Anthurium (Pink) - Plant",
+            "quantity": 1,
+            "price": "29.00"
+        }
+    },
+    {
+        "model": "payments.orderitem",
+        "pk": 9,
+        "fields": {
+            "order": 4,
+            "product": "Areca Palm (Small) - Plant",
+            "quantity": 2,
+            "price": "50.00"
+        }
+    },
+    {
+        "model": "payments.orderitem",
+        "pk": 10,
+        "fields": {
+            "order": 4,
+            "product": "Sansevieria trifasciata Hahnii, Snake Plant - Plant",
+            "quantity": 1,
+            "price": "26.00"
+        }
+    },
+    {
+        "model": "userprofile.userprofile",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "date_of_birth": null,
+            "address_line_1": "None",
+            "address_line_2": "-",
+            "city": "None",
+            "state": "None",
+            "country": "None",
+            "zip_code": "None",
+            "phone_number": "None",
+            "profile_pic": "default.jpg",
+            "location": "None"
+        }
+    },
+    {
+        "model": "userprofile.userprofile",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "date_of_birth": "1990-01-01",
+            "address_line_1": null,
+            "address_line_2": "-",
+            "city": null,
+            "state": null,
+            "country": null,
+            "zip_code": null,
+            "phone_number": null,
+            "profile_pic": "default.jpg",
+            "location": null
+        }
+    },
+    {
+        "model": "userprofile.userprofile",
+        "pk": 3,
+        "fields": {
+            "user": 3,
+            "date_of_birth": "1990-01-01",
+            "address_line_1": null,
+            "address_line_2": "-",
+            "city": null,
+            "state": null,
+            "country": null,
+            "zip_code": null,
+            "phone_number": null,
+            "profile_pic": "default.jpg",
+            "location": null
+        }
+    },
+    {
+        "model": "Support.query",
+        "pk": 1,
+        "fields": {
+            "first_name": "Yash",
+            "last_name": "Patel",
+            "email": "yashpatel.sde@gmail.com",
+            "type": "order_delivery",
+            "description": "jjkkj",
+            "attachment": "query_attachments/NCCE_POSTER.png",
+            "created_at": "2024-07-21T14:54:30.664Z",
+            "ticket_number": 31301
+        }
+    },
+    {
+        "model": "Support.query",
+        "pk": 2,
+        "fields": {
+            "first_name": "Yash",
+            "last_name": "Patel",
+            "email": "yashpatel.sde@gmail.com",
+            "type": "order_status",
+            "description": "dss",
+            "attachment": "",
+            "created_at": "2024-07-22T02:17:39.613Z",
+            "ticket_number": 51551
+        }
+    },
+    {
+        "model": "Support.query",
+        "pk": 3,
+        "fields": {
+            "first_name": "Meet",
+            "last_name": "Meet",
+            "email": "meet@test.com",
+            "type": "order_status",
+            "description": "Meet",
+            "attachment": "",
+            "created_at": "2024-07-22T20:59:50.231Z",
+            "ticket_number": 20003
+        }
+    },
+    {
+        "model": "Support.ticketstatus",
+        "pk": 1,
+        "fields": {
+            "query": 1,
+            "status": "open",
+            "updated_at": "2024-07-21T14:54:30.666Z",
+            "updated_by": null
+        }
+    },
+    {
+        "model": "Support.ticketstatus",
+        "pk": 2,
+        "fields": {
+            "query": 2,
+            "status": "open",
+            "updated_at": "2024-07-22T02:17:39.617Z",
+            "updated_by": null
+        }
+    },
+    {
+        "model": "Support.ticketstatus",
+        "pk": 3,
+        "fields": {
+            "query": 2,
+            "status": "in_progress",
+            "updated_at": "2024-07-22T02:19:58.557Z",
+            "updated_by": 1
+        }
+    },
+    {
+        "model": "Support.ticketstatus",
+        "pk": 4,
+        "fields": {
+            "query": 3,
+            "status": "open",
+            "updated_at": "2024-07-22T20:59:50.235Z",
+            "updated_by": null
+        }
+    },
+    {
+        "model": "Support.faqcategory",
+        "pk": 1,
+        "fields": {
+            "name": "Plant Care"
+        }
+    },
+    {
+        "model": "Support.faqcategory",
+        "pk": 2,
+        "fields": {
+            "name": "Gardening Tips"
+        }
+    },
+    {
+        "model": "Support.faqcategory",
+        "pk": 3,
+        "fields": {
+            "name": "Pet-Friendly Plants"
+        }
+    },
+    {
+        "model": "Support.faqcategory",
+        "pk": 4,
+        "fields": {
+            "name": "Indoor Plants"
+        }
+    },
+    {
+        "model": "Support.faqcategory",
+        "pk": 5,
+        "fields": {
+            "name": "Vegetable Gardening"
+        }
+    },
+    {
+        "model": "Support.faqcategory",
+        "pk": 6,
+        "fields": {
+            "name": "Pest Control"
+        }
+    },
+    {
+        "model": "Support.faqcategory",
+        "pk": 7,
+        "fields": {
+            "name": "Indoor Gardening"
+        }
+    },
+    {
+        "model": "Support.faqcategory",
+        "pk": 8,
+        "fields": {
+            "name": "Outdoor Gardening"
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 1,
+        "fields": {
+            "question": "What are the best plants for low light conditions?",
+            "answer": "Plants like snake plants, pothos, and peace lilies thrive in low light.",
+            "category": 1
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 2,
+        "fields": {
+            "question": "How often should I water my succulents?",
+            "answer": "Succulents prefer dry conditions; water them every 2-3 weeks, depending on the climate.",
+            "category": 2
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 3,
+        "fields": {
+            "question": "Which plants are pet-friendly?",
+            "answer": "Some pet-friendly plants include spider plants, Boston ferns, and African violets.",
+            "category": 3
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 4,
+        "fields": {
+            "question": "How can I prevent overwatering my houseplants?",
+            "answer": "Ensure your pots have drainage holes and check soil moisture before watering.",
+            "category": 1
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 5,
+        "fields": {
+            "question": "What are air-purifying plants?",
+            "answer": "Plants like peace lilies, spider plants, and snake plants help improve indoor air quality.",
+            "category": 4
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 6,
+        "fields": {
+            "question": "How do I propagate succulents?",
+            "answer": "Succulents can be propagated from leaf or stem cuttings placed in well-draining soil.",
+            "category": 2
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 7,
+        "fields": {
+            "question": "What is the best fertilizer for indoor plants?",
+            "answer": "Use a balanced liquid fertilizer diluted to half-strength during the growing season.",
+            "category": 1
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 8,
+        "fields": {
+            "question": "How much sunlight do tomato plants need?",
+            "answer": "Tomato plants require at least 6-8 hours of direct sunlight daily for optimal growth.",
+            "category": 5
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 9,
+        "fields": {
+            "question": "What causes yellowing leaves on houseplants?",
+            "answer": "Yellow leaves can result from overwatering, nutrient deficiencies, or insufficient light.",
+            "category": 1
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 10,
+        "fields": {
+            "question": "How can I control pests on my plants naturally?",
+            "answer": "Use neem oil, insecticidal soap, or introduce beneficial insects like ladybugs.",
+            "category": 6
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 11,
+        "fields": {
+            "question": "What is the best way to repot a plant?",
+            "answer": "Choose a pot one size larger, gently loosen roots, and add fresh potting mix.",
+            "category": 1
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 12,
+        "fields": {
+            "question": "Which herbs can I grow indoors year-round?",
+            "answer": "Herbs like basil, mint, parsley, and chives thrive indoors with adequate light.",
+            "category": 7
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 13,
+        "fields": {
+            "question": "How do I prevent fungus gnats in houseplants?",
+            "answer": "Allow soil to dry between waterings and use sticky traps to catch adult gnats.",
+            "category": 6
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 14,
+        "fields": {
+            "question": "What is the ideal humidity level for tropical houseplants?",
+            "answer": "Tropical plants prefer humidity levels of 50% or higher; misting can help maintain humidity.",
+            "category": 4
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 15,
+        "fields": {
+            "question": "Can I grow vegetables indoors?",
+            "answer": "Yes, vegetables like lettuce, cherry tomatoes, and peppers can be grown indoors with sufficient light.",
+            "category": 7
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 16,
+        "fields": {
+            "question": "How do I revive a wilting plant?",
+            "answer": "Check soil moisture and water as needed; trim any damaged leaves and provide appropriate light.",
+            "category": 1
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 17,
+        "fields": {
+            "question": "What are the benefits of using mulch in garden beds?",
+            "answer": "Mulch helps retain soil moisture, suppress weeds, and regulate soil temperature.",
+            "category": 2
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 18,
+        "fields": {
+            "question": "How can I create a herb garden in small spaces?",
+            "answer": "Use vertical planters, hanging baskets, or window boxes for compact herb gardens.",
+            "category": 7
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 19,
+        "fields": {
+            "question": "How do I prevent root rot in houseplants?",
+            "answer": "Ensure pots have drainage holes, use well-draining soil, and avoid overwatering.",
+            "category": 1
+        }
+    },
+    {
+        "model": "Support.faq",
+        "pk": 20,
+        "fields": {
+            "question": "Which plants are best suited for a balcony garden?",
+            "answer": "Herbs, succulents, and compact vegetables like cherry tomatoes and peppers thrive in balcony gardens.",
+            "category": 8
+        }
+    }
+]
