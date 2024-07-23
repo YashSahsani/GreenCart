@@ -14,7 +14,7 @@ class QueryForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class': 'form-input', 'placeholder': 'Email'}),
             'type': forms.Select(attrs={'class': 'form-dropdown'}),
             'description': forms.Textarea(attrs={'class': 'form-textarea', 'placeholder': 'Description', 'rows': 5}),
-            'attachment': forms.ClearableFileInput(attrs={'class': 'form-file'}),
+            'attachment': forms.FileInput(attrs={'class': 'form-file'}),
         }
 class TicketNumberForm(forms.Form):
     ticket_number = forms.CharField(
