@@ -1,4 +1,5 @@
 from datetime import datetime
+import pytz
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from .models import Product, Reviews
@@ -51,7 +52,8 @@ def home(request):
     elif sort_by == 'expiry_desc':
         products = products.order_by('-expiry')
 
-    current_hour = datetime.now().hour
+    timezone = pytz.timezone('America/New_York')
+    current_hour = datetime.now(timezone).hour
     if current_hour < 12:
         greeting = "Good morning"
     elif 12 <= current_hour < 18:
@@ -171,7 +173,7 @@ def delete_product(request):
 def manage_reviews(request):
     reviews = Reviews.objects.filter(user=request.user)
     print(reviews)
-    return render(request,'Shop/manage-review.html',{'reviews':reviews})
+    return render(request,'Shop/manage-review.html',{'reviews':reviews, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 @login_required
 def edit_review(request, review_id):
@@ -193,7 +195,7 @@ def edit_review(request, review_id):
             return redirect("Shop:manage_reviews")
     else:
         form = ReviewForm(instance=review)
-    return render(request, 'Shop/edit_review.html', {'form': form,'review_id':review_id})
+    return render(request, 'Shop/edit_review.html', {'form': form,'review_id':review_id, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
 @login_required
 def delete_review(request, review_id):
