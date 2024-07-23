@@ -23,7 +23,7 @@ class Query(models.Model):
         if not self.ticket_number:
             self.ticket_number = random.randint(10000, 99999)
         super().save(*args, **kwargs)
-        if not self.statuses.exists():
+        if not self.statuses.exists(): # else ticketstatus_set
             TicketStatus.objects.create(query=self, status='open')
 
     def __str__(self):

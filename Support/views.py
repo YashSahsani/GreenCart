@@ -80,7 +80,7 @@ def update_status(request, ticket_number):
     try:
         query = get_object_or_404(Query, ticket_number=ticket_number)
     except Http404:
-        error = "Ticket number not found! "
+        error = "Ticket Number not found! "
         return render(request, 'support/update_status.html', {'error': error,  'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
     form = UpdateStatusForm(initial={'status': query.statuses.last().status if query.statuses.exists() else ''})

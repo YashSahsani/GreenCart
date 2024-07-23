@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import Query, TicketStatus, faqCategory, FAQ
 
-# Register your models here.
+admin.site.register(Query)
+admin.site.register(TicketStatus)
+admin.site.register(faqCategory)
+admin.site.register(FAQ)
