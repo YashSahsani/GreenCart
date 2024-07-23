@@ -26,6 +26,100 @@
         }
     },
     {
+        "model": "Auth.User",
+        "pk": 3,
+        "fields": {
+            "first_name": "yash",
+            "email": "yash@greencart.com",
+            "last_name": "Sahsani",
+            "password": "pbkdf2_sha256$600000$sH4aon10SebzQ0LdhwAj8T$b8UEWHglxnZYEziQMRukhf56QExfKpgH4/ecOlWE0a0=",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true
+        }
+    },
+    {
+        "model": "Auth.User",
+        "pk": 4,
+        "fields": {
+            "first_name": "meet",
+            "email": "meet@greencart.com",
+            "last_name": "Patel",
+            "password": "pbkdf2_sha256$600000$sH4aon10SebzQ0LdhwAj8T$b8UEWHglxnZYEziQMRukhf56QExfKpgH4/ecOlWE0a0=",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true
+        }
+    },
+    {
+        "model": "userprofile.userprofile",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "date_of_birth": "1990-01-01",
+            "address_line_1": null,
+            "address_line_2": "-",
+            "city": null,
+            "state": null,
+            "country": null,
+            "zip_code": null,
+            "phone_number": null,
+            "profile_pic": "default.jpg",
+            "location": null
+        }
+    },
+    {
+        "model": "userprofile.userprofile",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "date_of_birth": "1990-01-01",
+            "address_line_1": null,
+            "address_line_2": "-",
+            "city": null,
+            "state": null,
+            "country": null,
+            "zip_code": null,
+            "phone_number": null,
+            "profile_pic": "default.jpg",
+            "location": null
+        }
+    },
+    {
+        "model": "userprofile.userprofile",
+        "pk": 3,
+        "fields": {
+            "user": 3,
+            "date_of_birth": "2000-07-01",
+            "address_line_1": "1132 Windsor Ave",
+            "address_line_2": "-",
+            "city": "Windsor",
+            "state": "Ontario",
+            "country": "Canada",
+            "zip_code": "N9A1K4",
+            "phone_number": "1234567890",
+            "profile_pic": "profile_pics/Screenshot_2024-05-17_at_7.37.46PM.png",
+            "location": "None"
+        }
+    },
+    {
+        "model": "userprofile.userprofile",
+        "pk": 4,
+        "fields": {
+            "user": 4,
+            "date_of_birth": "1990-01-01",
+            "address_line_1": null,
+            "address_line_2": "-",
+            "city": null,
+            "state": null,
+            "country": null,
+            "zip_code": null,
+            "phone_number": null,
+            "profile_pic": "default.jpg",
+            "location": null
+        }
+    },
+    {
         "model": "Shop.Product",
         "pk": 1,
         "fields": {
