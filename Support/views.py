@@ -56,10 +56,13 @@ def track_ticket(request):
         form = TicketNumberForm(request.POST)
         if form.is_valid():
             ticket_number = form.cleaned_data['ticket_number']
-            try:
-                query = Query.objects.get(ticket_number=ticket_number)
-            except Query.DoesNotExist:
-                error = "Ticket number not found."
+            if(ticket_number.isnumeric() == False):
+                error = "Ticket number must be a number."
+            else:
+                try:
+                    query = Query.objects.get(ticket_number=ticket_number)
+                except Query.DoesNotExist:
+                    error = "Ticket number not found."
 
     return render(request, 'support/track_ticket.html', {'form': form, 'query': query, 'error': error, 'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
 
