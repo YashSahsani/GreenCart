@@ -57,7 +57,8 @@ def plant_care_tips(request):
     
 
 def subscribe(request):
+    if request.user.is_authenticated:
+        return render(request, 'FooterPages/subscription_success.html', {'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
     if request.method == "POST":
-    
         return render(request, 'FooterPages/subscription_success.html')
     return redirect(reverse('home'))
