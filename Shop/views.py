@@ -18,40 +18,18 @@ def navbar(request):
 
 @login_required
 def home(request):
+    ### Retrieving Query Parameters
     query = request.GET.get('query', '')
     min_price = request.GET.get('min_price', 0)
     max_price = request.GET.get('max_price', 1000000)
     min_rating = request.GET.get('min_rating', 0)
     sort_by = request.GET.get('sort_by', '')
 
+    ### Initial Product Query
+
     products = Product.objects.filter(expiry_date__gte=datetime.now(), in_stock=True)
-
-    search_history = request.COOKIES.get('search_history', '')
-    search_history = search_history.split(',') if search_history else []
-
-    if query:
-        products = products.filter(name__icontains=query)
-        # Store the search query in cookies
-        if query not in search_history:
-            search_history.append(query)
-            search_history_cookie = ','.join(search_history)
-        else:
-            search_history_cookie = ','.join(search_history)
-
-    if min_price:
-        products = products.filter(discount_price__gte=min_price)
-
-    if max_price:
-        products = products.filter(discount_price__lte=max_price)
-
-    if min_rating:
-        products = products.filter(rating__gte=min_rating)
-
-    if sort_by == 'expiry_asc':
-        products = products.order_by('expiry')
-    elif sort_by == 'expiry_desc':
-        products = products.order_by('-expiry')
-
+    
+    ### Greeting Message based on time
     timezone = pytz.timezone('America/New_York')
     current_hour = datetime.now(timezone).hour
     if current_hour < 12:
@@ -61,7 +39,40 @@ def home(request):
     else:
         greeting = "Good evening"
 
+    ### User Name
     user_name = request.user.first_name
+
+    ### Handling Search History
+    # Retrieves the search history from cookies and splits it into a list.
+    search_history = request.COOKIES.get('search_history', '')
+    search_history = search_history.split(',') if search_history else []
+
+    ### Filtering Products Based on Query
+    if query:
+        products = products.filter(name__icontains=query)
+        # Store the search query in cookies
+        if query not in search_history:
+            search_history.append(query)
+            search_history_cookie = ','.join(search_history)
+        else:
+            search_history_cookie = ','.join(search_history)
+
+    ### Filtering Products Based on Price and Rating
+    if min_price:
+        products = products.filter(discount_price__gte=min_price)
+
+    if max_price:
+        products = products.filter(discount_price__lte=max_price)
+
+    if min_rating:
+        products = products.filter(rating__gte=min_rating)
+
+    ### Sorting Products based on expiry date
+    if sort_by == 'expiry_asc':
+        products = products.order_by('expiry')
+    elif sort_by == 'expiry_desc':
+        products = products.order_by('-expiry')
+
 
     response = render(request, 'Shop/home.html', {
         'products': products,
@@ -72,7 +83,7 @@ def home(request):
         'search_history': search_history,
     })
 
-    # Set the search history cookie
+    ### Set the search history cookie
     if query:
         response.set_cookie('search_history', search_history_cookie, max_age=365*24*60*60)  # Cookie expires in one year
 
