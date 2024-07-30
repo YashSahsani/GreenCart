@@ -1,10 +1,11 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from datetime import datetime
-
+from .forms import EmailForm
 from userprofile.models import UserProfile
 from .models import  offer
 from Shop.models import Product
+
 
 def index(request):
     if request.user.is_authenticated:
@@ -54,11 +55,17 @@ def plant_care_tips(request):
         return render(request, 'FooterPages/plant_care_tips.html', {'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
     else:
         return render(request, 'FooterPages/plant_care_tips.html')
-    
 
 def subscribe(request):
+    if request.method == "POST":
+        form = EmailForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = EmailForm()
+   
     if request.user.is_authenticated:
         return render(request, 'FooterPages/subscription_success.html', {'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
-    if request.method == "POST":
-        return render(request, 'FooterPages/subscription_success.html')
-    return redirect(reverse('home'))
+    
+    
+    return render(request, 'FooterPages/subscription_success.html', {'form': form})
