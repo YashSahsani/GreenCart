@@ -68,4 +68,4 @@ def subscribe(request):
         return render(request, 'FooterPages/subscription_success.html', {'user_profile_pic': UserProfile.objects.get(user=request.user).profile_pic.url})
     
     
-    return render(request, 'FooterPages/subscribe.html', {'form': form})
+    return render(request, 'FooterPages/subscription_success.html', {'form': form})
