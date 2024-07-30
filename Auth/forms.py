@@ -1,6 +1,9 @@
+import re
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext_lazy as _
+
 
 class LoginForm(forms.Form):
     email = forms.EmailField(
@@ -118,7 +121,18 @@ class ResetPasswordForm(forms.Form):
             'placeholder': 'Confirm New Password'
         })
     )
-    
+    def clean_password1(self):
+        password1 = self.cleaned_data.get('password1')
+        if len(password1) < 8:
+            raise forms.ValidationError(_('Password must be at least 8 characters long.'))
+        if not re.search(r'[A-Z]', password1):
+            raise forms.ValidationError(_('Password must contain at least one uppercase letter.'))
+        if not re.search(r'[a-z]', password1):
+            raise forms.ValidationError(_('Password must contain at least one lowercase letter.'))
+        if not re.search(r'[0-9]', password1):
+            raise forms.ValidationError(_('Password must contain at least one digit.'))
+        return password1
+  
     def clean(self):
         cleaned_data = super().clean()
         password1 = cleaned_data.get("password1")

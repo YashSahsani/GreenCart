@@ -72,7 +72,8 @@ def forgot_password(request):
             user = User.objects.filter(email=email).first()
             if user:
                 return redirect(reverse('Auth:reset_password') + f'?email={email}')
-
+            else:
+                messages.error(request, 'No user found with this email address.')
     return render(request, 'Auth/forgot_password.html', {'form': form})
 
 def reset_password(request):
@@ -82,7 +83,7 @@ def reset_password(request):
     form = ResetPasswordForm(email=email)
     if not email:
         messages.error(request, 'Invalid password reset link.')
-        return redirect('forgot_password')
+        return redirect('Auth:forgot_password')
     if request.method == 'POST':
         form = ResetPasswordForm(request.POST, email=email)
         if form.is_valid():
