@@ -3,7 +3,7 @@ astroid==3.2.2
 certifi==2024.7.4
 charset-normalizer==3.3.2
 dill==0.3.8
-Django==4.2.13
+Django==4.2.18
 gunicorn==22.0.0
 idna==3.7
 isort==5.13.2
